@@ -51,17 +51,17 @@ export const TestimonialsSection = () => {
           description="Don't just take my word for it. See what my clients have to say
         about my work."
         />
-        <div className="mt-12 lg:mt-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">
-          <div className="flex gap-8 pr-8 flex-none animate-move-left [animation-duration:50s] hover:[animation-play-state:paused]">
+        <div className="-my-4 mt-12 flex overflow-x-clip py-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] lg:mt-24">
+          <div className="flex flex-none animate-move-left gap-8 pr-8 [animation-duration:50s] hover:[animation-play-state:paused]">
             {[...new Array(2)].fill(0).map((_, idx) => (
               <Fragment key={idx}>
                 {testimonials.map((testimonial) => (
                   <Card
                     key={testimonial.name}
-                    className="max-w-xs p-6 md:p-8 md:max-w-md hover:-rotate-3 transition duration-300"
+                    className="max-w-xs p-6 transition duration-300 hover:-rotate-3 md:max-w-md md:p-8"
                   >
-                    <div className="flex gap-4 items-center">
-                      <div className="size-14 bg-gray-700 inline-flex rounded-full items-center justify-center flex-shrink-0">
+                    <div className="flex items-center gap-4">
+                      <div className="inline-flex size-14 flex-shrink-0 items-center justify-center rounded-full bg-gray-700">
                         <Image
                           src={testimonial.avatar}
                           alt={testimonial.name}
@@ -75,7 +75,7 @@ export const TestimonialsSection = () => {
                         </div>
                       </div>
                     </div>
-                    <p className="mt-4 md:mt-6 text-sm md:text-base">
+                    <p className="mt-4 text-sm md:mt-6 md:text-base">
                       {testimonial.text}
                     </p>
                   </Card>

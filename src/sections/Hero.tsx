@@ -12,7 +12,7 @@ import Link from "next/link";
 export const HeroSection = () => {
   const handleScrollToSection = (
     sectionId: string,
-    event: React.MouseEvent<HTMLElement>
+    event: React.MouseEvent<HTMLElement>,
   ) => {
     event.preventDefault();
     const section = document.getElementById(sectionId);
@@ -28,20 +28,20 @@ export const HeroSection = () => {
   };
   return (
     <div
-      className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip"
+      className="relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
       id="home"
     >
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)] ">
+      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5"
           style={{
             backgroundImage: `url(${grainImage.src})`,
           }}
         ></div>
-        <div className="size-[620px] hero-ring"></div>
-        <div className="size-[820px] hero-ring"></div>
-        <div className="size-[1020px] hero-ring"></div>
-        <div className="size-[1220px] hero-ring"></div>
+        <div className="hero-ring size-[620px]"></div>
+        <div className="hero-ring size-[820px]"></div>
+        <div className="hero-ring size-[1020px]"></div>
+        <div className="hero-ring size-[1220px]"></div>
         <HeroOrbit
           size={430}
           rotation={-14}
@@ -124,33 +124,33 @@ export const HeroSection = () => {
       </div>
 
       <div className="container">
-        <div className="flex items-center flex-col">
+        <div className="flex flex-col items-center">
           <Image
             src={memojiImage}
             className="size-[100px]"
             alt="Person peeking from behind laptop"
           />
-          <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
-            <div className="bg-green-500 rounded-full size-2.5 relative">
-              <div className="bg-green-500 inset-0 rounded-full absolute animate-ping-large"></div>
+          <div className="inline-flex items-center gap-4 rounded-lg border border-gray-800 bg-gray-950 px-4 py-1.5">
+            <div className="relative size-2.5 rounded-full bg-green-500">
+              <div className="absolute inset-0 animate-ping-large rounded-full bg-green-500"></div>
             </div>
             <div className="text-sm font-medium">
               Available for new projects
             </div>
           </div>
         </div>
-        <div className="max-w-lg mx-auto">
-          <h1 className="font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide">
+        <div className="mx-auto max-w-lg">
+          <h1 className="mt-8 text-center font-serif text-3xl tracking-wide md:text-5xl">
             Building Exceptional User Experiences
           </h1>
-          <p className="text-center mt-4 text-white/60 md:text-lg">
+          <p className="mt-4 text-center text-white/60 md:text-lg">
             i specialize in transforming designs into functional,
             high-performing web applications. Let&#39;s discuss your next
             project.
           </p>
         </div>
-        <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
-          <button className=" relative inline-flex gap-2 border border-white/15 items-center rounded-xl px-6 h-12">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
+          <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
             <span
               className="font-semibold"
               onClick={(e) => handleScrollToSection("projects", e)}
@@ -164,7 +164,7 @@ export const HeroSection = () => {
             className="relative"
             target="_blank"
           >
-            <button className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl">
+            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
               <span>👋</span>
               <span className="font-bold">Let&#39;s Connect</span>
             </button>
