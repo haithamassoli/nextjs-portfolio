@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Calistoga } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 
@@ -9,6 +10,8 @@ const calistoga = Calistoga({
   variable: "--font-serif",
   weight: ["400"],
 });
+const acorn = localFont({ src: "../font/Acorn-Bold.woff2" });
+const gothic = localFont({ src: "../font/ipa-gothic.woff2" });
 
 export const metadata: Metadata = {
   title: "Morhaf",
@@ -24,13 +27,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        style={gothic.style}
         className={twMerge(
           inter.variable,
           calistoga.variable,
-          "bg-gray-900 font-sans text-white antialiased",
+          "bg-[#233831] font-sans text-[#8fdcce] antialiased",
+          // "bg-gray-900 font-sans text-white antialiased",
         )}
       >
-        {children}
+        <div style={acorn.style}>{children}</div>
       </body>
     </html>
   );

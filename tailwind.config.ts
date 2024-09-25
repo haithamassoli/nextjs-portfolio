@@ -25,6 +25,8 @@ const config: Config = {
       fontFamily: {
         sans: "var(--font-sans)",
         serif: "var(--font-serif)",
+        acorn: "var(--font-acorn)",
+        gothic: "var(--font-gothic)",
       },
       animation: {
         "ping-large": "ping-large 1s ease-in-out infinite",
