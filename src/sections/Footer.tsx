@@ -7,7 +7,7 @@ const footerLinks = [
   },
   {
     title: "PlaySore",
-    href: "play.google.com/store/apps/developer?id=haitham+assoli",
+    href: "https://play.google.com/store/apps/developer?id=haitham+assoli",
   },
   {
     title: "LinkedIn",
