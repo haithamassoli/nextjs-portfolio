@@ -109,39 +109,39 @@ const toolboxItems2 = [
 
 const hobbies = [
   {
-    title: "painting",
-    emoji: "🎨",
+    title: "Football",
+    emoji: "⚽",
     left: "5%",
     top: "5%",
   },
   {
-    title: "Photography",
-    emoji: "📷",
+    title: "Worship",
+    emoji: "🙏",
     left: "50%",
     top: "5%",
   },
 
   {
-    title: "Hiking",
+    title: "Walking",
     emoji: "🥾",
     left: "35%",
     top: "40%",
   },
   {
-    title: "Gaming",
-    emoji: "🎮",
+    title: "Learning",
+    emoji: "🧠",
     left: "10%",
     top: "35%",
   },
   {
     title: "Swimming",
-    emoji: "🏊",
+    emoji: "🏊‍♂️",
     left: "70%",
     top: "45%",
   },
   {
-    title: "Fitness",
-    emoji: "🏋️‍♀️",
+    title: "Meditation",
+    emoji: "🌿",
     left: "5%",
     top: "65%",
   },
@@ -159,12 +159,11 @@ export const AboutSection = () => {
     <div className="py-20 lg:py-28" id="about">
       <div className="container">
         <SectionHeader
-          title="About Me"
           eyebrow="A Glimpse Into My World"
           description="Learn more about who i am, what i do, what inspires me."
         />
         <div className="mt-20 flex flex-col gap-8">
-          <Card className="h-[320px] md:col-span-3 lg:col-span-2">
+          <Card className="h-[342px] md:col-span-3 lg:col-span-2">
             <CardHeader
               title="My Toolbox"
               description="Explore the technologies and tools I use to craft exceptional
@@ -191,7 +190,7 @@ export const AboutSection = () => {
                 {hobbies.map((hobby) => (
                   <motion.div
                     key={hobby.title}
-                    className="absolute inline-flex cursor-pointer items-center gap-2 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 px-6 py-1.5"
+                    className="absolute inline-flex cursor-pointer items-center gap-2 rounded-full bg-gradient-to-tl from-emerald-200 via-emerald-200 to-sky-200 px-6 py-1.5"
                     style={{
                       left: hobby.left,
                       top: hobby.top,
@@ -218,7 +217,7 @@ export const AboutSection = () => {
                 <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400"></div>
                 <Image
                   src={profile}
-                  alt="Smile memoji"
+                  alt="profile"
                   className="size-20 rounded-full"
                 />
               </div>
