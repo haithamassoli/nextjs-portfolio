@@ -8,7 +8,6 @@ const ToolboxItems = ({
   itemsWrapperClassName,
 }: {
   items: {
-    title: string;
     iconType: React.ElementType;
   }[];
   className?: string;
@@ -29,13 +28,12 @@ const ToolboxItems = ({
       >
         {[...new Array(2)].fill(0).map((_, idx) => (
           <Fragment key={idx}>
-            {items.map((item) => (
+            {items.map((item, index) => (
               <div
-                key={item.title}
-                className="inline-flex items-center gap-4 rounded-lg px-3 py-2 outline outline-2 outline-white/10"
+                key={index}
+                className="inline-flex items-center gap-4 px-3 py-2"
               >
                 <TechIcon component={item.iconType} />
-                <span>{item.title}</span>
               </div>
             ))}
           </Fragment>

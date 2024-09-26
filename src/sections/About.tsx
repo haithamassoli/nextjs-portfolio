@@ -2,18 +2,32 @@
 
 import Card from "@/components/Card";
 import SectionHeader from "@/components/SectionHeader";
-import bookImage from "@/assets/images/book-cover.png";
 import Image from "next/image";
 import JavascriptIcon from "@/assets/icons/square-js.svg";
 import HTMLIcon from "@/assets/icons/html5.svg";
+import ArcIcon from "@/assets/icons/arc.svg";
+import GreenSockIcon from "@/assets/icons/GreenSock.svg";
+import NestJSIcon from "@/assets/icons/NestJS.svg";
+import NodejsIcon from "@/assets/icons/nodejs.svg";
+import NpmIcon from "@/assets/icons/npm.svg";
+import PhpIcon from "@/assets/icons/php.svg";
+import ReactQueryIcon from "@/assets/icons/ReactQuery.svg";
+import ReduxIcon from "@/assets/icons/Redux.svg";
+import TailwindCssIcon from "@/assets/icons/tailwindcss.svg";
+import MysqlIcon from "@/assets/icons/Mysql.svg";
+import ThreeJsIcon from "@/assets/icons/Three.js.svg";
+import TypeScriptIcon from "@/assets/icons/TypeScript.svg";
 import CssIcon from "@/assets/icons/css3.svg";
 import ReactIcon from "@/assets/icons/react.svg";
 import nextIcon from "@/assets/icons/nextjs-icon-svgrepo-com.svg";
+import FigmaIcon from "@/assets/icons/figma.svg";
 import framerMotion from "@/assets/icons/framer-motion.svg";
-import ChromeIcon from "@/assets/icons/chrome.svg";
 import GithubIcon from "@/assets/icons/github.svg";
-import mapImage from "@/assets/images/map copy.png";
-import smileMemoji from "@/assets/images/memoji-smile.png";
+import ReanimationIcon from "@/assets/icons/reanimation.svg";
+import VSCdeIcon from "@/assets/icons/vscode.svg";
+import ExpoIcon from "@/assets/icons/expo.svg";
+import mapImage from "@/assets/images/map.png";
+import profile from "@/assets/images/profile.png";
 import CardHeader from "@/components/CardHeader";
 import ToolboxItems from "@/components/ToolboxItems";
 import { motion } from "framer-motion";
@@ -21,36 +35,75 @@ import { useRef } from "react";
 
 const toolboxItems = [
   {
-    title: "JavaScript",
     iconType: JavascriptIcon,
   },
   {
-    title: "HTML5",
+    iconType: TypeScriptIcon,
+  },
+  {
+    iconType: ReanimationIcon,
+  },
+  {
+    iconType: ExpoIcon,
+  },
+  {
+    iconType: ArcIcon,
+  },
+  {
+    iconType: GreenSockIcon,
+  },
+  {
+    iconType: NestJSIcon,
+  },
+  {
+    iconType: NodejsIcon,
+  },
+  {
+    iconType: NpmIcon,
+  },
+  {
+    iconType: PhpIcon,
+  },
+  {
+    iconType: ReactQueryIcon,
+  },
+  {
+    iconType: ReduxIcon,
+  },
+];
+const toolboxItems2 = [
+  {
+    iconType: TailwindCssIcon,
+  },
+  {
+    iconType: MysqlIcon,
+  },
+  {
+    iconType: VSCdeIcon,
+  },
+  {
+    iconType: ThreeJsIcon,
+  },
+  {
     iconType: HTMLIcon,
   },
   {
-    title: "CSS3",
     iconType: CssIcon,
   },
   {
-    title: "React",
     iconType: ReactIcon,
   },
   {
-    title: "Chrome",
-    iconType: ChromeIcon,
-  },
-  {
-    title: "Github",
     iconType: GithubIcon,
   },
   {
-    title: "NextJs",
     iconType: nextIcon,
   },
   {
-    title: "Motion",
     iconType: framerMotion,
+  },
+  {
+    iconType: FigmaIcon,
   },
 ];
 
@@ -111,35 +164,22 @@ export const AboutSection = () => {
           description="Learn more about who i am, what i do, what inspires me."
         />
         <div className="mt-20 flex flex-col gap-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
-            <Card className="h-[320px] md:col-span-2 lg:col-span-1">
-              <CardHeader
-                title="My Reads"
-                description="Explore the books shaping my perspectives."
-              />
-              <div className="mx-auto mt-2 w-40 md:mt-0">
-                <Image src={bookImage} alt="Book Cover" />
-              </div>
-            </Card>
-            <Card className="h-[320px] md:col-span-3 lg:col-span-2">
-              <CardHeader
-                title="My Toolbox"
-                description="Explore the technologies and tools I use to craft exceptional
+          <Card className="h-[320px] md:col-span-3 lg:col-span-2">
+            <CardHeader
+              title="My Toolbox"
+              description="Explore the technologies and tools I use to craft exceptional
                 digital experiences."
-                className=""
-              />
-              <ToolboxItems
-                items={toolboxItems}
-                className=""
-                itemsWrapperClassName="animate-move-left [animation-duration:30s]"
-              />
-              <ToolboxItems
-                items={toolboxItems}
-                className="mt-6"
-                itemsWrapperClassName="-translate-x-1/2 animate-move-right [animation-duration:15s]"
-              />
-            </Card>
-          </div>
+            />
+            <ToolboxItems
+              items={toolboxItems}
+              itemsWrapperClassName="animate-move-left [animation-duration:32s]"
+            />
+            <ToolboxItems
+              items={toolboxItems2}
+              className="mt-6"
+              itemsWrapperClassName="animate-move-right [animation-duration:32s]"
+            />
+          </Card>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
             <Card className="flex h-[320px] flex-col p-0 md:col-span-3 lg:col-span-2">
               <CardHeader
@@ -177,9 +217,9 @@ export const AboutSection = () => {
                 <div className="absolute inset-0 -z-20 animate-ping rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 [animation-duration:2s]"></div>
                 <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400"></div>
                 <Image
-                  src={smileMemoji}
+                  src={profile}
                   alt="Smile memoji"
-                  className="size-20"
+                  className="size-20 rounded-full"
                 />
               </div>
             </Card>
