@@ -1,18 +1,68 @@
 "use client";
 
-import memojiImage from "@/assets/images/memoji-computer.png";
-import Image from "next/image";
+import { useState, useEffect, MouseEvent, useRef } from "react";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
 import HeroOrbit from "@/components/HeroOrbit";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import Link from "next/link";
+import { DecoderText } from "@/components/decoder-text/decoder-text";
+
+const letters = [
+  "H",
+  "i",
+  ".",
+  " ",
+  "I",
+  "'",
+  "a",
+  "m",
+  " ",
+  "H",
+  "á",
+  "i",
+  "t",
+  "h",
+  "á",
+  "m",
+  ".",
+];
 
 export const HeroSection = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (event: any) => {
+      setMousePosition({ x: event.clientX, y: event.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  const calculateFontVariation = (letterRef: any) => {
+    if (!letterRef.current) return { wght: 700 };
+    const letterPos = letterRef.current.getBoundingClientRect();
+    const distance = Math.hypot(
+      mousePosition.x - (letterPos.left + letterPos.width / 2),
+      mousePosition.y - (letterPos.top + letterPos.height / 2),
+    );
+
+    const maxDistance = 150; // Adjust this to control the range
+    const clampedDistance = Math.min(distance, maxDistance);
+
+    // const wght = 900 - (clampedDistance / maxDistance) * 800; // Weight from 100 to 900
+    const reverseWght = 100 + (clampedDistance / maxDistance) * 800; // Weight from 900 to 100
+
+    return { reverseWght };
+  };
+
   const handleScrollToSection = (
     sectionId: string,
-    event: React.MouseEvent<HTMLElement>,
+    event: MouseEvent<HTMLElement>,
   ) => {
     event.preventDefault();
     const section = document.getElementById(sectionId);
@@ -26,12 +76,86 @@ export const HeroSection = () => {
       });
     }
   };
+
   return (
     <div
       className="relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
       id="home"
     >
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
+      <div className="">
+        <div className="mx-auto">
+          <h1 className="mt-8 text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
+            {/* <DecoderText text="Hi. I'm Háithám." delay={400} /> */}
+            {letters.map((letter, index) => {
+              const letterRef = useRef(null);
+              const { reverseWght } = calculateFontVariation(letterRef);
+
+              return (
+                <span
+                  key={index}
+                  ref={letterRef}
+                  style={{
+                    fontWeight: reverseWght,
+                    // last 5 letters are red
+                    color: index >= letters.length - 8 ? "#8fdcc2" : "",
+                  }}
+                >
+                  {letter}
+                </span>
+              );
+            })}
+          </h1>
+          <h1 className="mb-12 mt-8 text-center font-acorn text-5xl tracking-wide md:text-7xl">
+            {"A Developer.".split("").map((letter, index) => {
+              const letterRef = useRef(null);
+              const { reverseWght } = calculateFontVariation(letterRef);
+
+              return (
+                <span
+                  key={index}
+                  ref={letterRef}
+                  style={{
+                    fontWeight: reverseWght,
+                  }}
+                >
+                  {letter}
+                </span>
+              );
+            })}
+          </h1>
+          <div className="m-auto w-3/4 text-center md:w-1/2">
+            <DecoderText
+              className="w-3 text-white/80 md:text-lg"
+              delay={400}
+              text="I specialize in transforming designs into functional,
+            high-performing web applications. Let&#39;s discuss your next
+            project."
+            />
+          </div>
+        </div>
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
+          <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
+            <span
+              className="font-semibold"
+              onClick={(e) => handleScrollToSection("projects", e)}
+            >
+              Explore My Work
+            </span>
+            <ArrowDown className="size-4" />
+          </button>
+          <Link
+            href="https://www.linkedin.com/in/haithamassoli/"
+            className="relative"
+            target="_blank"
+          >
+            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
+              <span>👋</span>
+              <span className="font-bold">Let&#39;s Connect</span>
+            </button>
+          </Link>
+        </div>
+      </div>
+      <div className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5"
           style={{
@@ -50,7 +174,7 @@ export const HeroSection = () => {
           shouldSpin
           spinDuration="3s"
         >
-          <SparkleIcon className="size-8 text-emerald-300/20" />
+          <SparkleIcon className="size-8 text-white/60" />
         </HeroOrbit>
         <HeroOrbit
           size={440}
@@ -60,10 +184,10 @@ export const HeroSection = () => {
           shouldSpin
           spinDuration="3s"
         >
-          <SparkleIcon className="size-5 text-emerald-300/20" />
+          <SparkleIcon className="size-5 text-white/60" />
         </HeroOrbit>
         <HeroOrbit size={520} rotation={-41} shouldOrbit orbitDuration="34s">
-          <div className="size-2 rounded-full bg-emerald-300/30" />
+          <div className="size-2 rounded-full bg-white/40" />
         </HeroOrbit>
         <HeroOrbit
           size={530}
@@ -73,7 +197,7 @@ export const HeroSection = () => {
           shouldSpin
           spinDuration="3s"
         >
-          <SparkleIcon className="size-10 text-emerald-300/20" />
+          <SparkleIcon className="size-10 text-white/40" />
         </HeroOrbit>
         <HeroOrbit
           size={550}
@@ -83,7 +207,7 @@ export const HeroSection = () => {
           shouldSpin
           spinDuration="6s"
         >
-          <StarIcon className="size-12 text-emerald-300" />
+          <StarIcon className="size-12 text-white" />
         </HeroOrbit>
         <HeroOrbit
           size={590}
@@ -93,10 +217,10 @@ export const HeroSection = () => {
           shouldSpin
           spinDuration="6s"
         >
-          <StarIcon className="size-8 text-emerald-300" />
+          <StarIcon className="size-8 text-white" />
         </HeroOrbit>
         <HeroOrbit size={650} rotation={-5} shouldOrbit orbitDuration="42s">
-          <div className="size-2 rounded-full bg-emerald-300/30" />
+          <div className="size-2 rounded-full text-white/60" />
         </HeroOrbit>
         <HeroOrbit
           size={710}
@@ -106,10 +230,10 @@ export const HeroSection = () => {
           shouldSpin
           spinDuration="3s"
         >
-          <SparkleIcon className="size-14 text-emerald-300/20" />
+          <SparkleIcon className="size-14 text-white/40" />
         </HeroOrbit>
         <HeroOrbit size={720} rotation={85} shouldOrbit orbitDuration="46s">
-          <div className="size-3 rounded-full bg-emerald-300/30" />
+          <div className="size-3 rounded-full text-white/60" />
         </HeroOrbit>
         <HeroOrbit
           size={800}
@@ -119,57 +243,8 @@ export const HeroSection = () => {
           shouldSpin
           spinDuration="6s"
         >
-          <StarIcon className="size-28 text-emerald-300" />
+          <StarIcon className="size-28 text-white" />
         </HeroOrbit>
-      </div>
-
-      <div className="container">
-        <div className="flex flex-col items-center">
-          <Image
-            src={memojiImage}
-            className="size-[100px]"
-            alt="Person peeking from behind laptop"
-          />
-          <div className="inline-flex items-center gap-4 rounded-lg border border-gray-800 bg-gray-950 px-4 py-1.5">
-            <div className="relative size-2.5 rounded-full bg-green-500">
-              <div className="absolute inset-0 animate-ping-large rounded-full bg-green-500"></div>
-            </div>
-            <div className="text-sm font-medium">
-              Available for new projects
-            </div>
-          </div>
-        </div>
-        <div className="mx-auto max-w-lg">
-          <h1 className="mt-8 text-center font-serif text-3xl tracking-wide md:text-5xl">
-            Building Exceptional User Experiences
-          </h1>
-          <p className="mt-4 text-center text-white/60 md:text-lg">
-            i specialize in transforming designs into functional,
-            high-performing web applications. Let&#39;s discuss your next
-            project.
-          </p>
-        </div>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
-          <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
-            <span
-              className="font-semibold"
-              onClick={(e) => handleScrollToSection("projects", e)}
-            >
-              Explore My Work
-            </span>
-            <ArrowDown className="size-4" />
-          </button>
-          <Link
-            href="https://www.linkedin.com/in/morhaf-ghziel-a720a72b9/"
-            className="relative"
-            target="_blank"
-          >
-            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
-              <span>👋</span>
-              <span className="font-bold">Let&#39;s Connect</span>
-            </button>
-          </Link>
-        </div>
       </div>
     </div>
   );
