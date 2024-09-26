@@ -235,13 +235,13 @@ export const HeroSection = () => {
             <ArrowDown className="size-4" />
           </button>
           <Link
-            href="https://www.linkedin.com/in/haithamassoli/"
+            href="https://haitham-assoli-resume.vercel.app/"
             className="relative"
             target="_blank"
           >
             <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
-              <span>👋</span>
-              <span className="font-bold">Let&#39;s Connect</span>
+              <span className="font-bold">Web Resume</span>
+              <span>⚡️</span>
             </button>
           </Link>
         </div>
