@@ -82,80 +82,7 @@ export const HeroSection = () => {
       className="relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
       id="home"
     >
-      <div>
-        <div className="mx-auto">
-          <h1 className="mt-8 text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
-            {/* <DecoderText text="Hi. I'm Háithám." delay={400} /> */}
-            {letters.map((letter, index) => {
-              const letterRef = useRef(null);
-              const { reverseWght } = calculateFontVariation(letterRef);
-
-              return (
-                <span
-                  key={index}
-                  ref={letterRef}
-                  style={{
-                    fontWeight: reverseWght,
-                    // last 5 letters are red
-                    color: index >= letters.length - 8 ? "#8fdcc2" : "",
-                  }}
-                >
-                  {letter}
-                </span>
-              );
-            })}
-          </h1>
-          <h1 className="mb-12 mt-8 text-center font-acorn text-5xl tracking-wide md:text-7xl">
-            {"A Developer.".split("").map((letter, index) => {
-              const letterRef = useRef(null);
-              const { reverseWght } = calculateFontVariation(letterRef);
-
-              return (
-                <span
-                  key={index}
-                  ref={letterRef}
-                  style={{
-                    fontWeight: reverseWght,
-                  }}
-                >
-                  {letter}
-                </span>
-              );
-            })}
-          </h1>
-          <div className="m-auto w-3/4 text-center md:w-1/2">
-            <DecoderText
-              className="w-3 text-white/80 md:text-lg"
-              delay={400}
-              text="I specialize in transforming designs into functional,
-            high-performing web applications. Let&#39;s discuss your next
-            project."
-            />
-          </div>
-        </div>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
-          <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
-            <span
-              className="font-semibold"
-              onClick={(e) => handleScrollToSection("projects", e)}
-            >
-              Explore My Work
-            </span>
-            <ArrowDown className="size-4" />
-          </button>
-          <Link
-            href="https://www.linkedin.com/in/haithamassoli/"
-            className="relative"
-            target="_blank"
-          >
-            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
-              <span>👋</span>
-              <span className="font-bold">Let&#39;s Connect</span>
-            </button>
-          </Link>
-        </div>
-      </div>
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
+      <div className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5"
           style={{
@@ -245,6 +172,79 @@ export const HeroSection = () => {
         >
           <StarIcon className="size-28 text-white" />
         </HeroOrbit>
+      </div>
+      <div>
+        <div className="mx-auto">
+          <h1 className="mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
+            {/* <DecoderText text="Hi. I'm Háithám." delay={400} /> */}
+            {letters.map((letter, index) => {
+              const letterRef = useRef(null);
+              const { reverseWght } = calculateFontVariation(letterRef);
+
+              return (
+                <span
+                  key={index}
+                  ref={letterRef}
+                  style={{
+                    fontWeight: reverseWght,
+                    // last 5 letters are red
+                    color: index >= letters.length - 8 ? "#8fdcc2" : "",
+                  }}
+                >
+                  {letter}
+                </span>
+              );
+            })}
+          </h1>
+          <h1 className="mb-12 mt-8 select-none text-center font-acorn text-5xl tracking-wide md:text-7xl">
+            {"A Developer.".split("").map((letter, index) => {
+              const letterRef = useRef(null);
+              const { reverseWght } = calculateFontVariation(letterRef);
+
+              return (
+                <span
+                  key={index}
+                  ref={letterRef}
+                  style={{
+                    fontWeight: reverseWght,
+                  }}
+                >
+                  {letter}
+                </span>
+              );
+            })}
+          </h1>
+          <div className="m-auto w-3/4 text-center md:w-1/2">
+            <DecoderText
+              className="w-3 text-white/80 md:text-lg"
+              delay={400}
+              text="I specialize in transforming designs into functional,
+            high-performing web applications. Let&#39;s discuss your next
+            project."
+            />
+          </div>
+        </div>
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
+          <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
+            <span
+              className="font-semibold"
+              onClick={(e) => handleScrollToSection("projects", e)}
+            >
+              Explore My Work
+            </span>
+            <ArrowDown className="size-4" />
+          </button>
+          <Link
+            href="https://www.linkedin.com/in/haithamassoli/"
+            className="relative"
+            target="_blank"
+          >
+            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
+              <span>👋</span>
+              <span className="font-bold">Let&#39;s Connect</span>
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
