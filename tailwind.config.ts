@@ -1,4 +1,3 @@
-import { transform } from "next/dist/build/swc";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -24,7 +23,6 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: "var(--font-sans)",
-        serif: "var(--font-serif)",
         acorn: "var(--font-acorn)",
         gothic: "var(--font-gothic)",
       },

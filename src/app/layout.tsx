@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Calistoga } from "next/font/google";
+import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const calistoga = Calistoga({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["400"],
-});
+
 const acorn = localFont({
   src: [
     {
@@ -71,7 +67,6 @@ export default function RootLayout({
       <body
         className={twMerge(
           inter.variable,
-          calistoga.variable,
           gothic.variable,
           acorn.variable,
           "bg-gray-900 font-sans text-white antialiased",
