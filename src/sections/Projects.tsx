@@ -57,18 +57,12 @@ const portfolioProjects = [
 
 export const ProjectsSection = () => {
   return (
-    <section className="pb-16 lg:py-24" id="projects">
+    <section className="pb-16 lg:py-28" id="projects">
       <div className="container">
-        <div className="flex justify-center">
-          <p className="bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-center font-semibold uppercase tracking-widest text-transparent">
-            Real-world Results
-          </p>
-        </div>
-
-        <h2 className="mt-6 text-center font-serif text-3xl md:text-5xl">
+        <h2 className="mt-6 text-center font-acorn text-3xl font-bold text-emerald-200 md:text-5xl">
           Featured Projects
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-center text-white/60 md:text-lg lg:text-xl">
+        <p className="mx-auto mt-4 max-w-md text-center text-white/80 md:text-lg lg:text-xl">
           See how I transformed concepts into engaging digital experiences.
         </p>
         <div className="mt-10 flex flex-col gap-20 md:mt-20">
@@ -93,7 +87,7 @@ export const ProjectsSection = () => {
                     <span>&bull;</span>
                     <span>{project.year}</span>
                   </div>
-                  <h3 className="mt-2 font-serif text-2xl md:mt-5 md:text-4xl">
+                  <h3 className="mt-2 font-acorn text-2xl md:mt-5 md:text-4xl">
                     {project.title}
                   </h3>
                   <hr className="mt-4 border-t-2 border-white/5 md:mt-5" />

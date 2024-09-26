@@ -1,26 +1,18 @@
 import React from "react";
 
 const SectionHeader = ({
-  title,
   eyebrow,
   description,
 }: {
-  title: string;
   eyebrow: string;
   description: string;
 }) => {
   return (
     <>
-      <div className="flex justify-center">
-        <p className="bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-center font-semibold uppercase tracking-widest text-transparent">
-          {title}
-        </p>
-      </div>
-
-      <h2 className="mt-6 text-center font-serif text-3xl md:text-5xl">
+      <h2 className="mt-6 text-center font-acorn text-3xl font-bold text-[#8fdcce] md:text-5xl">
         {eyebrow}
       </h2>
-      <p className="mx-auto mt-4 max-w-md text-center text-white/60 md:text-lg lg:text-xl">
+      <p className="mx-auto mt-4 max-w-md text-center text-white/80 md:text-lg lg:text-xl">
         {description}
       </p>
     </>
