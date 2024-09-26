@@ -10,11 +10,53 @@ const calistoga = Calistoga({
   variable: "--font-serif",
   weight: ["400"],
 });
-const acorn = localFont({ src: "../font/Acorn-Bold.woff2" });
-const gothic = localFont({ src: "../font/ipa-gothic.woff2" });
+const acorn = localFont({
+  src: [
+    {
+      path: "../font/Acorn-Thin.woff2",
+      style: "normal",
+      weight: "100",
+    },
+    {
+      path: "../font/Acorn-Light.woff2",
+      style: "normal",
+      weight: "200",
+    },
+    {
+      path: "../font/Acorn-ExtraLight.woff2",
+      style: "normal",
+      weight: "300",
+    },
+    {
+      path: "../font/Acorn-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../font/Acorn-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../font/Acorn-SemiBold.woff2",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../font/Acorn-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-acorn",
+});
+const gothic = localFont({
+  src: "../font/ipa-gothic.woff2",
+  variable: "--font-gothic",
+});
 
 export const metadata: Metadata = {
-  title: "Morhaf",
+  title: "Haitham's Portfolio",
   description:
     "Building modern, high-performing web experiences with clean design and functionality. Crafted with attention to detail and supported by the expertise of Frontend Tribe.",
 };
@@ -27,15 +69,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        style={gothic.style}
         className={twMerge(
           inter.variable,
           calistoga.variable,
-          "bg-[#233831] font-sans text-[#8fdcce] antialiased",
-          // "bg-gray-900 font-sans text-white antialiased",
+          gothic.variable,
+          acorn.variable,
+          "bg-gray-900 font-sans text-white antialiased",
         )}
       >
-        <div style={acorn.style}>{children}</div>
+        {children}
       </body>
     </html>
   );
