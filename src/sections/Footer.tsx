@@ -2,16 +2,16 @@ import ArrowUpRight from "@/assets/icons/arrow-up-right.svg";
 
 const footerLinks = [
   {
-    title: "Twitter",
-    href: "https://x.com/MorhafGhziel",
+    title: "Github",
+    href: "https://github.com/haithamassoli",
   },
   {
-    title: "Instagram",
-    href: "https://www.instagram.com/4uee_m/?next=%2F",
+    title: "PlaySore",
+    href: "play.google.com/store/apps/developer?id=haitham+assoli",
   },
   {
     title: "LinkedIn",
-    href: "https://www.linkedin.com/in/morhaf-ghziel-a720a72b9/",
+    href: "https://www.linkedin.com/in/haithamassoli/",
   },
 ];
 
@@ -21,7 +21,9 @@ export const Footer = () => {
       <div className="absolute bottom-0 left-1/2 -z-10 h-[400px] w-[1600px] -translate-x-1/2 bg-emerald-300/30 [mask-image:radial-gradient(50%_50%_at_bottom_center,black,transparent)]"></div>
       <div className="container">
         <div className="flex flex-col items-center gap-8 border-t border-white/15 py-6 text-sm md:flex-row md:justify-between">
-          <div className="text-white/40">&copy; 2024. All rights reserved.</div>
+          <div className="text-white/40">
+            &copy;{`${new Date().getFullYear()}`} All rights reserved.
+          </div>
           <nav className="flex flex-col items-center gap-8 md:flex-row">
             {footerLinks.map((link) => (
               <a
