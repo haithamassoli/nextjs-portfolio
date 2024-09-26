@@ -82,7 +82,7 @@ export const HeroSection = () => {
       className="relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
       id="home"
     >
-      <div className="">
+      <div>
         <div className="mx-auto">
           <h1 className="mt-8 text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
             {/* <DecoderText text="Hi. I'm Háithám." delay={400} /> */}
@@ -155,7 +155,7 @@ export const HeroSection = () => {
           </Link>
         </div>
       </div>
-      <div className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
+      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5"
           style={{
