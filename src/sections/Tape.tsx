@@ -18,7 +18,7 @@ const words = [
 export const TapeSection = () => {
   return (
     <div className="overflow-x-clip py-16 lg:py-24">
-      <div className="-mx-1 -rotate-3 bg-gradient-to-r from-emerald-300 to-sky-400">
+      <div className="-mx-1 -rotate-3 bg-gradient-to-r from-sky-300 to-emerald-200">
         <div className="flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <div className="flex flex-none animate-move-left gap-4 py-3 pr-4 [animation-duration:30s]">
             {[...new Array(2)].fill(0).map((_, idx) => (
