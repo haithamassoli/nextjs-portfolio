@@ -16,7 +16,10 @@ export default function Home() {
     <>
       <Header />
       <HeroSection />
-      <div className="mb-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] md:mb-0">
+      <div
+        id="projects"
+        className="mb-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] md:mb-0"
+      >
         <div className="group flex flex-none animate-move-left [animation-duration:30s]">
           {[...new Array(2)].fill(0).map((_, idx) => (
             <Fragment key={idx}>

@@ -57,7 +57,7 @@ const portfolioProjects = [
 
 export const ProjectsSection = () => {
   return (
-    <section className="pb-16 lg:py-28" id="projects">
+    <section className="pb-16 lg:py-28">
       <div className="container">
         <h2 className="mt-6 text-center font-acorn text-3xl font-bold text-emerald-200 md:text-5xl">
           Featured Projects
