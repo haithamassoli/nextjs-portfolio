@@ -9,17 +9,16 @@ export const VisuallyHidden = forwardRef(
       showOnFocus,
       as: Component = "span",
       children,
-      visible,
       ...rest
     }: {
       className?: string;
       showOnFocus?: boolean;
       as?: any;
       children: React.ReactNode;
-      visible: boolean;
     },
     ref,
   ) => {
+    const visible = false;
     return (
       <Component
         className={classes(styles.customHidden, className)}

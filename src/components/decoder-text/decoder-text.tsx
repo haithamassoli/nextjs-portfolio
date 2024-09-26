@@ -58,12 +58,12 @@ export const DecoderText = memo(
     className?: string;
   }) => {
     const output = useRef([{ type: CharType.Glyph, value: "" }]);
-    const container = useRef();
+    const container: any = useRef();
     const reduceMotion = useReducedMotion();
     const decoderSpring = useSpring(0, { stiffness: 8, damping: 5 });
 
     useEffect(() => {
-      const containerInstance = container.current;
+      const containerInstance: any = container.current;
       const content = text.split("");
       let animation;
 
