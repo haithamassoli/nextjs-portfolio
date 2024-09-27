@@ -79,7 +79,7 @@ export const HeroSection = () => {
 
   return (
     <div
-      className="relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
+      className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
       id="home"
     >
       <div className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
