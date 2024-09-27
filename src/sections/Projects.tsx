@@ -59,7 +59,7 @@ export const ProjectsSection = () => {
   return (
     <section className="pb-16 lg:py-28">
       <div className="container">
-        <h2 className="mt-6 text-center font-acorn text-3xl font-bold text-emerald-200 md:text-5xl">
+        <h2 className="mt-6 text-center font-acorn text-3xl font-bold text-[#8fdcce] md:text-5xl">
           Featured Projects
         </h2>
         <p className="mx-auto mt-4 max-w-md text-center text-white/80 md:text-lg lg:text-xl">
