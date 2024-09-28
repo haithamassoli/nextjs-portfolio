@@ -2,7 +2,6 @@ import { Header } from "@/sections/Header";
 import { HeroSection } from "@/sections/Hero";
 import { ProjectsSection } from "@/sections/Projects";
 import { TapeSection } from "@/sections/Tape";
-import { TestimonialsSection } from "@/sections/Testimonials";
 import { AboutSection } from "@/sections/About";
 import { ContactSection } from "@/sections/Contact";
 import { Footer } from "@/sections/Footer";
@@ -10,6 +9,9 @@ import TapeSvg from "@/assets/icons/stuf.svg";
 import Image from "next/image";
 import Katakana from "../components/katakana.svg";
 import { Fragment } from "react";
+// import MyProjects from "@/sections/MyProjects";
+// import Projects2 from "@/sections/Prooojects";
+// import Jobs from "@/sections/Jobs";
 
 export default function Home() {
   return (
@@ -33,9 +35,11 @@ export default function Home() {
       {/* <TapeSvg className="mt-6 w-screen select-none bg-repeat-x grayscale transition-all duration-500 ease-in-out hover:filter-none" /> */}
       {/* <Katakana /> */}
       {/* <Image src={"/iMockup.png"} width={300} height={440} alt="mockup" /> */}
+      {/* <MyProjects /> */}
+      {/* <Jobs />
+      <Projects2 /> */}
       <ProjectsSection />
       <TapeSection />
-      <TestimonialsSection />
       <AboutSection />
       <ContactSection />
       <Footer />
