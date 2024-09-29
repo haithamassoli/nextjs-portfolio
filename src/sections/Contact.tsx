@@ -3,8 +3,8 @@ import grainImage from "@/assets/images/grain.jpg";
 
 export const ContactSection = () => {
   return (
-    <div className="py-16 pt-12 lg:py-24 lg:pt-20" id="contact">
-      <div className="container">
+    <section className="py-16 pt-12 lg:py-24 lg:pt-20" id="contact">
+      <div className="mx-8 md:container">
         <div className="relative z-30 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-200 to-sky-300 px-10 py-8 text-center text-gray-900 md:text-left">
           <div
             className="absolute inset-0 -z-10 opacity-5"
@@ -33,6 +33,6 @@ export const ContactSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

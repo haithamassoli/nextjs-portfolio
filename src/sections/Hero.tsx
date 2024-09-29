@@ -185,7 +185,6 @@ export const HeroSection = () => {
                   ref={letterRef}
                   style={{
                     fontWeight: reverseWght,
-                    // last 5 letters are red
                     color: index >= letters.length - 8 ? "#8fdcc2" : "",
                   }}
                 >
