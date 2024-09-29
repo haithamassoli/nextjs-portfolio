@@ -7,7 +7,6 @@ import StarIcon from "@/assets/icons/star.svg";
 import HeroOrbit from "@/components/HeroOrbit";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import Link from "next/link";
-import { DecoderText } from "@/components/decoder-text/decoder-text";
 
 const letters = [
   "H",
@@ -78,7 +77,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <div
+    <section
       className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
       id="home"
     >
@@ -176,7 +175,6 @@ export const HeroSection = () => {
       <div>
         <div className="mx-auto">
           <h1 className="mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
-            {/* <DecoderText text="Hi. I'm Háithám." delay={400} /> */}
             {letters.map((letter, index) => {
               const letterRef = useRef(null);
               const { reverseWght } = calculateFontVariation(letterRef);
@@ -214,15 +212,11 @@ export const HeroSection = () => {
               );
             })}
           </h1>
-          <div className="m-auto w-3/4 text-center md:w-1/2">
-            <DecoderText
-              className="w-3 text-white/80 md:text-lg"
-              delay={400}
-              text="I specialize in transforming designs into functional,
+          <p className="m-auto w-3/4 text-center text-white/80 md:w-1/2 md:text-lg">
+            I specialize in transforming designs into functional,
             high-performing web applications. Let&#39;s discuss your next
-            project."
-            />
-          </div>
+            project.
+          </p>
         </div>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
           <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
@@ -246,6 +240,6 @@ export const HeroSection = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
