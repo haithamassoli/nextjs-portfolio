@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, MouseEvent, useRef } from "react";
+import { motion } from "framer-motion";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
@@ -74,6 +75,19 @@ export const HeroSection = () => {
         behavior: "smooth",
       });
     }
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.05,
+        type: "spring",
+        stiffness: 100,
+      },
+    }),
   };
 
   return (
@@ -172,45 +186,57 @@ export const HeroSection = () => {
           <StarIcon className="size-28 text-white" />
         </HeroOrbit>
       </div>
-      <div>
+      <motion.div initial="hidden" animate="visible">
         <div className="mx-auto">
-          <h1 className="mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
+          <motion.h1
+            className="mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl"
+            initial="hidden"
+            animate="visible"
+          >
             {letters.map((letter, index) => {
               const letterRef = useRef(null);
               const { reverseWght } = calculateFontVariation(letterRef);
 
               return (
-                <span
+                <motion.span
                   key={index}
                   ref={letterRef}
                   style={{
                     fontWeight: reverseWght,
                     color: index >= letters.length - 8 ? "#8fdcc2" : "",
                   }}
+                  custom={index}
+                  variants={letterVariants}
                 >
                   {letter}
-                </span>
+                </motion.span>
               );
             })}
-          </h1>
-          <h1 className="mb-12 mt-8 select-none text-center font-acorn text-5xl tracking-wide md:text-7xl">
+          </motion.h1>
+          <motion.h1
+            className="mb-12 mt-8 select-none text-center font-acorn text-5xl tracking-wide md:text-7xl"
+            initial="hidden"
+            animate="visible"
+          >
             {"A Developer.".split("").map((letter, index) => {
               const letterRef = useRef(null);
               const { reverseWght } = calculateFontVariation(letterRef);
 
               return (
-                <span
+                <motion.span
                   key={index}
                   ref={letterRef}
                   style={{
                     fontWeight: reverseWght,
                   }}
+                  custom={index}
+                  variants={letterVariants}
                 >
                   {letter}
-                </span>
+                </motion.span>
               );
             })}
-          </h1>
+          </motion.h1>
           <p className="m-auto w-3/4 text-center text-white/80 md:w-1/2 md:text-lg">
             I specialize in transforming designs into functional,
             high-performing web applications. Let&#39;s discuss your next
@@ -238,7 +264,7 @@ export const HeroSection = () => {
             </button>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
