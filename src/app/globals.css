@@ -27,6 +27,23 @@ html {
     to top,
     hsla(158, 23%, 18%, 0) 0%,
     hsla(158, 23%, 18%, 0.013) 9.7%,
+    hsla(158, 23%, 18%, 0.104) 25.5%,
+    hsla(160, 28%, 25%, 0.55) 52.8%,
+    hsla(160, 26%, 27%, 0.896) 75%,
+    hsl(160, 26%, 41%) 100%
+  );
+
+  /* background: linear-gradient(
+    to bottom,
+    hsla(0, 0%, 100%, 0),
+    hsla(0, 0%, 100%, 0.311) 20%,
+    hsla(160, 52%, 71%, 0.4) 60%,
+    hsla(0, 0%, 100%, 0)
+  ); */
+  /* background: linear-gradient(
+    to top,
+    hsla(158, 23%, 18%, 0) 0%,
+    hsla(158, 23%, 18%, 0.013) 9.7%,
     hsla(158, 23%, 18%, 0.049) 18.1%,
     hsla(158, 23%, 18%, 0.104) 25.5%,
     hsla(158, 23%, 18%, 0.175) 31.9%,
@@ -41,5 +58,27 @@ html {
     hsla(158, 23%, 18%, 0.951) 82.2%,
     hsla(158, 23%, 18%, 0.987) 90.5%,
     hsl(158, 23%, 18%) 100%
-  );
+  ); */
+}
+
+.btn {
+  color: #64ffda;
+  background-color: transparent;
+  border: 1px solid #64ffda;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1;
+  text-decoration: none;
+  padding: 1.25rem 1.75rem;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 4px 4px 0 0 #64ffda;
+  transform: translate(-5px, -5px);
+}
+.btn:after {
+  display: none !important;
 }

@@ -26,6 +26,10 @@ const config: Config = {
         acorn: "var(--font-acorn)",
         gothic: "var(--font-gothic)",
       },
+      colors: {
+        primary: "#8fdcce",
+        secondary: "#64ffda",
+      },
       animation: {
         "ping-large": "ping-large 1s ease-in-out infinite",
         "move-left": "move-left 1s linear infinite",
