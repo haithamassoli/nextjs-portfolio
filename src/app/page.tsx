@@ -1,24 +1,21 @@
+import React from "react";
 import { Header } from "@/sections/Header";
 import { HeroSection } from "@/sections/Hero";
-import { ProjectsSection } from "@/sections/Projects";
+import { FeaturedProject } from "@/sections/FeaturedProject";
 import { TapeSection } from "@/sections/Tape";
 import { AboutSection } from "@/sections/About";
 import { ContactSection } from "@/sections/Contact";
 import { Footer } from "@/sections/Footer";
 import TapeSvg from "@/assets/icons/stuf.svg";
-import Image from "next/image";
-import Katakana from "../components/katakana.svg";
-import { Fragment } from "react";
-// import MyProjects from "@/sections/MyProjects";
-// import Projects2 from "@/sections/Prooojects";
-// import Jobs from "@/sections/Jobs";
+import Jobs from "@/sections/Jobs";
+import Projects from "@/sections/Projects";
 
 export default function Home() {
   return (
     <>
       <Header />
       <HeroSection />
-      <div
+      {/* <div
         id="projects"
         className="mb-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] md:mb-0"
       >
@@ -31,14 +28,11 @@ export default function Home() {
             </Fragment>
           ))}
         </div>
-      </div>
-      {/* <TapeSvg className="mt-6 w-screen select-none bg-repeat-x grayscale transition-all duration-500 ease-in-out hover:filter-none" /> */}
-      {/* <Katakana /> */}
-      {/* <Image src={"/iMockup.png"} width={300} height={440} alt="mockup" /> */}
-      {/* <MyProjects /> */}
-      {/* <Jobs />
-      <Projects2 /> */}
-      <ProjectsSection />
+      </div> */}
+      <TapeSvg className="mt-6 hidden w-screen select-none bg-repeat-x grayscale transition-all duration-500 ease-in-out hover:filter-none lg:block" />
+      <Jobs />
+      <FeaturedProject />
+      <Projects />
       <TapeSection />
       <AboutSection />
       <ContactSection />
