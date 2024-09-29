@@ -29,7 +29,7 @@ export default function Home() {
           ))}
         </div>
       </div> */}
-      <TapeSvg className="mt-6 hidden w-screen select-none bg-repeat-x grayscale transition-all duration-500 ease-in-out hover:filter-none lg:block" />
+      <TapeSvg className="mt-6 w-full select-none bg-repeat-x grayscale transition-all duration-500 ease-in-out hover:filter-none" />
       <Jobs />
       <FeaturedProject />
       <Projects />
