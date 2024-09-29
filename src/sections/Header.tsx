@@ -1,5 +1,20 @@
 "use client";
 
+import { motion } from "framer-motion";
+
+const navVariants = {
+  hidden: { opacity: 0, y: -50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      type: "spring",
+      stiffness: 120,
+    },
+  },
+};
+
 export const Header = () => {
   const handleScrollToSection = (
     sectionId: string,
@@ -20,43 +35,29 @@ export const Header = () => {
 
   return (
     <div className="fixed top-8 z-50 flex w-full items-center justify-center">
-      <nav className="flex gap-1 rounded-full border border-white/15 bg-white/10 p-2 backdrop-blur">
-        <a
-          href="#"
-          className="nav-item"
-          onClick={(e) => handleScrollToSection("home", e)}
-        >
-          Home
-        </a>
-        <a
-          href="#"
-          className="nav-item hidden md:block"
-          onClick={(e) => handleScrollToSection("jobs", e)}
-        >
-          Experience
-        </a>
-        <a
-          href="#"
-          className="nav-item"
-          onClick={(e) => handleScrollToSection("projects", e)}
-        >
-          Projects
-        </a>
-        <a
-          href="#"
-          className="nav-item"
-          onClick={(e) => handleScrollToSection("about", e)}
-        >
-          About
-        </a>
-        <a
-          href="#"
-          className="nav-item bg-white text-gray-900 hover:bg-white/70 hover:text-gray-900"
-          onClick={(e) => handleScrollToSection("contact", e)}
-        >
-          Contact
-        </a>
-      </nav>
+      <motion.nav
+        initial="hidden"
+        animate="visible"
+        variants={navVariants}
+        className="flex gap-1 rounded-full border border-white/15 bg-white/10 p-2 backdrop-blur"
+      >
+        {["Home", "Experience", "Projects", "About", "Contact"].map(
+          (item, index) => (
+            <a
+              key={index}
+              href="#"
+              className={`nav-item ${item === "Experience" ? "hidden md:block" : ""} ${
+                item === "Contact"
+                  ? "bg-white text-gray-900 hover:bg-white/70 hover:text-gray-900"
+                  : ""
+              }`}
+              onClick={(e) => handleScrollToSection(item.toLowerCase(), e)}
+            >
+              {item}
+            </a>
+          ),
+        )}
+      </motion.nav>
     </div>
   );
 };
