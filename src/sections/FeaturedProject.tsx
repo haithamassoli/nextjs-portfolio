@@ -74,7 +74,7 @@ const featuredProjects = [
 
 export const FeaturedProject = () => {
   return (
-    <section className="py-20 lg:py-24" id="projects">
+    <section className="py-16 lg:py-24" id="projects">
       <div className="mx-8 md:container">
         <SectionHeader
           eyebrow="Some Things I’ve Built"
