@@ -14,14 +14,16 @@ const containerVariants = {
   },
 };
 
-const tabVariants = {
-  inactive: { opacity: 0.6, x: 0 },
-  active: {
-    opacity: 1,
-    x: window.innerWidth > 768 ? 10 : 0,
-    transition: { duration: 0.3 },
-  },
-};
+let tabVariants = {};
+
+if (typeof window !== "undefined") {
+  const x = window.innerWidth > 768 ? 10 : 0;
+  tabVariants = {
+    inactive: { opacity: 0.6, x: 0 },
+
+    active: { opacity: 1, x, transition: { duration: 0.3 } },
+  };
+}
 
 const contentVariants = {
   hidden: { opacity: 0, x: -20 },
