@@ -3,6 +3,30 @@
 import SectionHeader from "@/components/SectionHeader";
 import { KEY_CODES } from "@/utils/key-codes";
 import { useEffect, useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const tabVariants = {
+  inactive: { opacity: 0.6, x: 0 },
+  active: {
+    opacity: 1,
+    x: window.innerWidth > 768 ? 10 : 0,
+    transition: { duration: 0.3 },
+  },
+};
+
+const contentVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+};
 
 const jobsData = [
   {
@@ -53,10 +77,12 @@ const jobsData = [
   },
 ];
 
-export const Jobs = () => {
+const Jobs = () => {
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState<any>(null);
   const tabs = useRef([]);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   const focusTab = () => {
     if (tabs.current[tabFocus]) {
@@ -75,43 +101,47 @@ export const Jobs = () => {
 
   const onKeyDown = (e: any) => {
     switch (e.key) {
-      case KEY_CODES.ARROW_UP: {
+      case KEY_CODES.ARROW_UP:
         e.preventDefault();
         setTabFocus(tabFocus - 1);
         break;
-      }
-      case KEY_CODES.ARROW_DOWN: {
+      case KEY_CODES.ARROW_DOWN:
         e.preventDefault();
         setTabFocus(tabFocus + 1);
         break;
-      }
-      default: {
+      default:
         break;
-      }
     }
   };
 
   return (
-    <section className="mx-8 py-20 md:container lg:py-24" id="jobs">
+    <motion.section
+      id="jobs"
+      className="mx-8 py-16 md:container lg:py-24 lg:pt-20"
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
+    >
       <SectionHeader
-        eyebrow="Where I’ve Worked"
+        eyebrow="Where I've Worked"
         description="Here are some of the companies I've worked with."
       />
       <div className="mt-10 flex flex-col md:ml-20 md:mt-20 md:flex-row">
-        <div
+        <motion.div
           className="relative z-10 mb-8 flex overflow-x-auto md:mb-0 md:w-max md:flex-col md:overflow-x-visible"
           role="tablist"
           aria-label="Job tabs"
           onKeyDown={onKeyDown}
         >
           {jobsData.map((job, i) => (
-            <button
+            <motion.button
               key={i}
               className={`whitespace-nowrap px-6 py-4 text-left text-sm ${
                 activeTabId === i
                   ? "bg-gray-800 text-green-500"
                   : "text-gray-400 hover:bg-gray-800 focus:bg-gray-800"
-              } border-b-2 md:border-l-2 ${activeTabId === i ? "border-green-500" : "border-gray-700"} `}
+              } border-b-2 md:border-l-2 ${activeTabId === i ? "border-green-500" : "border-gray-700"}`}
               onClick={() => setActiveTabId(i)}
               ref={(el) => (tabs.current[i] = el)}
               id={`tab-${i}`}
@@ -119,51 +149,66 @@ export const Jobs = () => {
               tabIndex={activeTabId === i ? "0" : "-1"}
               aria-selected={activeTabId === i}
               aria-controls={`panel-${i}`}
+              variants={tabVariants}
+              initial="inactive"
+              animate={activeTabId === i ? "active" : "inactive"}
             >
               <span>{job.company}</span>
-            </button>
+            </motion.button>
           ))}
-          {/* <div
-              className={`duration-250 absolute bottom-0 left-0 h-0.5 bg-green-500 transition-all md:left-0 md:top-0 md:h-4 md:w-0.5 ${activeTabId === 0 ? "w-full md:w-0.5" : ""} ${activeTabId === 1 ? "w-full md:w-0.5 md:translate-y-10" : ""} ${activeTabId === 2 ? "w-full md:w-0.5 md:translate-y-20" : ""} `}
-            /> */}
-        </div>
+        </motion.div>
 
         <div className="flex-1 md:ml-8">
-          {jobsData.map((job, i) => (
-            <div
-              key={i}
-              className={`${activeTabId === i ? "block" : "hidden"} p-2`}
-              id={`panel-${i}`}
-              role="tabpanel"
-              tabIndex={activeTabId === i ? "0" : "-1"}
-              aria-labelledby={`tab-${i}`}
-              aria-hidden={activeTabId !== i}
-            >
-              <h3 className="mb-1 text-2xl font-medium">
-                <span>{job.title}</span>
-                <span className="text-primary">
-                  &nbsp;@
-                  <a href={job.url} className="inline-link hover:underline">
-                    {job.company}
-                  </a>
-                </span>
-              </h3>
-              <p className="mb-6 text-sm text-gray-400">{job.range}</p>
-              <ul className="relative list-disc pl-6 text-gray-300">
-                {job.description.map((point, i) => (
-                  <li
+          <AnimatePresence mode="wait">
+            {jobsData.map(
+              (job, i) =>
+                activeTabId === i && (
+                  <motion.div
                     key={i}
-                    className="mb-2 list-none before:absolute before:left-0 before:-translate-y-1 before:text-lg before:text-green-500 before:content-['▹']"
+                    className="p-2"
+                    id={`panel-${i}`}
+                    role="tabpanel"
+                    tabIndex={activeTabId === i ? "0" : "-1"}
+                    aria-labelledby={`tab-${i}`}
+                    aria-hidden={activeTabId !== i}
+                    variants={contentVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
                   >
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+                    <h3 className="mb-1 text-2xl font-medium">
+                      <span>{job.title}</span>
+                      <span className="text-primary">
+                        &nbsp;@
+                        <a
+                          href={job.url}
+                          className="inline-link hover:underline"
+                        >
+                          {job.company}
+                        </a>
+                      </span>
+                    </h3>
+                    <p className="mb-6 text-sm text-gray-400">{job.range}</p>
+                    <ul className="relative list-disc pl-6 text-gray-300">
+                      {job.description.map((point, i) => (
+                        <motion.li
+                          key={i}
+                          className="mb-2 list-none before:absolute before:-left-6 before:-translate-y-1 before:text-lg before:text-green-500 before:content-['▹']"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                        >
+                          {point}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ),
+            )}
+          </AnimatePresence>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
