@@ -221,7 +221,7 @@ export const HeroSection = () => {
           <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
             <span
               className="font-semibold"
-              onClick={(e) => handleScrollToSection("projects", e)}
+              onClick={(e) => handleScrollToSection("jobs", e)}
             >
               Explore My Work
             </span>
