@@ -60,23 +60,6 @@ export const HeroSection = () => {
     return { reverseWght };
   };
 
-  const handleScrollToSection = (
-    sectionId: string,
-    event: MouseEvent<HTMLElement>,
-  ) => {
-    event.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const sectionTop = section.offsetTop;
-      const headerOffset = 80;
-
-      window.scrollTo({
-        top: sectionTop - headerOffset,
-        behavior: "smooth",
-      });
-    }
-  };
-
   const letterVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({
@@ -245,12 +228,9 @@ export const HeroSection = () => {
         </div>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
           <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
-            <span
-              className="font-semibold"
-              onClick={(e) => handleScrollToSection("jobs", e)}
-            >
+            <a href="#experience" className="font-semibold">
               Explore My Work
-            </span>
+            </a>
             <ArrowDown className="size-4" />
           </button>
           <Link
