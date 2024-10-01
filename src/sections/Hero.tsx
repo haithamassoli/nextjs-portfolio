@@ -61,12 +61,12 @@ export const HeroSection = () => {
   };
 
   const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 60 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.05,
+        delay: i * 0.06,
         type: "spring",
         stiffness: 100,
       },
@@ -230,7 +230,7 @@ export const HeroSection = () => {
             animate={{
               opacity: 1,
               y: 0,
-              transition: { delay: 0.7, duration: 0.5 },
+              transition: { delay: 0.8, duration: 0.6 },
             }}
           >
             I specialize in transforming designs into functional,
@@ -244,7 +244,7 @@ export const HeroSection = () => {
           animate={{
             opacity: 1,
             y: 0,
-            transition: { delay: 1, duration: 0.5 },
+            transition: { delay: 1, duration: 0.6 },
           }}
         >
           <a role="button" href="#experience" className="font-semibold">
