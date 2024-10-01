@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import majalis from "@/assets/images/majalis.png";
 import telescope from "@/assets/images/telescope.png";
 import eecommittee from "@/assets/images/eecommittee.png";
@@ -96,7 +99,18 @@ export const FeaturedProject = () => {
               <div
                 className={`col-span-12 row-start-1 row-end-[-1] md:col-span-7 ${i % 2 === 0 ? "md:col-start-1" : "md:col-start-6"} `}
               >
-                <div className="relative z-10 rounded-lg p-6 shadow-lg md:bg-transparent md:p-0 md:shadow-none">
+                <motion.div
+                  className="relative z-10 rounded-lg p-6 shadow-lg md:bg-transparent md:p-0 md:shadow-none"
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: 0.4, duration: 0.6 },
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
+                >
                   <p className="mb-2 text-sm text-green-500">
                     Featured Project
                   </p>
@@ -153,11 +167,20 @@ export const FeaturedProject = () => {
                       </a>
                     )}
                   </div>
-                </div>
+                </motion.div>
               </div>
 
-              <div
+              <motion.div
                 className={`col-span-12 row-start-1 row-end-[-1] hidden md:col-span-7 md:block ${i % 2 === 0 ? "md:col-start-6" : "md:col-start-1"} `}
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6 },
+                }}
+                viewport={{
+                  once: true,
+                }}
               >
                 <a
                   href={
@@ -177,7 +200,7 @@ export const FeaturedProject = () => {
                     className="h-full w-full rounded-lg object-cover"
                   />
                 </a>
-              </div>
+              </motion.div>
             </li>
           ))}
         </ul>
