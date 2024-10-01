@@ -1,7 +1,8 @@
 "use client";
 
+import { Fragment, useState } from "react";
+import { motion } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
-import { useState } from "react";
 import GitHubIcon from "@/assets/icons/github-outline";
 import FolderIcon from "@/assets/icons/folder";
 import ExternalIcon from "@/assets/icons/external";
@@ -140,7 +141,7 @@ const Projects = () => {
       project;
 
     return (
-      <div className="group flex h-full cursor-pointer flex-col justify-between rounded-lg bg-gray-800 p-7 shadow-lg transition-all duration-300 hover:translate-y-[-7px]">
+      <Fragment>
         <header>
           <div className="mb-9 flex items-center justify-between">
             <div className="h-10 w-10 text-secondary">
@@ -209,7 +210,7 @@ const Projects = () => {
             </ul>
           )}
         </footer>
-      </div>
+      </Fragment>
     );
   };
 
@@ -221,17 +222,35 @@ const Projects = () => {
       />
       <div className="mt-10 grid w-full grid-cols-1 gap-4 md:mt-20 md:grid-cols-2 lg:grid-cols-3">
         {projectsToShow.map((project, i) => (
-          <ProjectInner key={i} project={project} />
+          <div className="transition-all duration-300 hover:translate-y-[-7px]">
+            <motion.div
+              className="group flex h-full cursor-pointer flex-col justify-between rounded-lg bg-gray-800 p-7 shadow-lg transition-all duration-300 hover:translate-y-[-7px]"
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
+              viewport={{
+                once: true,
+              }}
+            >
+              <ProjectInner key={i} project={{ ...project, i }} />
+            </motion.div>
+          </div>
         ))}
       </div>
-      <div className="flex w-full justify-center">
+      <motion.div
+        className="flex w-full justify-center"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
+        viewport={{
+          once: true,
+        }}
+      >
         <button
           className="btn mx-auto mt-12 rounded border border-green-400 bg-transparent px-4 py-2 text-green-400 transition-all duration-300 hover:bg-green-400 hover:bg-opacity-10"
           onClick={() => setShowMore(!showMore)}
         >
           Show {showMore ? "Less" : "More"}
         </button>
-      </div>
+      </motion.div>
     </section>
   );
 };
