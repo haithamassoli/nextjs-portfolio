@@ -3,16 +3,7 @@
 import SectionHeader from "@/components/SectionHeader";
 import { KEY_CODES } from "@/utils/key-codes";
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-
-const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
-};
+import { motion, AnimatePresence } from "framer-motion";
 
 let tabVariants = {};
 
@@ -21,13 +12,13 @@ if (typeof window !== "undefined") {
   tabVariants = {
     inactive: { opacity: 0.6, x: 0 },
 
-    active: { opacity: 1, x, transition: { duration: 0.3 } },
+    active: { opacity: 1, x, transition: { duration: 0.6 } },
   };
 }
 
 const contentVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+  hidden: { opacity: 0, x: -60 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
 };
 
 const jobsData = [
@@ -83,8 +74,6 @@ const Jobs = () => {
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState<any>(null);
   const tabs = useRef([]);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
 
   const focusTab = () => {
     if (tabs.current[tabFocus]) {
@@ -119,17 +108,29 @@ const Jobs = () => {
   return (
     <motion.section
       className="mx-8 py-16 md:container lg:py-24 lg:pt-20"
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+      }}
+      viewport={{
+        once: true,
+      }}
     >
       <SectionHeader
         eyebrow="Where I've Worked"
         description="Here are some of the companies I've worked with."
       />
-      <div className="mt-10 flex flex-col md:ml-20 md:mt-20 md:flex-row">
-        <motion.div
+      <motion.div
+        className="mt-10 flex flex-col md:ml-20 md:mt-20 md:flex-row"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
+        viewport={{
+          once: true,
+        }}
+      >
+        <div
           className="relative z-10 mb-8 flex overflow-x-auto md:mb-0 md:w-max md:flex-col md:overflow-x-visible"
           role="tablist"
           aria-label="Job tabs"
@@ -157,7 +158,7 @@ const Jobs = () => {
               <span>{job.company}</span>
             </motion.button>
           ))}
-        </motion.div>
+        </div>
 
         <div className="flex-1 md:ml-8">
           <AnimatePresence mode="wait">
@@ -197,7 +198,7 @@ const Jobs = () => {
                           className="mb-2 list-none before:absolute before:-left-6 before:-translate-y-1 before:text-lg before:text-green-500 before:content-['▹']"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: i * 0.1 }}
+                          transition={{ delay: i * 0.2 }}
                         >
                           {point}
                         </motion.li>
@@ -208,7 +209,7 @@ const Jobs = () => {
             )}
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
     </motion.section>
   );
 };
