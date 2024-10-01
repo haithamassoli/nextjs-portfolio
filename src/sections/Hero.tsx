@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, MouseEvent, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
@@ -227,12 +227,12 @@ export const HeroSection = () => {
           </p>
         </div>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
-          <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
-            <a href="#experience" className="font-semibold">
+          <a role="button" href="#experience" className="font-semibold">
+            <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
               Explore My Work
-            </a>
-            <ArrowDown className="size-4" />
-          </button>
+              <ArrowDown className="size-4" />
+            </button>
+          </a>
           <Link
             href="https://haitham-assoli-resume.vercel.app/"
             className="relative"
