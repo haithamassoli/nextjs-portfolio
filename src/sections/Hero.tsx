@@ -201,7 +201,7 @@ export const HeroSection = () => {
             })}
           </motion.h1>
           <motion.h1
-            className="mb-12 mt-8 select-none text-center font-acorn text-5xl tracking-wide md:text-7xl"
+            className="mb-12 mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl"
             initial="hidden"
             animate="visible"
           >
@@ -224,13 +224,29 @@ export const HeroSection = () => {
               );
             })}
           </motion.h1>
-          <p className="m-auto w-3/4 text-center text-white/80 md:w-1/2 md:text-lg">
+          <motion.p
+            className="m-auto w-3/4 text-center text-white/80 md:w-1/2 md:text-lg"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              transition: { delay: 0.7, duration: 0.5 },
+            }}
+          >
             I specialize in transforming designs into functional,
             high-performing web applications. Let&#39;s discuss your next
             project.
-          </p>
+          </motion.p>
         </div>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
+        <motion.div
+          className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row"
+          initial={{ opacity: 0, y: 60 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: { delay: 1, duration: 0.5 },
+          }}
+        >
           <a role="button" href="#experience" className="font-semibold">
             <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
               Explore My Work
@@ -247,7 +263,7 @@ export const HeroSection = () => {
               <span>⚡️</span>
             </button>
           </Link>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );
