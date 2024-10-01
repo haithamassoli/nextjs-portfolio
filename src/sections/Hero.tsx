@@ -170,10 +170,10 @@ export const HeroSection = () => {
         </HeroOrbit>
       </div>
       <motion.div initial="hidden" animate="visible">
-        <div className="animate-blob absolute right-64 top-12 -z-10 h-72 w-72 rounded-full bg-[#e8b89c98] opacity-40 blur-xl filter lg:hidden" />
-        <div className="animate-blob animation-delay-2000 absolute right-80 top-28 -z-10 h-72 w-72 rounded-full bg-[#cf94e56c] opacity-40 blur-xl filter lg:hidden" />
-        <div className="animate-blob animation-delay-4000 absolute right-36 top-40 -z-10 h-72 w-72 rounded-full bg-[#bddff973] opacity-40 blur-xl filter lg:hidden" />
-        <div className="animate-blob animation-delay-4000 absolute right-64 top-64 -z-10 h-72 w-72 rounded-full bg-yellow-300/40 opacity-40 blur-xl filter lg:hidden" />
+        <div className="absolute right-64 top-12 -z-10 h-72 w-72 animate-blob rounded-full bg-[#e8b89c98] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/2" />
+        <div className="animation-delay-2000 absolute right-80 top-28 -z-10 h-72 w-72 animate-blob rounded-full bg-[#cf94e56c] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/3" />
+        <div className="animation-delay-4000 absolute right-36 top-40 -z-10 h-72 w-72 animate-blob rounded-full bg-[#bddff973] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/3" />
+        <div className="animation-delay-4000 absolute right-64 top-64 -z-10 h-72 w-72 animate-blob rounded-full bg-yellow-300/40 opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/2" />
         <div className="mx-auto">
           <motion.h1
             className="mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl"
