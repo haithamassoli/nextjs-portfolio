@@ -118,7 +118,7 @@ const Jobs = () => {
 
   return (
     <motion.section
-      id="jobs"
+      id="experience"
       className="mx-8 py-16 md:container lg:py-24 lg:pt-20"
       ref={ref}
       initial="hidden"
