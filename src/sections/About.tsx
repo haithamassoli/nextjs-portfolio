@@ -167,7 +167,7 @@ export const AboutSection = () => {
             <CardHeader
               title="My Toolbox"
               description="Explore the technologies and tools I use to craft exceptional
-                digital experiences."
+              digital experiences."
             />
             <ToolboxItems
               items={toolboxItems}
@@ -180,7 +180,10 @@ export const AboutSection = () => {
             />
           </Card>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
-            <Card className="flex h-[320px] flex-col p-0 md:col-span-3 lg:col-span-2">
+            <Card
+              delay={0.25}
+              className="flex h-[320px] flex-col p-0 md:col-span-3 lg:col-span-2"
+            >
               <CardHeader
                 title="Beyond the Code"
                 description="Explore my interests and hobbies beyond the digital realm."
@@ -206,7 +209,10 @@ export const AboutSection = () => {
                 ))}
               </div>
             </Card>
-            <Card className="relative h-[320px] p-0 md:col-span-2 lg:col-span-1">
+            <Card
+              delay={0.25}
+              className="relative h-[320px] p-0 md:col-span-2 lg:col-span-1"
+            >
               <Image
                 src={mapImage}
                 alt="Map Image"
