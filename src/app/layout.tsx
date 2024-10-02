@@ -54,6 +54,13 @@ const gothic = localFont({
 
 export const metadata: Metadata = {
   title: "Haitham Assoli - Portfolio",
+  keywords: [
+    "Haitham",
+    "Assoli",
+    "Haitham Assoli",
+    "Haitham Portfolio",
+    "Haitham Assoli Portfolio",
+  ],
   description:
     "Haitham's Portfolio is a showcase of his projects, skills, and experiences.",
   metadataBase: new URL("https://haitham-assoli-portfolio.vercel.app/"),
