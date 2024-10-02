@@ -53,9 +53,19 @@ const gothic = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Haitham's Portfolio",
+  title: "Haitham Assoli - Portfolio",
   description:
-    "Building modern, high-performing web experiences with clean design and functionality. Crafted with attention to detail and supported by the expertise of Frontend Tribe.",
+    "Haitham's Portfolio is a showcase of his projects, skills, and experiences.",
+  metadataBase: new URL("https://haitham-assoli-portfolio.vercel.app/"),
+  openGraph: {
+    type: "website",
+    url: "https://haitham-assoli-portfolio.vercel.app/",
+    title: "Haitham Assoli - Portfolio",
+    locale: "en_US",
+    siteName: "Haitham Assoli - Portfolio",
+    description:
+      "Haitham's Portfolio is a showcase of his projects, skills, and experiences.",
+  },
 };
 
 export default function RootLayout({
