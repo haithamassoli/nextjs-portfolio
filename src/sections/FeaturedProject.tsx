@@ -62,7 +62,6 @@ const featuredProjects = [
       "TypeScript",
       "Zod",
       "Firebase",
-      "UI/UX",
       "React Query",
       "Reanimated",
       "Notifications",
