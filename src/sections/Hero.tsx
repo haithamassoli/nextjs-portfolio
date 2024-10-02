@@ -253,16 +253,17 @@ export const HeroSection = () => {
               <ArrowDown className="size-4" />
             </button>
           </a>
-          <Link
+          <a
             href="https://haitham-assoli-resume.vercel.app/"
             className="relative"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
               <span className="font-bold">Web Resume</span>
               <span>⚡️</span>
             </button>
-          </Link>
+          </a>
         </motion.div>
       </motion.div>
     </section>

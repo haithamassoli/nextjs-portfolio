@@ -153,7 +153,7 @@ const Projects = () => {
                   href={github}
                   aria-label="GitHub Link"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="h-5 w-5 hover:text-secondary"
                 >
                   <GitHubIcon />
@@ -164,7 +164,7 @@ const Projects = () => {
                   href={playStore}
                   aria-label="PlayStore Link"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="h-5 w-5 hover:text-secondary"
                 >
                   <PlayStoreIcon />
@@ -175,7 +175,7 @@ const Projects = () => {
                   href={external}
                   aria-label="External Link"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="h-5 w-5 hover:text-secondary"
                 >
                   <ExternalIcon />
@@ -188,7 +188,8 @@ const Projects = () => {
             <a
               href={external}
               target="_blank"
-              rel="noreferrer"
+              role="article"
+              rel="noopener noreferrer nofollow"
               className="group-hover:text-secondary"
             >
               {title}
@@ -222,7 +223,10 @@ const Projects = () => {
       />
       <div className="mt-10 grid w-full grid-cols-1 gap-4 md:mt-20 md:grid-cols-2 lg:grid-cols-3">
         {projectsToShow.map((project, i) => (
-          <div className="transition-all duration-300 hover:translate-y-[-7px]">
+          <div
+            key={i}
+            className="transition-all duration-300 hover:translate-y-[-7px]"
+          >
             <motion.div
               className="group flex h-full cursor-pointer flex-col justify-between rounded-lg bg-gray-800 p-7 shadow-lg transition-all duration-300 hover:translate-y-[-7px]"
               initial={{ opacity: 0, y: 60 }}
@@ -231,7 +235,7 @@ const Projects = () => {
                 once: true,
               }}
             >
-              <ProjectInner key={i} project={{ ...project, i }} />
+              <ProjectInner project={project} />
             </motion.div>
           </div>
         ))}

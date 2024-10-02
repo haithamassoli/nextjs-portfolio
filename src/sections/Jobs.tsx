@@ -184,6 +184,8 @@ const Jobs = () => {
                         &nbsp;@
                         <a
                           href={job.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="inline-link hover:underline"
                         >
                           {job.company}

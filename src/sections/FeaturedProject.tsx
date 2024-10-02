@@ -118,6 +118,8 @@ export const FeaturedProject = () => {
                     <a
                       href={project.playStore || project.github}
                       className="hover:text-green-500"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {project.title}
                     </a>
@@ -146,6 +148,8 @@ export const FeaturedProject = () => {
                       <a
                         href={project.github}
                         className="mr-4 h-6 w-6 text-white hover:text-green-500"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         <GitHubIcon />
                       </a>
@@ -154,6 +158,8 @@ export const FeaturedProject = () => {
                       <a
                         href={project.playStore}
                         className="mr-4 h-6 w-6 text-white hover:text-green-500"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         <PlayStoreIcon />
                       </a>
@@ -162,6 +168,8 @@ export const FeaturedProject = () => {
                       <a
                         href={project.external}
                         className="text-gray-400 hover:text-green-500"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         <ExternalIcon />
                       </a>
@@ -190,6 +198,8 @@ export const FeaturedProject = () => {
                     "#"
                   }
                   className="relative block"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <div className="absolute inset-0 bg-emerald-300 opacity-25 transition-opacity duration-300 hover:opacity-0"></div>
                   <Image

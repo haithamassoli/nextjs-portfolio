@@ -32,7 +32,11 @@ export const ContactSection = () => {
                 discuss how I can help you achieve your goals.
               </p>
             </div>
-            <a href="mailto:haitham.b.assoli@gmail.com">
+            <a
+              href="mailto:haitham.b.assoli@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div className="mt-8 md:mt-0">
                 <button className="inline-flex h-12 w-max cursor-pointer items-center gap-2 rounded-xl border border-gray-900 bg-gray-900 px-6 text-white">
                   <span className="font-semibold">Contact Me</span>
