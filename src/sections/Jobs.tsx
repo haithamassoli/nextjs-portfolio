@@ -106,25 +106,14 @@ const Jobs = () => {
   };
 
   return (
-    <motion.section
-      className="mx-8 py-16 md:container lg:py-24 lg:pt-20"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: "easeOut" },
-      }}
-      viewport={{
-        once: true,
-      }}
-    >
+    <section className="mx-8 py-16 md:container lg:py-24 lg:pt-20">
       <SectionHeader
         eyebrow="Where I've Worked"
         description="Here are some of the companies I've worked with."
       />
       <motion.div
         className="mt-10 flex flex-col md:ml-20 md:mt-20 md:flex-row"
-        initial={{ opacity: 0, y: 60 }}
+        initial={{ opacity: 0, y: 120 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
         viewport={{
           once: true,
@@ -198,7 +187,7 @@ const Jobs = () => {
                         <motion.li
                           key={i}
                           className="mb-2 list-none before:absolute before:-left-6 before:-translate-y-1 before:text-lg before:text-green-500 before:content-['▹']"
-                          initial={{ opacity: 0, y: 20 }}
+                          initial={{ opacity: 0, y: 40 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: i * 0.2 }}
                         >
@@ -212,7 +201,7 @@ const Jobs = () => {
           </AnimatePresence>
         </div>
       </motion.div>
-    </motion.section>
+    </section>
   );
 };
 

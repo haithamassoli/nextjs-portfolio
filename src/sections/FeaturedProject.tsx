@@ -101,7 +101,7 @@ export const FeaturedProject = () => {
               >
                 <motion.div
                   className="relative z-10 rounded-lg p-6 shadow-lg md:bg-transparent md:p-0 md:shadow-none"
-                  initial={{ opacity: 0, y: 60 }}
+                  initial={{ opacity: 0, y: 120 }}
                   whileInView={{
                     opacity: 1,
                     y: 0,
@@ -180,7 +180,7 @@ export const FeaturedProject = () => {
 
               <motion.div
                 className={`col-span-12 row-start-1 row-end-[-1] hidden md:col-span-7 md:block ${i % 2 === 0 ? "md:col-start-6" : "md:col-start-1"} `}
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 120 }}
                 whileInView={{
                   opacity: 1,
                   y: 0,

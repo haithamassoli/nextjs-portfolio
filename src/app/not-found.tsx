@@ -26,7 +26,7 @@ const NotFoundPage = () => {
         >
           Page Not Found
         </motion.h2>
-        <Link as="button" href="/">
+        <Link href="/">
           <motion.div
             className="flex w-full justify-center"
             initial={{ opacity: 0, y: 120 }}

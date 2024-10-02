@@ -61,7 +61,7 @@ export const HeroSection = () => {
   };
 
   const letterVariants = {
-    hidden: { opacity: 0, y: 60 },
+    hidden: { opacity: 0, y: 120 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
@@ -226,7 +226,7 @@ export const HeroSection = () => {
           </motion.h1>
           <motion.p
             className="m-auto w-3/4 text-center text-white/80 md:w-1/2 md:text-lg"
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 120 }}
             animate={{
               opacity: 1,
               y: 0,
@@ -240,7 +240,7 @@ export const HeroSection = () => {
         </div>
         <motion.div
           className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row"
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 120 }}
           animate={{
             opacity: 1,
             y: 0,

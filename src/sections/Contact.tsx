@@ -9,7 +9,7 @@ export const ContactSection = () => {
     <section className="py-16 pt-12 lg:py-24 lg:pt-20" id="contact">
       <div className="mx-8 md:container">
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 120 }}
           whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
           viewport={{
             once: true,

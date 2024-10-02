@@ -228,9 +228,16 @@ const Projects = () => {
             className="transition-all duration-300 hover:translate-y-[-7px]"
           >
             <motion.div
-              className="group flex h-full cursor-pointer flex-col justify-between rounded-lg bg-gray-800 p-7 shadow-lg transition-all duration-300 hover:translate-y-[-7px]"
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0, transition: { duration: 0.2 } }}
+              className="group flex h-full cursor-pointer flex-col justify-between rounded-lg bg-gray-800 p-7 shadow-lg"
+              initial={{ opacity: 0, y: 120 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.6,
+                  delay: i > GRID_LIMIT - 1 ? 0 : 0.1 * i,
+                },
+              }}
               viewport={{
                 once: true,
               }}
@@ -242,7 +249,7 @@ const Projects = () => {
       </div>
       <motion.div
         className="flex w-full justify-center"
-        initial={{ opacity: 0, y: 60 }}
+        initial={{ opacity: 0, y: 120 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
         viewport={{
           once: true,
