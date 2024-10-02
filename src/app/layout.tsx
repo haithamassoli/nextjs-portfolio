@@ -53,7 +53,7 @@ const gothic = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Haitham Assoli - Portfolio",
+  title: "Haitham Assoli | Creative Developer",
   keywords: [
     "Haitham",
     "Assoli",
@@ -61,15 +61,24 @@ export const metadata: Metadata = {
     "Haitham Portfolio",
     "Haitham Assoli Portfolio",
   ],
+  twitter: {
+    card: "summary_large_image",
+    site: "https://haitham-assoli-portfolio.vercel.app/",
+    creatorId: "@haithamassoli",
+    creator: "@haithamassoli",
+    title: "Haitham Assoli | Creative Developer",
+    description:
+      "Haitham's Portfolio is a showcase of his projects, skills, and experiences.",
+  },
   description:
     "Haitham's Portfolio is a showcase of his projects, skills, and experiences.",
   metadataBase: new URL("https://haitham-assoli-portfolio.vercel.app/"),
   openGraph: {
     type: "website",
     url: "https://haitham-assoli-portfolio.vercel.app/",
-    title: "Haitham Assoli - Portfolio",
+    title: "Haitham Assoli | Creative Developer",
     locale: "en_US",
-    siteName: "Haitham Assoli - Portfolio",
+    siteName: "Haitham Assoli | Creative Developer",
     description:
       "Haitham's Portfolio is a showcase of his projects, skills, and experiences.",
   },
