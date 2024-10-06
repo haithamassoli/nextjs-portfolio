@@ -24,7 +24,6 @@ const config: Config = {
       fontFamily: {
         sans: "var(--font-sans)",
         acorn: "var(--font-acorn)",
-        gothic: "var(--font-gothic)",
       },
       colors: {
         primary: "#8fdcce",

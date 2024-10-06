@@ -47,10 +47,6 @@ const acorn = localFont({
   ],
   variable: "--font-acorn",
 });
-const gothic = localFont({
-  src: "../font/ipa-gothic.woff2",
-  variable: "--font-gothic",
-});
 
 export const metadata: Metadata = {
   title: "Haitham Assoli | Creative Developer",
@@ -94,7 +90,6 @@ export default function RootLayout({
       <body
         className={twMerge(
           inter.variable,
-          gothic.variable,
           acorn.variable,
           "bg-gray-900 font-sans text-white antialiased",
         )}
