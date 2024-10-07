@@ -120,7 +120,7 @@ const Jobs = () => {
         }}
       >
         <div
-          className="relative z-10 mb-8 flex overflow-x-auto md:mb-0 md:w-max md:flex-col md:overflow-x-visible"
+          className="no-scrollbar relative z-10 mb-8 flex overflow-x-auto md:mb-0 md:w-max md:flex-col md:overflow-x-visible"
           role="tablist"
           aria-label="Job tabs"
           onKeyDown={onKeyDown}

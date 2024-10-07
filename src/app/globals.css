@@ -25,6 +25,13 @@
     .animation-delay-4000 {
       animation-delay: 4s;
     }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   }
 }
 
@@ -81,6 +88,7 @@
 
 html {
   cursor: url("../assets/icons/Cursr2.svg"), auto;
+  scrollbar-color: #64ffda transparent;
 }
 
 .hero {
