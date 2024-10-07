@@ -132,7 +132,7 @@ const Jobs = () => {
                 activeTabId === i
                   ? "bg-gray-800 text-green-500"
                   : "text-gray-400 hover:bg-gray-800 focus:bg-gray-800"
-              } border-b-2 md:border-l-2 ${activeTabId === i ? "border-green-500" : "border-gray-700"}`}
+              } border-b-2 ${activeTabId === i ? "border-green-500" : "border-gray-600"}`}
               onClick={() => setActiveTabId(i)}
               ref={(el) => (tabs.current[i] = el)}
               id={`tab-${i}`}

@@ -84,9 +84,18 @@ export const FeaturedProject = () => {
         />
         <ul className="mt-10 list-none p-0 md:mt-20">
           {featuredProjects.map((project, i) => (
-            <li
+            <motion.li
               key={i}
               className={`relative mb-24 grid grid-cols-12 items-center gap-4 bg-gray-800 md:w-full md:grid-cols-12 md:bg-transparent ${i % 2 === 0 ? "" : "md:text-right"} `}
+              initial={{ opacity: 0, y: 120 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.6 },
+              }}
+              viewport={{
+                once: true,
+              }}
             >
               <Image
                 src={project.image}
@@ -210,7 +219,7 @@ export const FeaturedProject = () => {
                   />
                 </a>
               </motion.div>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>
