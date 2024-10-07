@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
@@ -8,24 +5,66 @@ import HeroOrbit from "@/components/HeroOrbit";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 
 export const HeroSection = () => {
-  const letterVariants = {
-    hidden: { opacity: 0, y: 120 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.06,
-        type: "spring",
-        stiffness: 100,
-      },
-    }),
-  };
-
   return (
     <section
       className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
       id="home"
     >
+      <div>
+        <div className="mx-auto">
+          <h1 className="mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
+            {"Hi. I'am Háithám.".split("").map((letter, index) => (
+              <span
+                key={index}
+                className="letter-animation"
+                style={{
+                  color: index >= 8 ? "#8fdcc2" : "",
+                  animationDelay: `${index * 0.06}s`,
+                }}
+              >
+                {letter}
+              </span>
+            ))}
+          </h1>
+          <h1 className="mb-12 mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
+            {"A Developer.".split("").map((letter, index) => (
+              <span
+                key={index}
+                className="letter-animation"
+                style={{
+                  animationDelay: `${index * 0.06}s`,
+                }}
+              >
+                {letter}
+              </span>
+            ))}
+          </h1>
+          <p className="paragraph-animation paragraph-delay m-auto w-3/4 text-center text-white/80 md:w-1/2 md:text-lg">
+            I specialize in transforming designs into functional,
+            high-performing web applications. Let&#39;s discuss your next
+            project.
+          </p>
+        </div>
+        <div className="buttons-animation mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
+          <a role="button" href="#experience" className="font-semibold">
+            <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
+              Explore My Work
+              <ArrowDown className="size-4" />
+            </button>
+          </a>
+          <a
+            href="https://haitham-assoli-resume.vercel.app/"
+            className="relative"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
+              <span className="font-bold">Web Resume</span>
+              <span>⚡️</span>
+            </button>
+          </a>
+        </div>
+      </div>
       <div className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5"
@@ -116,92 +155,11 @@ export const HeroSection = () => {
         >
           <StarIcon className="size-28 text-white" />
         </HeroOrbit>
-      </div>
-      <motion.div initial="hidden" animate="visible">
         <div className="absolute right-64 top-12 -z-10 h-72 w-72 animate-blob rounded-full bg-[#e8b89c98] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/2" />
+        <div className="animation-delay-4000 absolute right-64 top-64 -z-10 h-72 w-72 animate-blob rounded-full bg-yellow-300/40 opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/2" />
         <div className="animation-delay-2000 absolute right-80 top-28 -z-10 h-72 w-72 animate-blob rounded-full bg-[#cf94e56c] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/3" />
         <div className="animation-delay-4000 absolute right-36 top-40 -z-10 h-72 w-72 animate-blob rounded-full bg-[#bddff973] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/3" />
-        <div className="animation-delay-4000 absolute right-64 top-64 -z-10 h-72 w-72 animate-blob rounded-full bg-yellow-300/40 opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/2" />
-        <div className="mx-auto">
-          <motion.h1
-            className="mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl"
-            initial="hidden"
-            animate="visible"
-          >
-            {"Hi. I'am Háithám.".split("").map((letter, index) => {
-              return (
-                <motion.span
-                  key={index}
-                  style={{
-                    color: index >= 8 ? "#8fdcc2" : "",
-                  }}
-                  custom={index}
-                  variants={letterVariants}
-                >
-                  {letter}
-                </motion.span>
-              );
-            })}
-          </motion.h1>
-          <motion.h1
-            className="mb-12 mt-8 select-none text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl"
-            initial="hidden"
-            animate="visible"
-          >
-            {"A Developer.".split("").map((letter, index) => {
-              return (
-                <motion.span
-                  key={index}
-                  custom={index}
-                  variants={letterVariants}
-                >
-                  {letter}
-                </motion.span>
-              );
-            })}
-          </motion.h1>
-          <motion.p
-            className="m-auto w-3/4 text-center text-white/80 md:w-1/2 md:text-lg"
-            initial={{ opacity: 0, y: 120 }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              transition: { delay: 0.8, duration: 0.6 },
-            }}
-          >
-            I specialize in transforming designs into functional,
-            high-performing web applications. Let&#39;s discuss your next
-            project.
-          </motion.p>
-        </div>
-        <motion.div
-          className="mt-8 flex flex-col items-center justify-center gap-4 md:flex-row"
-          initial={{ opacity: 0, y: 120 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            transition: { delay: 1, duration: 0.6 },
-          }}
-        >
-          <a role="button" href="#experience" className="font-semibold">
-            <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
-              Explore My Work
-              <ArrowDown className="size-4" />
-            </button>
-          </a>
-          <a
-            href="https://haitham-assoli-resume.vercel.app/"
-            className="relative"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
-              <span className="font-bold">Web Resume</span>
-              <span>⚡️</span>
-            </button>
-          </a>
-        </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };
