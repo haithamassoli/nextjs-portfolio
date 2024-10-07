@@ -1,65 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
 import HeroOrbit from "@/components/HeroOrbit";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
-import Link from "next/link";
-
-const letters = [
-  "H",
-  "i",
-  ".",
-  " ",
-  "I",
-  "'",
-  "a",
-  "m",
-  " ",
-  "H",
-  "á",
-  "i",
-  "t",
-  "h",
-  "á",
-  "m",
-  ".",
-];
 
 export const HeroSection = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (event: any) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  const calculateFontVariation = (letterRef: any) => {
-    if (!letterRef.current) return { wght: 700 };
-    const letterPos = letterRef.current.getBoundingClientRect();
-    const distance = Math.hypot(
-      mousePosition.x - (letterPos.left + letterPos.width / 2),
-      mousePosition.y - (letterPos.top + letterPos.height / 2),
-    );
-
-    const maxDistance = 150; // Adjust this to control the range
-    const clampedDistance = Math.min(distance, maxDistance);
-
-    // const wght = 900 - (clampedDistance / maxDistance) * 800; // Weight from 100 to 900
-    const reverseWght = 100 + (clampedDistance / maxDistance) * 800; // Weight from 900 to 100
-
-    return { reverseWght };
-  };
-
   const letterVariants = {
     hidden: { opacity: 0, y: 120 },
     visible: (i: number) => ({
@@ -180,17 +128,12 @@ export const HeroSection = () => {
             initial="hidden"
             animate="visible"
           >
-            {letters.map((letter, index) => {
-              const letterRef = useRef(null);
-              const { reverseWght } = calculateFontVariation(letterRef);
-
+            {"Hi. I'am Háithám.".split("").map((letter, index) => {
               return (
                 <motion.span
                   key={index}
-                  ref={letterRef}
                   style={{
-                    fontWeight: reverseWght,
-                    color: index >= letters.length - 8 ? "#8fdcc2" : "",
+                    color: index >= 8 ? "#8fdcc2" : "",
                   }}
                   custom={index}
                   variants={letterVariants}
@@ -206,16 +149,9 @@ export const HeroSection = () => {
             animate="visible"
           >
             {"A Developer.".split("").map((letter, index) => {
-              const letterRef = useRef(null);
-              const { reverseWght } = calculateFontVariation(letterRef);
-
               return (
                 <motion.span
                   key={index}
-                  ref={letterRef}
-                  style={{
-                    fontWeight: reverseWght,
-                  }}
                   custom={index}
                   variants={letterVariants}
                 >
