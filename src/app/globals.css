@@ -67,6 +67,18 @@
   animation-delay: 1s;
 }
 
+.not-found-animation {
+  opacity: 0;
+  animation: slideUp 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.not-found-button-animation {
+  opacity: 0;
+  animation: slideUp 0.6s ease-out forwards;
+  animation-delay: 0.4s;
+}
+
 html {
   cursor: url("../assets/icons/Cursr2.svg"), auto;
 }
