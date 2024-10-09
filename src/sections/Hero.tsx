@@ -36,7 +36,7 @@ export const HeroSection = () => {
               </span>
             ))}
           </h1>
-          <p className="paragraph-animation paragraph-delay m-auto w-3/4 text-center text-white/80 md:w-1/2 md:text-lg">
+          <p className="paragraph-animation paragraph-delay m-auto w-3/4 text-center text-white/80 md:text-lg lg:w-1/2">
             I specialize in transforming designs into functional,
             high-performing web applications. Let&#39;s discuss your next
             project.
