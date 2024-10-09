@@ -188,9 +188,10 @@ const Projects = () => {
             <a
               href={external}
               target="_blank"
-              role="article"
+              role="button"
               rel="noopener noreferrer nofollow"
               className="group-hover:text-secondary"
+              aria-label={title}
             >
               {title}
             </a>

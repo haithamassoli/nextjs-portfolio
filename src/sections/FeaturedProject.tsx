@@ -168,6 +168,7 @@ export const FeaturedProject = () => {
                         className="mr-4 h-6 w-6 text-white hover:text-green-500"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Play Store"
                       >
                         <PlayStoreIcon />
                       </a>

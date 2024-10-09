@@ -6,11 +6,8 @@ import SparkleIcon from "@/assets/icons/sparkle.svg";
 
 export const HeroSection = () => {
   return (
-    <section
-      className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60"
-      id="home"
-    >
-      <div>
+    <div className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60">
+      <section id="home">
         <div className="mx-auto">
           <h1 className="mt-8 text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
             {"Hi. I'am Háithám.".split("").map((letter, index) => (
@@ -64,7 +61,7 @@ export const HeroSection = () => {
             </button>
           </a>
         </div>
-      </div>
+      </section>
       <div className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5"
@@ -160,6 +157,6 @@ export const HeroSection = () => {
         <div className="animation-delay-2000 absolute right-80 top-28 -z-10 h-72 w-72 animate-blob rounded-full bg-[#cf94e56c] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/3" />
         <div className="animation-delay-4000 absolute right-36 top-40 -z-10 h-72 w-72 animate-blob rounded-full bg-[#bddff973] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/3" />
       </div>
-    </section>
+    </div>
   );
 };
