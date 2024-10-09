@@ -33,6 +33,7 @@ const featuredProjects = [
       "https://play.google.com/store/apps/details?id=com.haithamassoli.majalisquran",
     github: "https://github.com/haithamassoli/qoranthon",
     image: majalis,
+    external: "",
   },
   {
     title: "EECommittee",
@@ -52,6 +53,7 @@ const featuredProjects = [
       "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte",
     github: "https://github.com/haithamassoli/EECommitte-App",
     image: eecommittee,
+    external: "",
   },
   {
     title: "Telescope",
@@ -71,6 +73,7 @@ const featuredProjects = [
       "https://play.google.com/store/apps/details?id=com.ajloun.telescope23",
     github: "",
     image: telescope,
+    external: "",
   },
 ];
 

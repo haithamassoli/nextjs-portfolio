@@ -5,16 +5,15 @@ import { KEY_CODES } from "@/utils/key-codes";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-let tabVariants = {};
+let tabVariants = {
+  inactive: { opacity: 0.6, x: 0 },
+  active: { opacity: 1, x: 10, transition: { duration: 0.6 } },
+};
 
-if (typeof window !== "undefined") {
-  const x = window.innerWidth > 768 ? 10 : 0;
-  tabVariants = {
-    inactive: { opacity: 0.6, x: 0 },
-
-    active: { opacity: 1, x, transition: { duration: 0.6 } },
-  };
-}
+let mobileTabVariants = {
+  inactive: { opacity: 0.6 },
+  active: { opacity: 1, transition: { duration: 0.6 } },
+};
 
 const contentVariants = {
   hidden: { opacity: 0, x: -60 },
@@ -73,7 +72,7 @@ const jobsData = [
 const Jobs = () => {
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState<any>(null);
-  const tabs = useRef([]);
+  const tabs = useRef<any>([]);
 
   const focusTab = () => {
     if (tabs.current[tabFocus]) {
@@ -134,13 +133,19 @@ const Jobs = () => {
                   : "text-gray-400 hover:bg-gray-800 focus:bg-gray-800"
               } border-b-2 ${activeTabId === i ? "border-green-500" : "border-gray-600"}`}
               onClick={() => setActiveTabId(i)}
-              ref={(el) => (tabs.current[i] = el)}
+              ref={(el: any) => (tabs.current[i] = el)}
               id={`tab-${i}`}
               role="tab"
-              tabIndex={activeTabId === i ? "0" : "-1"}
+              tabIndex={activeTabId === i ? 0 : -1}
               aria-selected={activeTabId === i}
               aria-controls={`panel-${i}`}
-              variants={tabVariants}
+              variants={
+                typeof window !== "undefined"
+                  ? window.innerWidth > 768
+                    ? tabVariants
+                    : mobileTabVariants
+                  : mobileTabVariants
+              }
               initial="inactive"
               animate={activeTabId === i ? "active" : "inactive"}
             >
@@ -159,7 +164,7 @@ const Jobs = () => {
                     className="p-2"
                     id={`panel-${i}`}
                     role="tabpanel"
-                    tabIndex={activeTabId === i ? "0" : "-1"}
+                    tabIndex={activeTabId === i ? 0 : -1}
                     aria-labelledby={`tab-${i}`}
                     aria-hidden={activeTabId !== i}
                     variants={contentVariants}
