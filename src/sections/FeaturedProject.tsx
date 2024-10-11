@@ -1,81 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import majalis from "@/assets/images/majalis.png";
-import telescope from "@/assets/images/telescope.png";
-import eecommittee from "@/assets/images/eecommittee.png";
 import Image from "next/image";
 import SectionHeader from "@/components/SectionHeader";
 import ExternalIcon from "@/assets/icons/external";
 import GitHubIcon from "@/assets/icons/github-outline";
 import PlayStoreIcon from "@/assets/icons/playStore";
-
-const featuredProjects = [
-  {
-    title: "Majalis",
-    description:
-      "An application dedicated to memorizing the Quran in a developed way. The application contains many features, including: placing students in the form of circles that simulate reality, and the presence of a copy of the Quran that appears to the sheikh so that he can follow the student’s reading. There are games and tests that help the student review the memorization in an enjoyable way, and through them he can top the leaderboard among the students to follow his achievement and hope for the best.",
-    tech: [
-      "React Native",
-      "TypeScript",
-      "Zod",
-      "Firebase",
-      "Zustand",
-      "React Query",
-      "Reanimated",
-      "Caching",
-      "Skia",
-      "Restyle",
-      "Notifications",
-      "UI/UX",
-    ],
-    playStore:
-      "https://play.google.com/store/apps/details?id=com.haithamassoli.majalisquran",
-    github: "https://github.com/haithamassoli/qoranthon",
-    image: majalis,
-    external: "",
-  },
-  {
-    title: "EECommittee",
-    description:
-      "An application that fulfills every requirement a student of electrical engineering might have in one location From the tree plan, you may select any subject to get all relevant information about. It also gives you access to all the staff members details so you can get in touch with them. You can expect your cumulative and semester GPA from the (GPA Calculation) box You may search in both Arabic and English. We've introduced a night mode for your eyes comfort. You can discover more helpful features all in one place.",
-    tech: [
-      "React Native",
-      "TypeScript",
-      "Zod",
-      "Firebase",
-      "Zustand",
-      "React Query",
-      "Reanimated",
-      "Caching",
-    ],
-    playStore:
-      "https://play.google.com/store/apps/details?id=com.haithamassoli.EECommitte",
-    github: "https://github.com/haithamassoli/EECommitte-App",
-    image: eecommittee,
-    external: "",
-  },
-  {
-    title: "Telescope",
-    description:
-      "A tourist service application that serves the people of Ajloun Governorate and provides them with the opportunity to identify and address complaints. You will also learn about all the archaeological and tourist sites located within the governorate.",
-    tech: [
-      "React Native",
-      "TypeScript",
-      "Zod",
-      "Firebase",
-      "React Query",
-      "Reanimated",
-      "Notifications",
-      "UI/UX",
-    ],
-    playStore:
-      "https://play.google.com/store/apps/details?id=com.ajloun.telescope23",
-    github: "",
-    image: telescope,
-    external: "",
-  },
-];
+import { featuredProjects } from "@/data/projects";
 
 export const FeaturedProject = () => {
   return (
