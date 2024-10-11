@@ -4,6 +4,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { KEY_CODES } from "@/libs/key-codes";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { jobsData } from "@/data/jobs";
 
 let tabVariants = {
   inactive: { opacity: 0.6, x: 0 },
@@ -19,55 +20,6 @@ const contentVariants = {
   hidden: { opacity: 0, x: -60 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
 };
-
-const jobsData = [
-  {
-    company: "Freelance",
-    title: "Web & Mobile FullStack Developer",
-    url: "https://haitham-assoli-resume.vercel.app/",
-    range: "2022 - 2023",
-    description: [
-      "Designed, developed, and deployed mobile applications for iOS and Android platforms",
-      "Created responsive web applications using modern front-end frameworks",
-      "Managed database design and optimization for various client projects",
-      "Stayed current with emerging technologies and industry best practices",
-    ],
-  },
-  {
-    company: "Repzo",
-    title: "Software Engineer",
-    url: "https://repzo.com/",
-    range: "2022 - 2023",
-    description: [
-      "Developed a comprehensive dashboard application using modern web technologies like: React, Node.js, and MongoDB",
-      "Leveraged TypeScript to enhance code quality, maintainability, and developer productivity",
-      "Collaborated with cross-functional teams to gather requirements and implement features",
-      "Ensured high performance and responsiveness of the dashboard application and implemented best practices in software development",
-    ],
-  },
-  {
-    company: "OrangeJo",
-    title: "Full Stack Developer",
-    url: "https://orange.jo/",
-    range: "2021 - 2022",
-    description: [
-      "Fully interactive and intensive training with Princess Sumaya University for Technology (PSUT), focusing on the client and server-side web development field technologies HTML, CSS, JavaScript, WordPress, React, PHP , and Laravel.",
-      "Implementing knowledge and applying theoretical concepts by working on real-world projects with strict deadlines.",
-      "Provided with opportunities to practice teamwork, leadership, and public speaking.",
-    ],
-  },
-  {
-    company: "EECommittee",
-    title: "Software Engineer",
-    url: "https://www.facebook.com/groups/eelajna.just",
-    range: "2018 - Present",
-    description: [
-      "Volunteered with the EECommittee team for electrical engineering within the university",
-      "Collaborated closely with the group to enhance classmates' educational experiences.",
-      "Developed multiple applications to enhance team efficiency and productivity",
-    ],
-  },
-];
 
 const Jobs = () => {
   const [activeTabId, setActiveTabId] = useState(0);
@@ -130,7 +82,7 @@ const Jobs = () => {
               className={`whitespace-nowrap px-6 py-4 text-left text-sm ${
                 activeTabId === i
                   ? "bg-gray-800 text-green-500"
-                  : "text-gray-400 hover:bg-gray-800 focus:bg-gray-800"
+                  : "text-muted hover:bg-gray-800 focus:bg-gray-800"
               } border-b-2 ${activeTabId === i ? "border-green-500" : "border-gray-600"}`}
               onClick={() => setActiveTabId(i)}
               ref={(el: any) => (tabs.current[i] = el)}

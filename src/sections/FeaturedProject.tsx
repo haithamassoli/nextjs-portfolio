@@ -135,7 +135,7 @@ export const FeaturedProject = () => {
                       {project.title}
                     </a>
                   </h3>
-                  <p className="relative z-10 mb-4 w-full rounded-lg text-sm text-gray-400 md:bg-gray-800 md:p-6 md:text-base">
+                  <p className="md:text-muted relative z-10 mb-4 w-full rounded-lg text-sm text-white/70 md:bg-gray-800 md:p-6 md:text-base">
                     {project.description}
                   </p>
                   {project.tech.length > 0 && (
@@ -145,7 +145,7 @@ export const FeaturedProject = () => {
                       {project.tech.map((tech, index) => (
                         <li
                           key={index}
-                          className="mb-2 mr-4 text-sm text-gray-400"
+                          className="md:text-muted mb-2 mr-4 text-sm text-white/70"
                         >
                           {tech}
                         </li>

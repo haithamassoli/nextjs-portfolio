@@ -2,7 +2,7 @@
 
 import QuestionMark from "@/assets/icons/question";
 import SectionHeader from "@/components/SectionHeader";
-import { contactSchema, techStack } from "@/schemas/contact";
+import { contactSchema } from "@/schemas/contact";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -19,31 +19,9 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { deals, locations, skills, techStack } from "@/data/contact";
 
 type FormData = z.infer<typeof contactSchema>;
-
-const skills = [
-  {
-    title: "Web Frontend Development",
-    description:
-      "Performance obsessed, accessible, and responsive web applications. Mostly React, Next.js, Remix, and TailwindCSS.",
-  },
-  {
-    title: "Mobile App Development",
-    description:
-      "Cross-platform mobile applications for iOS and Android. Mostly React Native.",
-  },
-  {
-    title: "Backend Web Development",
-    description:
-      "RESTful APIs, GraphQL, and realtime applications. Mostly Node.js, NestJS, and Prisma.",
-  },
-  {
-    title: "Other",
-    description: `Familar with various deployment strategies, CI/CD, and cloud providers.
-Professional code reviews, mentoring, and more.`,
-  },
-];
 
 function HireMe() {
   const form = useForm<FormData>({
@@ -57,7 +35,7 @@ function HireMe() {
 
   const onSubmit = (data: FormData) => {
     const message = `mailto:haitham.b.assoli@gmail.com?subject=Opportunity to Collaborate on a Project&body=Dear Haitham,%0D%0A
-I hope this email finds you well. My name is ${data.fullName.split(" ")[0]}, and I am reaching out to inquire about the possibility of hiring you for a project.%0D%0A
+I hope this email finds you well. I am reaching out to inquire about the possibility of hiring you for a project.%0D%0A
 %0D%0A
 Here are some details:%0D%0A
 
@@ -139,7 +117,7 @@ ${data.fullName}`;
                 name="deal"
                 render={({ field }) => (
                   <FormItem className="space-y-3">
-                    <FormLabel className="text-[#94a3b8]">
+                    <FormLabel className="text-muted">
                       What type of deal are you looking for?
                     </FormLabel>
                     <FormControl>
@@ -148,44 +126,19 @@ ${data.fullName}`;
                         defaultValue={field.value}
                         className="flex flex-wrap gap-2"
                       >
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="part" />
-                          </FormControl>
-                          <FormLabel className="font-normal">
-                            Part Time
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="full" />
-                          </FormControl>
-                          <FormLabel className="font-normal">
-                            Full Time
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="contract" />
-                          </FormControl>
-                          <FormLabel className="font-normal">
-                            Contract
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="freelance" />
-                          </FormControl>
-                          <FormLabel className="font-normal">
-                            Freelance
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="hourly" />
-                          </FormControl>
-                          <FormLabel className="font-normal">Hourly</FormLabel>
-                        </FormItem>
+                        {deals.map((deal) => (
+                          <FormItem
+                            key={deal.value}
+                            className="flex items-center space-x-3 space-y-0"
+                          >
+                            <FormControl>
+                              <RadioGroupItem value={deal.value} />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              {deal.title}
+                            </FormLabel>
+                          </FormItem>
+                        ))}
                       </RadioGroup>
                     </FormControl>
                     <FormMessage />
@@ -197,7 +150,7 @@ ${data.fullName}`;
                 name="location"
                 render={({ field }) => (
                   <FormItem className="space-y-3">
-                    <FormLabel className="text-[#94a3b8]">
+                    <FormLabel className="text-muted">
                       What type of deal are you looking for?
                     </FormLabel>
                     <FormControl>
@@ -206,18 +159,19 @@ ${data.fullName}`;
                         defaultValue={field.value}
                         className="flex flex-wrap gap-2"
                       >
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="remote" />
-                          </FormControl>
-                          <FormLabel className="font-normal">Remote</FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="onsite" />
-                          </FormControl>
-                          <FormLabel className="font-normal">On Site</FormLabel>
-                        </FormItem>
+                        {locations.map((location) => (
+                          <FormItem
+                            key={location.value}
+                            className="flex items-center space-x-3 space-y-0"
+                          >
+                            <FormControl>
+                              <RadioGroupItem value={location.value} />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              {location.title}
+                            </FormLabel>
+                          </FormItem>
+                        ))}
                       </RadioGroup>
                     </FormControl>
                     <FormMessage />
@@ -229,7 +183,7 @@ ${data.fullName}`;
                 name="summary"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="text-[#94a3b8]">
+                    <FormLabel className="text-muted">
                       Tell me a little about your project
                     </FormLabel>
                     <FormControl>
@@ -244,7 +198,7 @@ ${data.fullName}`;
                 name="budget"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="text-[#94a3b8]">
+                    <FormLabel className="text-muted">
                       What is your estimated budget?
                     </FormLabel>
                     <FormControl>
@@ -326,7 +280,7 @@ ${data.fullName}`;
                 <h3 className="text-2xl font-semibold text-gray-200">
                   {skill.title}
                 </h3>
-                <p className="mt-1 max-w-[36ch] text-sm text-gray-400">
+                <p className="text-muted mt-1 max-w-[36ch] text-sm">
                   {skill.description}
                 </p>
               </div>
