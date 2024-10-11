@@ -172,7 +172,7 @@ const Jobs = () => {
                     animate="visible"
                     exit="hidden"
                   >
-                    <h3 className="mb-1 text-2xl font-medium">
+                    <h3 className="mb-1 text-xl font-medium md:text-2xl">
                       <span>{job.title}</span>
                       <span className="text-primary">
                         &nbsp;@

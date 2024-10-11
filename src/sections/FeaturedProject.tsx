@@ -135,7 +135,7 @@ export const FeaturedProject = () => {
                       {project.title}
                     </a>
                   </h3>
-                  <p className="relative z-10 mb-4 w-full rounded-lg text-gray-400 md:bg-gray-800 md:p-6">
+                  <p className="relative z-10 mb-4 w-full rounded-lg text-sm text-gray-400 md:bg-gray-800 md:p-6 md:text-base">
                     {project.description}
                   </p>
                   {project.tech.length > 0 && (

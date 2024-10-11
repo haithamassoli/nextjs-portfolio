@@ -17,10 +17,10 @@ const SectionHeader = ({
         once: true,
       }}
     >
-      <h2 className="mt-6 text-center font-acorn text-3xl font-bold text-primary md:text-5xl">
+      <h2 className="mt-6 text-center font-acorn text-4xl font-bold text-primary md:text-5xl">
         {eyebrow}
       </h2>
-      <p className="mx-auto mt-4 max-w-[540px] text-center text-white/80 md:text-lg lg:text-xl">
+      <p className="mx-auto mt-4 max-w-[540px] text-center text-base text-white/80 md:text-lg lg:text-xl">
         {description}
       </p>
     </motion.div>
