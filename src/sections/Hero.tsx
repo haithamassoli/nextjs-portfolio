@@ -1,15 +1,15 @@
-import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
 import HeroOrbit from "@/components/HeroOrbit";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
+import Link from "next/link";
 
 export const HeroSection = () => {
   return (
     <div className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60">
       <section id="home">
         <div className="mx-auto">
-          <h1 className="mt-8 text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
+          <h1 className="mt-8 text-center font-acorn text-6xl font-bold tracking-wide md:text-7xl">
             {"Hi. I'am Háithám.".split("").map((letter, index) => (
               <span
                 key={index}
@@ -36,28 +36,25 @@ export const HeroSection = () => {
               </span>
             ))}
           </h1>
-          <p className="paragraph-animation paragraph-delay m-auto w-3/4 text-center text-white/80 md:text-lg lg:w-1/2">
+          <p className="paragraph-animation paragraph-delay m-auto w-3/4 text-center text-base text-white/80 md:text-lg lg:w-1/2">
             I specialize in transforming designs into functional,
             high-performing web applications. Let&#39;s discuss your next
             project.
           </p>
         </div>
-        <div className="buttons-animation mt-8 flex flex-col items-center justify-center gap-4 md:flex-row">
-          <a role="button" href="#experience" className="font-semibold">
-            <button className="relative inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 px-6">
-              Explore My Work
-              <ArrowDown className="size-4" />
+        <div className="buttons-animation mt-8 flex flex-col-reverse items-center justify-center gap-4 font-bold md:flex-row">
+          <Link href="hire-me">
+            <button className="h-14 rounded-xl border border-white/15 px-6">
+              Hire Me
             </button>
-          </a>
+          </Link>
           <a
             href="https://haitham-assoli-resume.vercel.app/"
-            className="relative"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
-              <span className="font-bold">Web Resume</span>
-              <span>⚡️</span>
+            <button className="h-12 rounded-xl border border-white bg-white px-6 text-gray-900">
+              Web Resume
             </button>
           </a>
         </div>
