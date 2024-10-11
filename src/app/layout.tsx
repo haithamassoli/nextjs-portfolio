@@ -10,12 +10,12 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const acorn = localFont({
   src: [
     {
-      path: "../font/Acorn-Regular.woff2",
+      path: "../fonts/Acorn-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../font/Acorn-Bold.woff2",
+      path: "../fonts/Acorn-Bold.woff2",
       weight: "700",
       style: "normal",
     },

@@ -1,7 +1,7 @@
 "use client";
 
 import SectionHeader from "@/components/SectionHeader";
-import { KEY_CODES } from "@/utils/key-codes";
+import { KEY_CODES } from "@/libs/key-codes";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
