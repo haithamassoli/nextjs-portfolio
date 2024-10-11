@@ -186,7 +186,7 @@ const Jobs = () => {
                         </a>
                       </span>
                     </h3>
-                    <p className="mb-6 text-sm text-gray-400">{job.range}</p>
+                    <p className="text-muted mb-6 text-sm">{job.range}</p>
                     <ul className="relative list-disc pl-6 text-gray-300">
                       {job.description.map((point, i) => (
                         <motion.li

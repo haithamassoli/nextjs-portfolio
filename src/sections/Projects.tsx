@@ -147,7 +147,7 @@ const Projects = () => {
             <div className="h-10 w-10 text-secondary">
               <FolderIcon />
             </div>
-            <div className="flex items-center space-x-2 text-gray-400">
+            <div className="text-muted flex items-center space-x-2">
               {github && (
                 <a
                   href={github}
@@ -205,7 +205,7 @@ const Projects = () => {
 
         <footer className="mt-5">
           {techStack && (
-            <ul className="mt-5 flex flex-wrap gap-2 text-xs text-gray-400">
+            <ul className="text-muted mt-5 flex flex-wrap gap-2 text-xs">
               {techStack.map((item: string, i: number) => (
                 <li key={i}>{item}</li>
               ))}

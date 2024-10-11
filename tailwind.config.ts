@@ -28,6 +28,7 @@ const config: Config = {
       colors: {
         primary: "#8fdcce",
         secondary: "#64ffda",
+        muted: "#94a3b8",
       },
       animation: {
         "ping-large": "ping-large 1s ease-in-out infinite",
