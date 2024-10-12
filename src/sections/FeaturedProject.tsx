@@ -7,6 +7,7 @@ import ExternalIcon from "@/assets/icons/external";
 import GitHubIcon from "@/assets/icons/github-outline";
 import PlayStoreIcon from "@/assets/icons/playStore";
 import { featuredProjects } from "@/data/projects";
+import Link from "next/link";
 
 export const FeaturedProject = () => {
   return (
@@ -57,14 +58,14 @@ export const FeaturedProject = () => {
                     Featured Project
                   </p>
                   <h3 className="mb-4 text-2xl font-semibold">
-                    <a
+                    <Link
                       href={project.playStore || project.github}
                       className="hover:text-green-500"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       {project.title}
-                    </a>
+                    </Link>
                   </h3>
                   <p className="relative z-10 mb-4 w-full rounded-lg text-sm text-white/70 md:bg-gray-800 md:p-6 md:text-base md:text-muted">
                     {project.description}
@@ -87,17 +88,17 @@ export const FeaturedProject = () => {
                     className={`mt-4 flex items-center ${i % 2 === 0 ? "" : "md:justify-end"}`}
                   >
                     {project.github && (
-                      <a
+                      <Link
                         href={project.github}
                         className="mr-4 h-6 w-6 text-white hover:text-green-500"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         <GitHubIcon />
-                      </a>
+                      </Link>
                     )}
                     {project.playStore && (
-                      <a
+                      <Link
                         href={project.playStore}
                         className="mr-4 h-6 w-6 text-white hover:text-green-500"
                         target="_blank"
@@ -105,17 +106,17 @@ export const FeaturedProject = () => {
                         aria-label="Play Store"
                       >
                         <PlayStoreIcon />
-                      </a>
+                      </Link>
                     )}
                     {project.external && (
-                      <a
+                      <Link
                         href={project.external}
                         className="text-gray-400 hover:text-green-500"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         <ExternalIcon />
-                      </a>
+                      </Link>
                     )}
                   </div>
                 </motion.div>
@@ -133,7 +134,7 @@ export const FeaturedProject = () => {
                   once: true,
                 }}
               >
-                <a
+                <Link
                   href={
                     project.playStore ||
                     project.github ||
@@ -152,7 +153,7 @@ export const FeaturedProject = () => {
                     height={600}
                     className="h-full w-full rounded-lg object-cover"
                   />
-                </a>
+                </Link>
               </motion.div>
             </motion.li>
           ))}

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import ArrowRightIcon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
+import Link from "next/link";
 
 export const ContactSection = () => {
   return (
@@ -32,7 +33,7 @@ export const ContactSection = () => {
                 discuss how I can help you achieve your goals.
               </p>
             </div>
-            <a
+            <Link
               href="mailto:haitham.b.assoli@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -43,7 +44,7 @@ export const ContactSection = () => {
                   <ArrowRightIcon className="size-4" />
                 </button>
               </div>
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>

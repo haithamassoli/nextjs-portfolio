@@ -1,4 +1,5 @@
 import ArrowUpRight from "@/assets/icons/arrow-up-right.svg";
+import Link from "next/link";
 
 const footerLinks = [
   {
@@ -26,7 +27,7 @@ export const Footer = () => {
           </div>
           <nav className="flex flex-col items-center gap-8 md:flex-row">
             {footerLinks.map((link) => (
-              <a
+              <Link
                 href={link.href}
                 key={link.title}
                 className="inline-flex items-center gap-1.5 text-white/60 hover:text-white"
@@ -35,7 +36,7 @@ export const Footer = () => {
               >
                 <span className="font-semibold">{link.title}</span>
                 <ArrowUpRight className="size-4" />
-              </a>
+              </Link>
             ))}
           </nav>
         </div>

@@ -56,17 +56,18 @@ export const Header = () => {
         className={`fixed -top-16 z-50 flex w-full items-center justify-center transition-transform duration-500 ${visible ? "translate-y-0" : "-translate-y-32"}`}
       >
         <nav className="animate-fade-in hidden gap-1 rounded-full border border-white/15 bg-white/10 p-2 backdrop-blur md:flex">
-          {navLinks.map((item) => (
+          {navLinks.map(({ url, name }) => (
             <Link
-              key={item.name}
-              href={item.url}
+              key={name}
+              href={url}
+              replace={name !== "Hire me"}
               className={`nav-item ${
-                item.name === "Hire me"
+                name === "Hire me"
                   ? "bg-white text-gray-900 hover:bg-white/70"
                   : "hover:bg-white/10"
               }`}
             >
-              {item.name}
+              {name}
             </Link>
           ))}
         </nav>
@@ -118,6 +119,7 @@ export const Header = () => {
                   <Link
                     href={url}
                     onClick={toggleMenu}
+                    replace={name !== "Hire me"}
                     className="inline-block w-full p-[3px_20px_20px] text-lg hover:text-green-500"
                   >
                     {name}

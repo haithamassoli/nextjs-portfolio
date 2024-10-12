@@ -8,6 +8,7 @@ import FolderIcon from "@/assets/icons/folder";
 import ExternalIcon from "@/assets/icons/external";
 import PlayStoreIcon from "@/assets/icons/playStore";
 import { projectsArr } from "@/data/projects";
+import Link from "next/link";
 
 const GRID_LIMIT = 6;
 
@@ -30,7 +31,7 @@ const Projects = () => {
             </div>
             <div className="flex items-center space-x-2 text-muted">
               {github && (
-                <a
+                <Link
                   href={github}
                   aria-label="GitHub Link"
                   target="_blank"
@@ -38,10 +39,10 @@ const Projects = () => {
                   className="h-5 w-5 hover:text-secondary"
                 >
                   <GitHubIcon />
-                </a>
+                </Link>
               )}
               {playStore && (
-                <a
+                <Link
                   href={playStore}
                   aria-label="PlayStore Link"
                   target="_blank"
@@ -49,10 +50,10 @@ const Projects = () => {
                   className="h-5 w-5 hover:text-secondary"
                 >
                   <PlayStoreIcon />
-                </a>
+                </Link>
               )}
               {external && (
-                <a
+                <Link
                   href={external}
                   aria-label="External Link"
                   target="_blank"
@@ -60,14 +61,13 @@ const Projects = () => {
                   className="h-5 w-5 hover:text-secondary"
                 >
                   <ExternalIcon />
-                </a>
+                </Link>
               )}
             </div>
           </div>
-
           <h3 className="mb-2 text-2xl font-semibold text-gray-100">
-            <a
-              href={external}
+            <Link
+              href={playStore || external || github}
               target="_blank"
               role="button"
               rel="noopener noreferrer nofollow"
@@ -75,7 +75,7 @@ const Projects = () => {
               aria-label={title}
             >
               {title}
-            </a>
+            </Link>
           </h3>
 
           <div

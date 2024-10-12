@@ -5,6 +5,7 @@ import { KEY_CODES } from "@/libs/key-codes";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { jobsData } from "@/data/jobs";
+import Link from "next/link";
 
 let tabVariants = {
   inactive: { opacity: 0.6, x: 0 },
@@ -128,14 +129,14 @@ const Jobs = () => {
                       <span>{job.title}</span>
                       <span className="text-primary">
                         &nbsp;@
-                        <a
+                        <Link
                           href={job.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-link hover:underline"
                         >
                           {job.company}
-                        </a>
+                        </Link>
                       </span>
                     </h3>
                     <p className="mb-6 text-sm text-muted">{job.range}</p>

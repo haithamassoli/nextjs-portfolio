@@ -48,7 +48,7 @@ export const HeroSection = () => {
               Hire Me
             </button>
           </Link>
-          <a
+          <Link
             href="https://haitham-assoli-resume.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
@@ -56,7 +56,7 @@ export const HeroSection = () => {
             <button className="h-12 rounded-xl border border-white bg-white px-6 text-gray-900">
               Web Resume
             </button>
-          </a>
+          </Link>
         </div>
       </section>
       <div className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
