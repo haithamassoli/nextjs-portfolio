@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Header } from "@/sections/Header";
 import { HeroSection } from "@/sections/Hero";
 import { FeaturedProject } from "@/sections/FeaturedProject";
 import { TapeSection } from "@/sections/Tape";
@@ -13,7 +12,6 @@ import Projects from "@/sections/Projects";
 export default function Home() {
   return (
     <>
-      <Header />
       <HeroSection />
       <div
         id="experience"

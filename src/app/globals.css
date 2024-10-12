@@ -45,6 +45,7 @@
     transform: translateY(6rem);
   }
 }
+
 @keyframes slideUp {
   0% {
     opacity: 0;
@@ -114,6 +115,7 @@ html {
   padding: 1.25rem 1.75rem;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+
 .btn-submit {
   color: #64ffda;
   background-color: transparent;
@@ -129,6 +131,7 @@ html {
   box-shadow: 4px 4px 0 0 #64ffda;
   transform: translate(-5px, -5px);
 }
+
 .btn:after {
   display: none;
 }

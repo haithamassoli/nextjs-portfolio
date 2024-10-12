@@ -7,7 +7,7 @@ import Link from "next/link";
 export const HeroSection = () => {
   return (
     <div className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60">
-      <section id="home">
+      <section>
         <div className="mx-auto">
           <h1 className="mt-8 text-center font-acorn text-6xl font-bold tracking-wide md:text-7xl">
             {"Hi. I'am Háithám.".split("").map((letter, index) => (

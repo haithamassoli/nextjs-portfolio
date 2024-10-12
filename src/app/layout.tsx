@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { twMerge } from "tailwind-merge";
 import "./globals.css";
+import { Header } from "@/sections/Header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -63,13 +64,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
+        id="home"
         className={twMerge(
           inter.variable,
           acorn.variable,
           "bg-gray-900 font-sans text-white antialiased",
         )}
       >
-        {children}
+        <Header />
+        <div id="content" className="transition-all">
+          {children}
+        </div>
         <Analytics />
       </body>
     </html>
