@@ -69,7 +69,7 @@ ${data.fullName}`;
           initial={{ opacity: 0, y: 120 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="relative flex w-full flex-col rounded-xl border border-gray-700 p-4 ring-1 ring-gray-700 sm:p-6 lg:p-8"
+          className="relative order-3 flex w-full flex-col rounded-xl border border-gray-700 p-4 ring-1 ring-gray-700 sm:p-6 lg:order-1 lg:p-8"
         >
           <Form {...form}>
             <form
@@ -82,7 +82,11 @@ ${data.fullName}`;
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input placeholder="Full Name" {...field} />
+                      <Input
+                        placeholder="Full Name"
+                        autoComplete="name"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -94,7 +98,11 @@ ${data.fullName}`;
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormControl>
-                      <Input placeholder="Email" {...field} />
+                      <Input
+                        placeholder="Email"
+                        autoComplete="email"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -106,7 +114,11 @@ ${data.fullName}`;
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Input placeholder="Phone" {...field} />
+                      <Input
+                        placeholder="Phone"
+                        autoComplete="tel"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -187,7 +199,11 @@ ${data.fullName}`;
                       Tell me a little about your project
                     </FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Project Summary" {...field} />
+                      <Textarea
+                        placeholder="Project Summary"
+                        autoComplete="off"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -202,7 +218,11 @@ ${data.fullName}`;
                       What is your estimated budget?
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="Estimated Budget ($USD)" {...field} />
+                      <Input
+                        placeholder="Estimated Budget ($USD)"
+                        autoComplete="off"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -271,7 +291,7 @@ ${data.fullName}`;
           initial={{ opacity: 0, y: 120 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="divide-y divide-gray-800 justify-self-center"
+          className="order-1 divide-y divide-gray-800 justify-self-center lg:order-2"
         >
           {skills.map((skill) => (
             <div key={skill.title} className="flex gap-x-7 py-7">
@@ -280,7 +300,7 @@ ${data.fullName}`;
                 <h3 className="text-2xl font-semibold text-gray-200">
                   {skill.title}
                 </h3>
-                <p className="text-muted mt-1 max-w-[36ch] text-sm">
+                <p className="mt-1 max-w-[36ch] text-sm text-muted">
                   {skill.description}
                 </p>
               </div>
