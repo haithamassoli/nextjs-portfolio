@@ -12,7 +12,7 @@ export const HeroSection = () => {
           <h1 className="mt-8 text-center font-acorn text-6xl font-bold tracking-wide md:text-7xl">
             {"Hi. I'am Háithám.".split("").map((letter, index) => (
               <span
-                key={index}
+                key={letter + index}
                 className="letter-animation"
                 style={{
                   color: index >= 8 ? "#8fdcc2" : "",
@@ -26,7 +26,7 @@ export const HeroSection = () => {
           <h1 className="mb-12 mt-8 text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
             {"A Developer.".split("").map((letter, index) => (
               <span
-                key={index}
+                key={letter + index}
                 className="letter-animation"
                 style={{
                   animationDelay: `${index * 0.06}s`,

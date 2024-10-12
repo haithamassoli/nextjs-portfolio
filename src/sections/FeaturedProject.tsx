@@ -19,7 +19,7 @@ export const FeaturedProject = () => {
         <ul className="mt-10 list-none p-0 md:mt-20">
           {featuredProjects.map((project, i) => (
             <motion.li
-              key={i}
+              key={project.title}
               className={`relative mb-24 grid grid-cols-12 items-center gap-4 bg-gray-800 md:w-full md:grid-cols-12 md:bg-transparent ${i % 2 === 0 ? "" : "md:text-right"} `}
               initial={{ opacity: 0, y: 120 }}
               whileInView={{
@@ -66,17 +66,17 @@ export const FeaturedProject = () => {
                       {project.title}
                     </a>
                   </h3>
-                  <p className="md:text-muted relative z-10 mb-4 w-full rounded-lg text-sm text-white/70 md:bg-gray-800 md:p-6 md:text-base">
+                  <p className="relative z-10 mb-4 w-full rounded-lg text-sm text-white/70 md:bg-gray-800 md:p-6 md:text-base md:text-muted">
                     {project.description}
                   </p>
                   {project.tech.length > 0 && (
                     <ul
                       className={`mb-4 flex max-w-md flex-wrap ${i % 2 === 0 ? "" : "md:ml-auto md:justify-end"}`}
                     >
-                      {project.tech.map((tech, index) => (
+                      {project.tech.map((tech) => (
                         <li
-                          key={index}
-                          className="md:text-muted mb-2 mr-4 text-sm text-white/70"
+                          key={tech}
+                          className="mb-2 mr-4 text-sm text-white/70 md:text-muted"
                         >
                           {tech}
                         </li>

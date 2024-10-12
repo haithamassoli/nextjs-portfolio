@@ -28,7 +28,7 @@ const Projects = () => {
             <div className="h-10 w-10 text-secondary">
               <FolderIcon />
             </div>
-            <div className="text-muted flex items-center space-x-2">
+            <div className="flex items-center space-x-2 text-muted">
               {github && (
                 <a
                   href={github}
@@ -86,9 +86,9 @@ const Projects = () => {
 
         <footer className="mt-5">
           {techStack && (
-            <ul className="text-muted mt-5 flex flex-wrap gap-2 text-xs">
-              {techStack.map((item: string, i: number) => (
-                <li key={i}>{item}</li>
+            <ul className="mt-5 flex flex-wrap gap-2 text-xs text-muted">
+              {techStack.map((item: string) => (
+                <li key={item}>{item}</li>
               ))}
             </ul>
           )}
@@ -106,7 +106,7 @@ const Projects = () => {
       <div className="mt-10 grid w-full grid-cols-1 gap-4 md:mt-20 md:grid-cols-2 lg:grid-cols-3">
         {projectsToShow.map((project, i) => (
           <div
-            key={i}
+            key={project.title}
             className="transition-all duration-300 hover:translate-y-[-7px]"
           >
             <motion.div

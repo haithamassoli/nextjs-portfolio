@@ -78,7 +78,7 @@ const Jobs = () => {
         >
           {jobsData.map((job, i) => (
             <motion.button
-              key={i}
+              key={job.title}
               className={`whitespace-nowrap px-6 py-4 text-left text-sm ${
                 activeTabId === i
                   ? "bg-gray-800 text-green-500"
@@ -112,7 +112,7 @@ const Jobs = () => {
               (job, i) =>
                 activeTabId === i && (
                   <motion.div
-                    key={i}
+                    key={job.title}
                     className="p-2"
                     id={`panel-${i}`}
                     role="tabpanel"
@@ -138,11 +138,11 @@ const Jobs = () => {
                         </a>
                       </span>
                     </h3>
-                    <p className="text-muted mb-6 text-sm">{job.range}</p>
+                    <p className="mb-6 text-sm text-muted">{job.range}</p>
                     <ul className="relative list-disc pl-6 text-gray-300">
                       {job.description.map((point, i) => (
                         <motion.li
-                          key={i}
+                          key={point}
                           className="mb-2 list-none before:absolute before:-left-6 before:-translate-y-1 before:text-lg before:text-green-500 before:content-['▹']"
                           initial={{ opacity: 0, y: 40 }}
                           animate={{ opacity: 1, y: 0 }}

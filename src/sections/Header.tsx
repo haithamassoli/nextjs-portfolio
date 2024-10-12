@@ -73,7 +73,7 @@ export const Header = () => {
       </div>
 
       <div
-        className="fixed right-12 top-16 z-50 flex w-full items-end justify-end md:hidden"
+        className="fixed right-8 top-16 z-50 flex w-full items-end justify-end md:hidden"
         ref={wrapperRef}
       >
         <button
@@ -86,7 +86,7 @@ export const Header = () => {
           >
             <span
               className={`absolute block h-1 w-10 transform bg-white transition duration-500 ease-in-out ${
-                menuOpen ? "rotate-225 w-8" : "w-10 -translate-y-2.5"
+                menuOpen ? "w-8 rotate-225" : "w-10 -translate-y-2.5"
               }`}
             />
             <span
@@ -96,7 +96,7 @@ export const Header = () => {
             />
             <span
               className={`absolute block h-1 transform bg-white transition duration-500 ease-in-out ${
-                menuOpen ? "-rotate-225 w-8" : "w-6 translate-y-2.5"
+                menuOpen ? "w-8 -rotate-225" : "w-6 translate-y-2.5"
               }`}
             />
           </div>
