@@ -3,7 +3,7 @@ export const jobsData = [
     company: "Freelance",
     title: "Web & Mobile FullStack Developer",
     url: "https://haitham-assoli-resume.vercel.app/",
-    range: "2022 - 2023",
+    range: "2023 - Present",
     description: [
       "Designed, developed, and deployed mobile applications for iOS and Android platforms",
       "Created responsive web applications using modern front-end frameworks",
