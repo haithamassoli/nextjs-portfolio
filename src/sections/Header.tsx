@@ -86,17 +86,17 @@ export const Header = () => {
             className={`relative flex h-10 w-10 items-center justify-end transition-transform duration-500 ${visible ? "translate-y-0" : "-translate-y-32"}`}
           >
             <span
-              className={`absolute block h-1 w-10 transform bg-white transition duration-500 ease-in-out ${
+              className={`absolute block h-0.5 transform bg-white transition duration-500 ease-in-out ${
                 menuOpen ? "w-8 rotate-225" : "w-10 -translate-y-2.5"
               }`}
             />
             <span
-              className={`absolute block h-1 w-8 transform bg-white transition duration-300 ease-in-out ${
+              className={`absolute block h-0.5 w-8 transform bg-white transition duration-300 ease-in-out ${
                 menuOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`absolute block h-1 transform bg-white transition duration-500 ease-in-out ${
+              className={`absolute block h-0.5 transform bg-white transition duration-500 ease-in-out ${
                 menuOpen ? "w-8 -rotate-225" : "w-6 translate-y-2.5"
               }`}
             />
