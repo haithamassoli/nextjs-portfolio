@@ -281,7 +281,7 @@ ${data.fullName}`;
               >
                 Send Message
               </button>
-              <p className="text-center text-sm text-gray-500">
+              <p className="text-center text-sm text-muted/70">
                 I'll get back to you within 2 business days max.
               </p>
             </form>
