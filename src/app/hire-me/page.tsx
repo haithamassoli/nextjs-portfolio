@@ -68,7 +68,7 @@ ${data.fullName}`;
         <motion.div
           initial={{ opacity: 0, y: 120 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           className="relative order-3 flex w-full flex-col rounded-xl border border-gray-700 p-4 ring-1 ring-gray-700 sm:p-6 lg:order-1 lg:p-8"
         >
           <Form {...form}>

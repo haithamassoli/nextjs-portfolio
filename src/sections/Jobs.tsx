@@ -141,16 +141,17 @@ const Jobs = () => {
                       </span>
                     </h3>
                     <p className="mb-6 text-sm text-muted">{job.range}</p>
-                    <ul className="relative list-disc pl-6 text-gray-300">
+                    <ul className="relative list-disc text-gray-300">
                       {job.description.map((point, i) => (
                         <motion.li
-                          key={point}
-                          className="mb-2 list-none before:absolute before:-left-6 before:-translate-y-1 before:text-lg before:text-green-500 before:content-['▹']"
+                          key={i}
+                          className="mb-2 flex list-none items-center"
                           initial={{ opacity: 0, y: 40 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: i * 0.2 }}
                         >
-                          {point}
+                          <span className="text-lg text-green-500">▹</span>
+                          <span className="pl-4">{point}</span>
                         </motion.li>
                       ))}
                     </ul>
