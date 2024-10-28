@@ -79,7 +79,7 @@ const Jobs = () => {
         >
           {jobsData.map((job, i) => (
             <motion.button
-              key={job.title}
+              key={i}
               className={`whitespace-nowrap px-6 py-4 text-left text-sm ${
                 activeTabId === i
                   ? "bg-gray-800 text-green-500"
@@ -93,11 +93,12 @@ const Jobs = () => {
               aria-selected={activeTabId === i}
               aria-controls={`panel-${i}`}
               variants={
-                typeof window !== "undefined"
-                  ? window.innerWidth > 768
-                    ? tabVariants
-                    : mobileTabVariants
-                  : mobileTabVariants
+                // typeof window !== "undefined"
+                //   ? window.innerWidth > 768
+                //     ? tabVariants
+                //     : mobileTabVariants
+                //   :
+                mobileTabVariants
               }
               initial="inactive"
               animate={activeTabId === i ? "active" : "inactive"}
@@ -113,7 +114,7 @@ const Jobs = () => {
               (job, i) =>
                 activeTabId === i && (
                   <motion.div
-                    key={job.title}
+                    key={i}
                     className="p-2"
                     id={`panel-${i}`}
                     role="tabpanel"

@@ -62,7 +62,7 @@ export const featuredProjects = [
       "UI/UX",
     ],
     playStore:
-      "https://play.google.com/store/apps/details?id=com.ajloun.telescope23",
+      "https://play.google.com/store/apps/details?id=com.haithamassoli.telescope",
     github: "",
     image: telescope,
     external: "",
