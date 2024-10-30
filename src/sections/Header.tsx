@@ -91,8 +91,8 @@ export const Header = () => {
               }`}
             />
             <span
-              className={`absolute block h-0.5 w-8 transform bg-white transition duration-300 ease-in-out ${
-                menuOpen ? "opacity-0" : ""
+              className={`absolute block h-0.5 w-8 transform bg-white transition duration-1000 ease-in-out ${
+                menuOpen ? "opacity-0 -translate-x-24" : ""
               }`}
             />
             <span
