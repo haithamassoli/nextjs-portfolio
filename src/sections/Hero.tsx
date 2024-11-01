@@ -9,7 +9,7 @@ export const HeroSection = () => {
     <div className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60">
       <section>
         <div className="mx-auto">
-          <h1 className="mt-8 text-center font-acorn text-6xl font-bold tracking-wide md:text-7xl">
+          <h1 className="mt-8 text-center font-acorn text-4xl sm:text-5xl font-bold tracking-wide md:text-7xl">
             {"Hi. I'am Háithám.".split("").map((letter, index) => (
               <span
                 key={letter + index}
@@ -23,7 +23,7 @@ export const HeroSection = () => {
               </span>
             ))}
           </h1>
-          <h1 className="mb-12 mt-8 text-center font-acorn text-5xl font-bold tracking-wide md:text-7xl">
+          <h1 className="mb-12 mt-8 text-center font-acorn text-4xl font-bold tracking-wide md:text-7xl">
             {"A Developer.".split("").map((letter, index) => (
               <span
                 key={letter + index}
@@ -36,7 +36,7 @@ export const HeroSection = () => {
               </span>
             ))}
           </h1>
-          <p className="paragraph-animation paragraph-delay m-auto w-3/4 text-center text-base text-white/80 md:text-lg lg:w-1/2">
+          <p className="paragraph-animation paragraph-delay m-auto w-3/4 text-center text-sm text-white/80 md:text-lg lg:w-1/2">
             I specialize in transforming designs into functional,
             high-performing web applications. Let&#39;s discuss your next
             project.
