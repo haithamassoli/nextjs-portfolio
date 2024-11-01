@@ -72,7 +72,7 @@ export default function RootLayout({
         )}
       >
         <Header />
-        <div id="content" className="transition-all">
+        <div id="content" className="duration-1000">
           {children}
         </div>
         <Analytics />

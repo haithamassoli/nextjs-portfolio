@@ -1,9 +1,22 @@
 export const jobsData = [
   {
+    company: "Several Brands",
+    title: "Software Engineer",
+    url: "https://linkedin.com/company/severalbrands/",
+    range: "2024 - Present",
+    description: [
+    "Developed and maintained multiple microservices using Node.js and Express",
+    "Designed and implemented RESTful APIs to support various client applications",
+    "Utilized Redis for caching and improving the performance of the applications",
+    "Collaborated with cross-functional teams to gather requirements and implement features",
+    "Ensured high performance and responsiveness of the applications and implemented best practices in software development",
+    ],
+  },
+  {
     company: "Freelance",
     title: "Web & Mobile FullStack Developer",
     url: "https://haitham-assoli-resume.vercel.app/",
-    range: "2023 - Present",
+    range: "2023 - 2024",
     description: [
       "Designed, developed, and deployed mobile applications for iOS and Android platforms",
       "Created responsive web applications using modern front-end frameworks",

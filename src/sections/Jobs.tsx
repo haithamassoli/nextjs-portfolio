@@ -92,14 +92,7 @@ const Jobs = () => {
               tabIndex={activeTabId === i ? 0 : -1}
               aria-selected={activeTabId === i}
               aria-controls={`panel-${i}`}
-              variants={
-                // typeof window !== "undefined"
-                //   ? window.innerWidth > 768
-                //     ? tabVariants
-                //     : mobileTabVariants
-                //   :
-                mobileTabVariants
-              }
+              variants={mobileTabVariants}
               initial="inactive"
               animate={activeTabId === i ? "active" : "inactive"}
             >
