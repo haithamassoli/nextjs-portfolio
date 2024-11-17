@@ -21,6 +21,9 @@ import GithubIcon from "@/assets/icons/github.svg";
 import ReanimationIcon from "@/assets/icons/reanimation.svg";
 import VSCdeIcon from "@/assets/icons/vscode.svg";
 import ExpoIcon from "@/assets/icons/expo.svg";
+import RedisIcon from "@/assets/icons/redis.svg";
+import postgreSQLIcon from "@/assets/icons/postgreSQL.svg";
+import mongoDBIcon from "@/assets/icons/mongoDB.svg";
 
 export const hobbies = [
   {
@@ -79,6 +82,9 @@ export const toolboxItems = [
     iconType: ReanimationIcon,
   },
   {
+    iconType: postgreSQLIcon,
+  },
+  {
     iconType: ExpoIcon,
   },
   {
@@ -124,10 +130,16 @@ export const toolboxItems2 = [
     iconType: HTMLIcon,
   },
   {
+    iconType: mongoDBIcon,
+  },
+  {
     iconType: CssIcon,
   },
   {
     iconType: ReactIcon,
+  },
+  {
+    iconType: RedisIcon,
   },
   {
     iconType: GithubIcon,
