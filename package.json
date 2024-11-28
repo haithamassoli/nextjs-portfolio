@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:scan": "concurrently \"next dev\" \"pnpx react-scan@latest localhost:3000\"",
+    "dev:scan2": "next dev & pnpx react-scan@latest localhost:3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

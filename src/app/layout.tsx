@@ -63,6 +63,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <script
+          src="https://unpkg.com/react-scan/dist/auto.global.js"
+          async
+        ></script>
+      </head>
       <body
         id="home"
         className={twMerge(
