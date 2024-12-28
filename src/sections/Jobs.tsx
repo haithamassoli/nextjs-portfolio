@@ -58,7 +58,7 @@ const Jobs = () => {
   };
 
   return (
-    <section className="mx-8 py-16 md:container lg:py-24 lg:pt-20">
+    <section className="mx-8 py-16 md:container lg:py-24">
       <SectionHeader
         eyebrow="Where I've Worked"
         description="Here are some of the companies I've worked with."

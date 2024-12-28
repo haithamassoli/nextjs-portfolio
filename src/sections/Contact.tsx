@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export const ContactSection = () => {
   return (
-    <section className="py-16 pt-12 lg:py-24 lg:pt-20" id="contact">
+    <section className="py-16 lg:py-24" id="contact">
       <div className="mx-8 md:container">
         <motion.div
           initial={{ opacity: 0, y: 120 }}
