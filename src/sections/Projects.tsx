@@ -110,7 +110,7 @@ const Projects = () => {
             className="transition-all duration-300 hover:translate-y-[-7px]"
           >
             <motion.div
-              className="group flex h-full cursor-pointer flex-col justify-between rounded-lg bg-gray-800 p-7 shadow-lg"
+              className="group flex h-full flex-col justify-between rounded-lg bg-gray-800 p-7 shadow-lg"
               initial={{ opacity: 0, y: 120 }}
               whileInView={{
                 opacity: 1,
