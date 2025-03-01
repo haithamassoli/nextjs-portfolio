@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.haithamassoli.malabji",
+      "sha256_cert_fingerprints": [
+        "D8:90:C0:8C:AE:09:E9:4E:7F:30:11:3F:F9:4F:EE:1E:07:75:70:12:44:7C:8D:C2:DE:C2:CE:82:C1:A8:46:40"
+      ]
+    }
+  }
+]
