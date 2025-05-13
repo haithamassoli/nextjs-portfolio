@@ -1,8 +1,34 @@
 import majalis from "@/assets/images/majalis.png";
 import telescope from "@/assets/images/telescope.png";
 import eecommittee from "@/assets/images/eecommittee.png";
+import malabji from "@/assets/images/malabji.png";
 
 export const featuredProjects = [
+  {
+    title: "ملعبجي | Malabji",
+    description:
+      "An application dedicated to memorizing the Quran in a developed way. The application contains many features, including: placing students in the form of circles that simulate reality, and the presence of a copy of the Quran that appears to the sheikh so that he can follow the student’s reading. There are games and tests that help the student review the memorization in an enjoyable way, and through them he can top the leaderboard among the students to follow his achievement and hope for the best.",
+    tech: [
+      "React Native",
+      "TypeScript",
+      "Zod",
+      "supabase",
+      "Zustand",
+      "React Query",
+      "Reanimated",
+      "Caching",
+      "Skia",
+      "Restyle",
+      "Notifications",
+      "UI/UX",
+    ],
+    playStore:
+      "https://play.google.com/store/apps/details?id=com.haithamassoli.malabji",
+    github: "",
+    image: malabji,
+    external:
+      "https://apps.apple.com/jo/app/%D9%85%D9%84%D8%B9%D8%A8%D8%AC%D9%8A/id6744635501",
+  },
   {
     title: "Majalis",
     description:
