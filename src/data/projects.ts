@@ -1,5 +1,5 @@
 import majalis from "@/assets/images/majalis.png";
-import telescope from "@/assets/images/telescope.png";
+import roohAljouf from "@/assets/images/rooh-aljouf.png";
 import eecommittee from "@/assets/images/eecommittee.png";
 import malabji from "@/assets/images/malabji.png";
 
@@ -12,6 +12,8 @@ export const featuredProjects = [
       "React Native",
       "TypeScript",
       "Zod",
+      "Expo Router",
+      "Deep Linking",
       "Multi Themes",
       "In App Purchases",
       "Google/Apple Login",
@@ -79,23 +81,22 @@ export const featuredProjects = [
     external: "",
   },
   {
-    title: "Telescope",
-    description:
-      "A tourist service application that serves the people of Ajloun Governorate and provides them with the opportunity to identify and address complaints. You will also learn about all the archaeological and tourist sites located within the governorate.",
+    title: "Rooh Al-Jouf",
+    description: `"Rooh Al-Jouf" is your digital guide to discovering all the details of the Al-Jouf region and its destinations`,
     tech: [
       "React Native",
       "TypeScript",
-      "Zod",
-      "Firebase",
+      "Expo Router",
+      "Deep Linking",
+      "Custom Splash Screen",
+      "i18n",
       "React Query",
       "Reanimated",
-      "Notifications",
       "UI/UX",
     ],
-    playStore:
-      "https://play.google.com/store/apps/details?id=com.haithamassoli.telescope",
+    playStore: "https://apps.apple.com/us/app/rooh-al-jouf/id6743066965",
     github: "",
-    image: telescope,
+    image: roohAljouf,
     external: "",
   },
 ];
