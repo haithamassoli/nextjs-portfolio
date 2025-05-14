@@ -120,6 +120,26 @@ export const projectsArr = [
     github: "https://github.com/haithamassoli/kheir",
   },
   {
+    title: "Telescope",
+    description:
+      "A tourist service application that serves the people of Ajloun Governorate and provides them with the opportunity to identify and address complaints. You will also learn about all the archaeological and tourist sites located within the governorate.",
+    techStack: [
+      "React Native",
+      "TypeScript",
+      "i18n",
+      "Zod",
+      "Firebase",
+      "React Query",
+      "Reanimated",
+      "Notifications",
+      "UI/UX",
+    ],
+    playStore:
+      "https://play.google.com/store/apps/details?id=com.haithamassoli.telescope",
+    github: "",
+    external: "",
+  },
+  {
     title: "Azkari",
     techStack: ["Javascript", "VSCode Extension"],
     description:
