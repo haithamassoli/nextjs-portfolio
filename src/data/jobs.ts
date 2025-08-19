@@ -1,15 +1,29 @@
 export const jobsData = [
   {
+    company: "Malabji",
+    title: "Founder & CEO",
+    url: "https://www.linkedin.com/company/malabji/",
+    range: "2025 - Present",
+    description: [
+      "Founded Malabji - a comprehensive sports platform that makes it simple to search, share, compete, book, and enjoy sports activities",
+      "Developed an app that allows users to find playgrounds, check availability, and make reservations",
+      "Implemented features for users to find teams or friends to play with and challenge them in competitions",
+      "Created tournament functionality allowing users to start or participate in various sporting events",
+      "Established partnerships with multiple sports academies across different sports disciplines",
+      "Built a platform accessible for any sport, promoting community engagement and healthy competition",
+    ],
+  },
+  {
     company: "Several Brands",
     title: "Software Engineer",
     url: "https://linkedin.com/company/severalbrands/",
-    range: "2024 - Present",
+    range: "2024 - 2025",
     description: [
-    "Developed and maintained multiple microservices using Node.js and Express",
-    "Designed and implemented RESTful APIs to support various client applications",
-    "Utilized Redis for caching and improving the performance of the applications",
-    "Collaborated with cross-functional teams to gather requirements and implement features",
-    "Ensured high performance and responsiveness of the applications and implemented best practices in software development",
+      "Developed and maintained multiple microservices using Node.js and Express",
+      "Designed and implemented RESTful APIs to support various client applications",
+      "Utilized Redis for caching and improving the performance of the applications",
+      "Collaborated with cross-functional teams to gather requirements and implement features",
+      "Ensured high performance and responsiveness of the applications and implemented best practices in software development",
     ],
   },
   {
