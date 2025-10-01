@@ -21,7 +21,7 @@
     "babel-plugin-react-compiler": "19.0.0-beta-e1e972c-20250221",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.10",
-    "next": "15.4.7",
+    "next": "15.5.4",
     "react": "19.1.1",
     "react-dom": "19.1.1",
     "react-hook-form": "^7.54.2",
@@ -30,11 +30,11 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.9",
-    "@types/react": "19.1.10",
-    "@types/react-dom": "19.1.7",
+    "@types/react": "19.1.16",
+    "@types/react-dom": "19.1.9",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.21.0",
-    "eslint-config-next": "15.4.7",
+    "eslint-config-next": "15.5.4",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
@@ -42,7 +42,7 @@
     "typescript": "^5.8.2"
   },
   "resolutions": {
-    "@types/react": "19.1.10",
-    "@types/react-dom": "19.1.7"
+    "@types/react": "19.1.16",
+    "@types/react-dom": "19.1.9"
   }
 }
