@@ -1,5 +1,21 @@
 export const jobsData = [
   {
+    company: "Bionl.Ai",
+    title: "Software Engineer",
+    url: "https://www.linkedin.com/company/bionl",
+    range: "2025 - Present",
+    description: [
+      "Developed and maintained bioinformatics applications in a monorepo architecture using React and React Native for cross-platform compatibility",
+      "Implemented type-safe end-to-end solutions using TypeScript, Zod for schema validation, and Prisma for database management",
+      "Built robust data management systems using TanStack Query for server state management and TanStack Form for form handling",
+      "Contributed to Bionl's no-code bioinformatics platform serving over 8,000 researchers and scientists worldwide",
+      "Developed features for GenAI-powered data analysis, literature search, and bioinformatics pipeline customization",
+      "Collaborated remotely with cross-functional teams to deliver scalable solutions for biomedical research workflows",
+      "Utilized Hono framework for building efficient API endpoints supporting bioinformatics data processing",
+      "Ensured HIPAA, GDPR, and SOC2 Type 2 compliance standards in all developed applications",
+    ],
+  },
+  {
     company: "Malabji",
     title: "Founder & CEO",
     url: "https://www.linkedin.com/company/malabji/",
