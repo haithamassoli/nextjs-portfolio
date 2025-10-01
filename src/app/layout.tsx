@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, IBM_Plex_Sans_Arabic } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { twMerge } from "tailwind-merge";
@@ -7,6 +7,11 @@ import "./globals.css";
 import { Header } from "@/sections/Header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
+  subsets: ["arabic"],
+  variable: "--font-ibm",
+  weight: ["400", "700"],
+});
 
 const acorn = localFont({
   src: [
@@ -74,6 +79,7 @@ export default function RootLayout({
         className={twMerge(
           inter.variable,
           acorn.variable,
+          ibmPlexSansArabic.variable,
           "bg-gray-900 font-sans text-white antialiased",
         )}
       >

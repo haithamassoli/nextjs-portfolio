@@ -24,6 +24,7 @@ const config: Config = {
       fontFamily: {
         sans: "var(--font-sans)",
         acorn: "var(--font-acorn)",
+        ibm: "var(--font-ibm)",
       },
       colors: {
         primary: "#8fdcce",

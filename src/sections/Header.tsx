@@ -60,10 +60,10 @@ export const Header = () => {
             <Link
               key={name}
               href={url}
-              replace={name !== "Hire me"}
+              replace={name !== "المدونة"}
               className={`nav-item ${
-                name === "Hire me"
-                  ? "bg-white text-gray-900 hover:bg-white/70"
+                name === "المدونة"
+                  ? "font-ibm bg-white text-gray-900 hover:bg-white/70"
                   : "hover:bg-white/10"
               }`}
             >
@@ -92,7 +92,7 @@ export const Header = () => {
             />
             <span
               className={`absolute block h-0.5 w-8 transform bg-white transition duration-1000 ease-in-out ${
-                menuOpen ? "opacity-0 -translate-x-24" : ""
+                menuOpen ? "-translate-x-24 opacity-0" : ""
               }`}
             />
             <span
@@ -119,8 +119,8 @@ export const Header = () => {
                   <Link
                     href={url}
                     onClick={toggleMenu}
-                    replace={name !== "Hire me"}
-                    className="inline-block w-full p-[3px_20px_20px] text-lg hover:text-green-500"
+                    replace={name !== "المدونة"}
+                    className={`inline-block w-full p-[3px_20px_20px] text-lg hover:text-green-500 ${name === "المدونة" && "font-ibm"}`}
                   >
                     {name}
                   </Link>

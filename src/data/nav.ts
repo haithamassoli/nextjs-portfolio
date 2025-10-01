@@ -4,5 +4,5 @@ export const navLinks = [
   { url: "/#projects", name: "Projects" },
   { url: "/#about", name: "About" },
   { url: "/#contact", name: "Contact" },
-  { url: "/hire-me", name: "Hire me" },
+  { url: "/blog", name: "المدونة" },
 ] as const;
