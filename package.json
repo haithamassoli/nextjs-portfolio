@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "dev:scan": "concurrently \"next dev\" \"pnpx react-scan@latest localhost:3000\"",
     "dev:scan2": "next dev & pnpx react-scan@latest localhost:3000",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint"
   },
