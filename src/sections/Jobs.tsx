@@ -3,7 +3,8 @@
 import SectionHeader from "@/components/SectionHeader";
 import { KEY_CODES } from "@/libs/key-codes";
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
+
 import { jobsData } from "@/data/jobs";
 import Link from "next/link";
 

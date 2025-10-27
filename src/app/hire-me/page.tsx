@@ -6,7 +6,7 @@ import { contactSchema } from "@/schemas/contact";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   Form,
   FormControl,

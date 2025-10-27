@@ -7,7 +7,7 @@ import mapImage from "@/assets/images/map.png";
 import profile from "@/assets/images/profile.png";
 import CardHeader from "@/components/CardHeader";
 import ToolboxItems from "@/components/ToolboxItems";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useRef } from "react";
 import { hobbies, toolboxItems, toolboxItems2 } from "@/data/about";
 

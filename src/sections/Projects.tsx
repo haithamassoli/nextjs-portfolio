@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import SectionHeader from "@/components/SectionHeader";
 import GitHubIcon from "@/assets/icons/github-outline";
 import FolderIcon from "@/assets/icons/folder";

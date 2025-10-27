@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import * as motion from "motion/react-client";
 import ArrowRightIcon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import Link from "next/link";
