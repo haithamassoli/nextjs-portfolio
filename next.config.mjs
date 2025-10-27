@@ -48,4 +48,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig, { addWebpackHook: true })
