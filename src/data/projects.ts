@@ -2,8 +2,32 @@ import majalis from "@/assets/images/majalis.png";
 import roohAljouf from "@/assets/images/rooh-aljouf.png";
 import eecommittee from "@/assets/images/eecommittee.png";
 import malabji from "@/assets/images/malabji.png";
+import aoun from "@/assets/images/aoun.png";
 
 export const featuredProjects = [
+  {
+    title: "Aoun | عون",
+    description:
+      "Aoun is a free platform that brings summaries, exams, academic resources, GPA tools, bookmarks, and study planning features into one place for students across Jordanian universities.",
+    tech: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Convex",
+      "Tailwind CSS",
+      "Motion",
+      "PWA",
+      "Zod",
+      "TanStack",
+      "Web Push",
+      "PostHog",
+      "UI/UX",
+    ],
+    playStore: "",
+    github: "",
+    image: aoun,
+    external: "https://aoun.assoli.site/",
+  },
   {
     title: "ملعبجي | Malabji",
     description:

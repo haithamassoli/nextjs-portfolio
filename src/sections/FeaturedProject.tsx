@@ -57,7 +57,12 @@ export const FeaturedProject = () => {
                   </p>
                   <h3 className="mb-4 text-2xl font-semibold">
                     <Link
-                      href={project.playStore || project.github}
+                      href={
+                        project.playStore ||
+                        project.github ||
+                        project.external ||
+                        "#"
+                      }
                       className="hover:text-green-500"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -88,7 +93,7 @@ export const FeaturedProject = () => {
                     {project.github && (
                       <Link
                         href={project.github}
-                        className="mr-4 h-6 w-6 text-white hover:text-green-500"
+                        className="mr-4 size-6 text-white hover:text-green-500"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -98,7 +103,7 @@ export const FeaturedProject = () => {
                     {project.playStore && (
                       <Link
                         href={project.playStore}
-                        className="mr-4 h-6 w-6 text-white hover:text-green-500"
+                        className="mr-4 size-6 text-white hover:text-green-500"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Play Store"
