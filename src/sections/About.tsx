@@ -28,7 +28,6 @@ const SPOTS = [
 export const AboutSection = ({ lang }: { lang: Locale }) => {
   const t = useT(lang);
   const constraintRef = useRef(null);
-  const rtl = lang === "ar";
 
   return (
     <section className="py-16 lg:py-24" id="about">
@@ -56,16 +55,12 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
             />
             <ToolboxItems
               items={toolboxItems}
-              itemsWrapperClassName={`[animation-duration:32s] ${
-                rtl ? "animate-move-right" : "animate-move-left"
-              }`}
+              itemsWrapperClassName="animate-move-left [animation-duration:32s]"
             />
             <ToolboxItems
               items={toolboxItems2}
               className="mt-6"
-              itemsWrapperClassName={`[animation-duration:32s] ${
-                rtl ? "animate-move-left" : "animate-move-right"
-              }`}
+              itemsWrapperClassName="animate-move-right [animation-duration:32s]"
             />
           </Card>
 

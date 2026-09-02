@@ -21,17 +21,12 @@ const WORDS: UIKey[] = [
 
 export const TapeSection = ({ lang }: { lang: Locale }) => {
   const t = useT(lang);
-  const rtl = lang === "ar";
 
   return (
     <div className="overflow-x-clip py-16 lg:py-24">
       <div className="-mx-1 -rotate-3 bg-gradient-to-r from-sky-300 to-emerald-200 rtl:rotate-3">
         <div className="flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div
-            className={`flex flex-none gap-4 py-3 pe-4 [animation-duration:30s] ${
-              rtl ? "animate-move-right" : "animate-move-left"
-            }`}
-          >
+          <div className="flex flex-none animate-move-left gap-4 py-3 pe-4 [animation-duration:30s]">
             {[...new Array(2)].fill(0).map((_, idx) => (
               <Fragment key={idx}>
                 {WORDS.map((key) => (

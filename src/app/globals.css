@@ -190,3 +190,31 @@ html[lang="ar"] [class*="tracking-"] {
 html[lang="ar"] .ltr[class*="tracking-"] {
   letter-spacing: revert-layer;
 }
+
+/* Marquee names are logical: move-left = toward the inline start, move-right = toward the
+   inline end. In RTL the flex track overflows the other way, so the signs flip. */
+@keyframes move-left-rtl {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes move-right-rtl {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+[dir="rtl"] .animate-move-left {
+  animation-name: move-left-rtl;
+}
+
+[dir="rtl"] .animate-move-right {
+  animation-name: move-right-rtl;
+}

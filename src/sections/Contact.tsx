@@ -56,7 +56,7 @@ export const ContactSection = ({ lang }: { lang: Locale }) => {
             </div>
             <Link
               href={`mailto:${profile.email}`}
-              className="mt-8 shrink-0 md:mt-0"
+              className="mt-8 shrink-0 md:ms-auto md:mt-0"
             >
               <span className="inline-flex h-12 w-max cursor-pointer items-center gap-2 rounded-xl border border-gray-900 bg-gray-900 px-6 text-white">
                 <span className="font-semibold">{t("contact.cta")}</span>
