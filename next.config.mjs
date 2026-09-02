@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Still experimental in 16.3.4 and off by default. Without it, app/global-not-found.tsx
+  // is ignored and paths deeper than /[lang] have no layout to render a 404 into.
+  experimental: { globalNotFound: true },
+  async redirects() {
+    return [
+      { source: "/", destination: "/en", permanent: false },
+      { source: "/blog", destination: "/en/blog", permanent: true },
+      { source: "/hire-me", destination: "/en/hire-me", permanent: true },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

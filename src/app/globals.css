@@ -135,3 +135,58 @@ html {
 .btn:after {
   display: none;
 }
+
+/* --------------------------------------------------------------------------
+   Bilingual typography. Arabic is typeset in Thmanyah Sans rather than being
+   left to the Latin face's fallback; `salt` turns on its stylistic alternates,
+   which are what make the headline forms look drawn instead of defaulted.
+   -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-feature-settings: "salt" 1;
+}
+
+/* The Latin display faces (Acorn) and Inter carry no Arabic glyphs, so an
+   Arabic page has to override the utility class sitting on the element, not
+   just the inherited body font. Hence the attribute+class specificity. */
+html[lang="ar"] body,
+html[lang="ar"] .font-sans,
+html[lang="ar"] .font-acorn,
+html[lang="ar"] .font-ibm {
+  font-family: var(--font-thmanyah), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Code identifiers, URLs, chart axes and version numbers stay Latin-ordered
+   inside an Arabic page. */
+.ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Latin display type is set at a 1.0 leading and slightly tracked out. Arabic
+   has taller ascenders, deeper descenders and joins cursively, so the same
+   values collide the hero's two lines and pull the letterforms apart. */
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4 {
+  line-height: 1.35;
+}
+
+html[lang="ar"] {
+  letter-spacing: normal;
+}
+
+html[lang="ar"] [class*="tracking-"] {
+  letter-spacing: normal;
+}
+
+/* Except where the tracking is the point: the mono eyebrow labels are Latin. */
+html[lang="ar"] .ltr[class*="tracking-"] {
+  letter-spacing: revert-layer;
+}

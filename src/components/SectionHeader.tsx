@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import * as motion from "motion/react-client";
 import { twMerge } from "tailwind-merge";
 
@@ -5,10 +6,12 @@ const SectionHeader = ({
   eyebrow,
   description,
   className = "",
+  descriptionClassName = "",
 }: {
-  eyebrow: string;
-  description: string;
+  eyebrow: ReactNode;
+  description?: ReactNode;
   className?: string;
+  descriptionClassName?: string;
 }) => {
   return (
     <motion.div
@@ -26,9 +29,16 @@ const SectionHeader = ({
       >
         {eyebrow}
       </h2>
-      <p className="mx-auto mt-4 max-w-[540px] text-center text-base text-white/80 md:text-lg">
-        {description}
-      </p>
+      {description ? (
+        <p
+          className={twMerge(
+            "mx-auto mt-4 max-w-[540px] text-center text-base text-white/80 md:text-lg",
+            descriptionClassName,
+          )}
+        >
+          {description}
+        </p>
+      ) : null}
     </motion.div>
   );
 };

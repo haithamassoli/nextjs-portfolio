@@ -25,6 +25,7 @@ const config: Config = {
         sans: "var(--font-sans)",
         acorn: "var(--font-acorn)",
         ibm: "var(--font-ibm)",
+        thmanyah: "var(--font-thmanyah)",
       },
       colors: {
         primary: "#8fdcce",

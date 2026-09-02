@@ -1,60 +1,85 @@
-import grainImage from "@/assets/images/grain.jpg";
-import StarIcon from "@/assets/icons/star.svg";
-import HeroOrbit from "@/components/HeroOrbit";
-import SparkleIcon from "@/assets/icons/sparkle.svg";
 import Link from "next/link";
 
-export const HeroSection = () => {
+import grainImage from "@/assets/images/grain.jpg";
+import StarIcon from "@/assets/icons/star.svg";
+import SparkleIcon from "@/assets/icons/sparkle.svg";
+import HeroOrbit from "@/components/HeroOrbit";
+import { href, type Locale } from "@/libs/i18n";
+import { useT } from "@/libs/ui";
+
+/**
+ * Arabic letters join up, so splitting a word into per-letter spans would
+ * break the shaping. Arabic animates word by word, Latin letter by letter.
+ */
+const units = (text: string, lang: Locale) =>
+  lang === "ar"
+    ? text.split(" ").map((word, i, all) => (i === all.length - 1 ? word : `${word} `))
+    : text.split("");
+
+const AnimatedLine = ({
+  text,
+  lang,
+  offset = 0,
+  className = "",
+}: {
+  text: string;
+  lang: Locale;
+  offset?: number;
+  className?: string;
+}) => (
+  <>
+    {units(text, lang).map((unit, index) => (
+      <span
+        key={unit + index}
+        className={`letter-animation whitespace-pre ${className}`}
+        style={{ animationDelay: `${(index + offset) * 0.06}s` }}
+      >
+        {unit}
+      </span>
+    ))}
+  </>
+);
+
+export const HeroSection = ({ lang }: { lang: Locale }) => {
+  const t = useT(lang);
+  const name = lang === "ar" ? t("name.arabic") : t("name.latin");
+  const greeting = t("hero.hi");
+
   return (
     <div className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60">
       <section>
         <div className="mx-auto">
-          <h1 className="mt-8 text-center font-acorn text-4xl sm:text-5xl font-bold tracking-wide md:text-7xl">
-            {"Hi. I'am Háithám.".split("").map((letter, index) => (
-              <span
-                key={letter + index}
-                className="letter-animation"
-                style={{
-                  color: index >= 8 ? "#8fdcc2" : "",
-                  animationDelay: `${index * 0.06}s`,
-                }}
-              >
-                {letter}
-              </span>
-            ))}
+          <h1 className="mt-8 text-center font-acorn text-4xl font-bold tracking-wide sm:text-5xl md:text-7xl">
+            <AnimatedLine text={`${greeting} `} lang={lang} />
+            <AnimatedLine
+              text={name}
+              lang={lang}
+              offset={units(greeting, lang).length}
+              className="text-[#8fdcc2]"
+            />
           </h1>
-          <h1 className="mb-12 mt-8 text-center font-acorn text-4xl font-bold tracking-wide md:text-7xl">
-            {"A Developer.".split("").map((letter, index) => (
-              <span
-                key={letter + index}
-                className="letter-animation"
-                style={{
-                  animationDelay: `${index * 0.06}s`,
-                }}
-              >
-                {letter}
-              </span>
-            ))}
-          </h1>
-          <p className="paragraph-animation paragraph-delay m-auto w-3/4 text-center text-sm text-white/80 md:text-lg lg:w-1/2">
-            I specialize in transforming designs into functional,
-            high-performing web applications. Let&#39;s discuss your next
-            project.
+          <h2 className="mb-6 mt-8 text-center font-acorn text-4xl font-bold tracking-wide md:text-7xl">
+            <AnimatedLine text={t("hero.line2")} lang={lang} />
+          </h2>
+          <p className="paragraph-animation paragraph-delay mx-auto text-center text-xs uppercase tracking-[0.2em] text-white/50 md:text-sm">
+            {t("hero.role")}
+          </p>
+          <p className="paragraph-animation paragraph-delay m-auto mt-6 w-3/4 text-center text-sm text-white/80 md:text-lg lg:w-1/2">
+            {t("hero.lede")}
           </p>
         </div>
         <div className="buttons-animation mt-8 flex flex-col-reverse items-center justify-center gap-4 font-bold md:flex-row">
-          <Link href="hire-me">
+          <Link href={href(lang, "hire-me")}>
             <button className="h-14 rounded-xl border border-white/15 px-6">
-              Hire Me
+              {t("hero.cta2")}
             </button>
           </Link>
-          <Link
-            href="https://haitham-assoli-resume.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="h-12 rounded-xl border border-white bg-white px-6 text-gray-900">
-              Web Resume
+          <Link href={href(lang, "projects")}>
+            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
+              <span>{t("hero.cta")}</span>
+              <span aria-hidden className="rtl:-scale-x-100">
+                →
+              </span>
             </button>
           </Link>
         </div>
@@ -149,10 +174,10 @@ export const HeroSection = () => {
         >
           <StarIcon className="size-28 text-white" />
         </HeroOrbit>
-        <div className="absolute right-64 top-12 -z-10 h-72 w-72 animate-blob rounded-full bg-[#e8b89c98] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/2" />
-        <div className="animation-delay-4000 absolute right-64 top-64 -z-10 h-72 w-72 animate-blob rounded-full bg-yellow-300/40 opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/2" />
-        <div className="animation-delay-2000 absolute right-80 top-28 -z-10 h-72 w-72 animate-blob rounded-full bg-[#cf94e56c] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/3" />
-        <div className="animation-delay-4000 absolute right-36 top-40 -z-10 h-72 w-72 animate-blob rounded-full bg-[#bddff973] opacity-40 blur-xl filter lg:bottom-1/2 lg:left-1/3" />
+        <div className="animate-blob absolute end-64 top-12 -z-10 h-72 w-72 rounded-full bg-[#e8b89c98] opacity-40 blur-xl filter lg:bottom-1/2 lg:start-1/2" />
+        <div className="animation-delay-4000 animate-blob absolute end-64 top-64 -z-10 h-72 w-72 rounded-full bg-yellow-300/40 opacity-40 blur-xl filter lg:bottom-1/2 lg:start-1/2" />
+        <div className="animation-delay-2000 animate-blob absolute end-80 top-28 -z-10 h-72 w-72 rounded-full bg-[#cf94e56c] opacity-40 blur-xl filter lg:bottom-1/2 lg:start-1/3" />
+        <div className="animation-delay-4000 animate-blob absolute end-36 top-40 -z-10 h-72 w-72 rounded-full bg-[#bddff973] opacity-40 blur-xl filter lg:bottom-1/2 lg:start-1/3" />
       </div>
     </div>
   );

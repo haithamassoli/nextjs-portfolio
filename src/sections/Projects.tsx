@@ -1,148 +1,104 @@
-"use client";
-
-import { Fragment, useState } from "react";
-import { motion } from "motion/react";
-import SectionHeader from "@/components/SectionHeader";
-import GitHubIcon from "@/assets/icons/github-outline";
-import FolderIcon from "@/assets/icons/folder";
-import ExternalIcon from "@/assets/icons/external";
-import PlayStoreIcon from "@/assets/icons/playStore";
-import { projectsArr } from "@/data/projects";
+import * as motion from "motion/react-client";
 import Link from "next/link";
 
-const GRID_LIMIT = 6;
+import ProjectCard from "@/components/ProjectCard";
+import SectionHeader from "@/components/SectionHeader";
+import { projects } from "@/content";
+import type { Project } from "@/content/types";
+import { href, type Locale } from "@/libs/i18n";
+import { useT, useTf } from "@/libs/ui";
 
-const Projects = () => {
-  const [showMore, setShowMore] = useState(false);
+/** How many cards the home page shows before, and after, "show more". */
+const PREVIEW = 6;
+const EXPANDED = 12;
 
-  const firstSix = projectsArr.slice(0, GRID_LIMIT);
-  const projectsToShow = showMore ? projectsArr : firstSix;
+const CARD_SIZES = "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
 
-  const ProjectInner = ({ project }: any) => {
-    const { title, description, techStack, github, external, playStore } =
-      project;
+const Grid = ({
+  items,
+  lang,
+  offset = 0,
+  className = "",
+}: {
+  items: Project[];
+  lang: Locale;
+  offset?: number;
+  className?: string;
+}) => (
+  <div
+    className={`grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 ${className}`}
+  >
+    {items.map((project, i) => (
+      <motion.div
+        key={project.slug}
+        className="rounded-xl bg-gray-800 p-6 shadow-lg transition-transform duration-300 hover:-translate-y-2"
+        initial={{ opacity: 0, y: 120 }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.6, delay: offset ? 0 : 0.1 * i },
+        }}
+        viewport={{ once: true }}
+      >
+        <ProjectCard project={project} locale={lang} sizes={CARD_SIZES} />
+      </motion.div>
+    ))}
+  </div>
+);
 
-    return (
-      <Fragment>
-        <header>
-          <div className="mb-9 flex items-center justify-between">
-            <div className="h-10 w-10 text-secondary">
-              <FolderIcon />
-            </div>
-            <div className="flex items-center space-x-2 text-muted">
-              {github && (
-                <Link
-                  href={github}
-                  aria-label="GitHub Link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-5 w-5 hover:text-secondary"
-                >
-                  <GitHubIcon />
-                </Link>
-              )}
-              {playStore && (
-                <Link
-                  href={playStore}
-                  aria-label="PlayStore Link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-5 w-5 hover:text-secondary"
-                >
-                  <PlayStoreIcon />
-                </Link>
-              )}
-              {external && (
-                <Link
-                  href={external}
-                  aria-label="External Link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-5 w-5 hover:text-secondary"
-                >
-                  <ExternalIcon />
-                </Link>
-              )}
-            </div>
-          </div>
-          <h3 className="mb-2 text-2xl font-semibold text-gray-100">
-            <Link
-              href={playStore || external || github}
-              target="_blank"
-              role="button"
-              rel="noopener noreferrer nofollow"
-              className="group-hover:text-secondary"
-              aria-label={title}
-            >
-              {title}
-            </Link>
-          </h3>
+/**
+ * A preview of the archive. The extra rows live in a `<details>` so the whole
+ * list stays on the server: the full catalogue is one link away.
+ */
+const Projects = ({ lang }: { lang: Locale }) => {
+  const t = useT(lang);
+  const tf = useTf(lang);
 
-          <div
-            className="text-sm text-gray-300"
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
-        </header>
-
-        <footer className="mt-5">
-          {techStack && (
-            <ul className="mt-5 flex flex-wrap gap-2 text-xs text-muted">
-              {techStack.map((item: string) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          )}
-        </footer>
-      </Fragment>
-    );
-  };
+  // The leading projects already have their own section above this one.
+  const rest = projects.slice(PREVIEW);
+  const preview = rest.slice(0, PREVIEW);
+  const extra = rest.slice(PREVIEW, EXPANDED);
 
   return (
-    <section className="mx-8 py-16 md:container lg:py-24">
+    <section className="mx-8 py-16 md:container lg:py-24" id="archive">
       <SectionHeader
-        eyebrow="Other Noteworthy Projects"
-        description="Here are some of the projects I've worked on."
+        eyebrow={t("work.archive")}
+        description={t("work.archiveLede")}
       />
-      <div className="mt-10 grid w-full grid-cols-1 gap-4 md:mt-20 md:grid-cols-2 lg:grid-cols-3">
-        {projectsToShow.map((project, i) => (
-          <div
-            key={project.title}
-            className="transition-all duration-300 hover:translate-y-[-7px]"
-          >
-            <motion.div
-              className="group flex h-full flex-col justify-between rounded-lg bg-gray-800 p-7 shadow-lg"
-              initial={{ opacity: 0, y: 120 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.6,
-                  delay: i > GRID_LIMIT - 1 ? 0 : 0.1 * i,
-                },
-              }}
-              viewport={{
-                once: true,
-              }}
-            >
-              <ProjectInner project={project} />
-            </motion.div>
-          </div>
-        ))}
-      </div>
+
+      <Grid items={preview} lang={lang} className="mt-10 md:mt-20" />
+
+      {extra.length > 0 && (
+        <details className="group mt-12">
+          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-green-400 bg-transparent px-4 py-2 text-center text-green-400 transition-all duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-green-400 hover:bg-opacity-10">
+            <span className="group-open:hidden">{t("work.more")}</span>
+            <span className="hidden group-open:inline">{t("work.less")}</span>
+          </summary>
+          <Grid items={extra} lang={lang} offset={PREVIEW} className="mt-8" />
+        </details>
+      )}
+
       <motion.div
-        className="flex w-full justify-center"
+        className="mt-16 flex w-full flex-col items-center gap-4"
         initial={{ opacity: 0, y: 120 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
-        viewport={{
-          once: true,
-        }}
+        viewport={{ once: true }}
       >
-        <button
-          className="btn mx-auto mt-12 rounded border border-green-400 bg-transparent px-4 py-2 text-green-400 transition-all duration-300 hover:bg-green-400 hover:bg-opacity-10"
-          onClick={() => setShowMore(!showMore)}
+        <Link
+          href={href(lang, "projects")}
+          className="group/cta inline-flex items-center gap-3 rounded-xl border border-white bg-white px-8 py-4 text-base font-bold text-gray-900 transition-colors duration-300 hover:bg-transparent hover:text-white"
         >
-          Show {showMore ? "Less" : "More"}
-        </button>
+          <span>{t("work.all")}</span>
+          <span
+            aria-hidden
+            className="transition-transform duration-300 group-hover/cta:translate-x-1 rtl:rotate-180 rtl:group-hover/cta:-translate-x-1"
+          >
+            →
+          </span>
+        </Link>
+        <p className="max-w-[46ch] text-center text-sm text-muted">
+          {tf("work.allLede", { count: projects.length })}
+        </p>
       </motion.div>
     </section>
   );
