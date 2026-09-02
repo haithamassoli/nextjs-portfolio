@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import type { Project } from "@/content/types";
@@ -72,90 +73,92 @@ const ProjectFrame = ({
   );
 
   return (
-    <div
-      data-frame={frame}
-      className={twMerge(
-        "relative overflow-hidden rounded-xl border border-white/10 bg-gray-800 transition-[border-color,transform] duration-500 ease-out group-hover:-translate-y-1 group-hover:border-[color:var(--accent)] group-focus-visible:-translate-y-1 group-focus-visible:border-[color:var(--accent)]",
-        frame === "editor" && "bg-[#10122c]",
-        className,
-      )}
-    >
-      {frame === "browser" && (
-        <>
-          <div className={CHROME}>
-            <Dots />
-            <span
-              dir="ltr"
-              className="ltr flex-1 truncate rounded-full bg-gray-900 px-3 py-0.5 text-center font-mono text-[11px] text-muted"
-            >
-              {host}
-            </span>
-          </div>
-          {shot}
-        </>
-      )}
-
-      {frame === "phone" && (
-        <>
-          <div className={CHROME}>
-            <span
-              aria-hidden
-              className="grid size-9 flex-none place-items-center rounded-lg bg-[color:var(--accent)] text-lg font-black leading-none text-gray-900"
-            >
-              {title.trim()[0]}
-            </span>
-            <span className="flex min-w-0 flex-col gap-0.5 me-auto">
-              <span className="truncate text-sm font-bold leading-tight text-white">
-                {title}
+    <ViewTransition name={`project-${p.slug}`} share="morph" default="none">
+      <div
+        data-frame={frame}
+        className={twMerge(
+          "relative overflow-hidden rounded-xl border border-white/10 bg-gray-800 transition-[border-color,transform] duration-500 ease-out group-hover:-translate-y-1 group-hover:border-[color:var(--accent)] group-focus-visible:-translate-y-1 group-focus-visible:border-[color:var(--accent)]",
+          frame === "editor" && "bg-[#10122c]",
+          className,
+        )}
+      >
+        {frame === "browser" && (
+          <>
+            <div className={CHROME}>
+              <Dots />
+              <span
+                dir="ltr"
+                className="ltr flex-1 truncate rounded-full bg-gray-900 px-3 py-0.5 text-center font-mono text-[11px] text-muted"
+              >
+                {host}
               </span>
+            </div>
+            {shot}
+          </>
+        )}
+
+        {frame === "phone" && (
+          <>
+            <div className={CHROME}>
               <span
                 aria-hidden
-                className="font-mono text-[10px] tracking-[0.1em] text-[color:var(--accent)]"
+                className="grid size-9 flex-none place-items-center rounded-lg bg-[color:var(--accent)] text-lg font-black leading-none text-gray-900"
               >
-                ★★★★★ <em className="not-italic text-muted">{p.year}</em>
+                {title.trim()[0]}
               </span>
-            </span>
-            <span className="ltr flex-none rounded-full border border-white/20 px-3 py-0.5 font-mono text-[10px] text-white/80">
-              {p.links.appStore && p.links.playGoogle
-                ? "iOS · Android"
-                : p.links.appStore
-                  ? "iOS"
-                  : "Android"}
-            </span>
-          </div>
-          {shot}
-        </>
-      )}
-
-      {frame === "editor" && (
-        <>
-          <div className={CHROME}>
-            <span className="ltr rounded-t-md border border-b-transparent border-white/10 bg-gray-800 px-3 py-1 font-mono text-[11px] text-white/80">
-              {p.slug}
-            </span>
-            <Dots className="ms-auto" />
-          </div>
-          {shot}
-        </>
-      )}
-
-      {frame === "postcard" && (
-        <>
-          {shot}
-          <span
-            aria-hidden
-            className="ltr absolute right-3 top-3 rounded-sm bg-white px-2 py-3 font-mono text-[11px] font-semibold text-gray-900 shadow-[0_6px_24px_-8px_rgb(0_0_0/0.6)] [writing-mode:vertical-rl] rtl:left-3 rtl:right-auto"
-          >
-            {p.year}
-          </span>
-          {p.stack[0] && (
-            <div className="ltr border-t border-white/10 px-4 py-2.5 font-mono text-[11px] text-muted">
-              {p.stack[0]}
+              <span className="me-auto flex min-w-0 flex-col gap-0.5">
+                <span className="truncate text-sm font-bold leading-tight text-white">
+                  {title}
+                </span>
+                <span
+                  aria-hidden
+                  className="font-mono text-[10px] tracking-[0.1em] text-[color:var(--accent)]"
+                >
+                  ★★★★★ <em className="not-italic text-muted">{p.year}</em>
+                </span>
+              </span>
+              <span className="ltr flex-none rounded-full border border-white/20 px-3 py-0.5 font-mono text-[10px] text-white/80">
+                {p.links.appStore && p.links.playGoogle
+                  ? "iOS · Android"
+                  : p.links.appStore
+                    ? "iOS"
+                    : "Android"}
+              </span>
             </div>
-          )}
-        </>
-      )}
-    </div>
+            {shot}
+          </>
+        )}
+
+        {frame === "editor" && (
+          <>
+            <div className={CHROME}>
+              <span className="ltr rounded-t-md border border-white/10 border-b-transparent bg-gray-800 px-3 py-1 font-mono text-[11px] text-white/80">
+                {p.slug}
+              </span>
+              <Dots className="ms-auto" />
+            </div>
+            {shot}
+          </>
+        )}
+
+        {frame === "postcard" && (
+          <>
+            {shot}
+            <span
+              aria-hidden
+              className="ltr absolute right-3 top-3 rounded-sm bg-white px-2 py-3 font-mono text-[11px] font-semibold text-gray-900 shadow-[0_6px_24px_-8px_rgb(0_0_0/0.6)] [writing-mode:vertical-rl] rtl:left-3 rtl:right-auto"
+            >
+              {p.year}
+            </span>
+            {p.stack[0] && (
+              <div className="ltr border-t border-white/10 px-4 py-2.5 font-mono text-[11px] text-muted">
+                {p.stack[0]}
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </ViewTransition>
   );
 };
 

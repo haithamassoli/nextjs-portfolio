@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from "react";
+import { ViewTransition, type CSSProperties, type ReactNode } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -11,7 +11,6 @@ import type { Project } from "@/content/types";
 import { SITE, href, isLocale, locales, type Locale } from "@/libs/i18n";
 import { accentOf } from "@/libs/project-view";
 import { useT, type UIKey } from "@/libs/ui";
-
 
 export function generateStaticParams() {
   return locales.flatMap((lang) =>
@@ -134,9 +133,15 @@ export default async function ProjectPage({
       </Link>
 
       <header className="mt-8">
-        <h1 className="font-acorn text-4xl font-bold text-primary md:text-5xl">
-          {project.title[locale]}
-        </h1>
+        <ViewTransition
+          name={`project-title-${slug}`}
+          share="morph"
+          default="none"
+        >
+          <h1 className="font-acorn text-4xl font-bold text-primary md:text-5xl">
+            {project.title[locale]}
+          </h1>
+        </ViewTransition>
         <p className="mt-4 max-w-[52ch] text-lg text-white/80">
           {project.tagline[locale]}
         </p>

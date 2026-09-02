@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { ViewTransition, type CSSProperties } from "react";
 import Link from "next/link";
 import ProjectFrame from "@/components/ProjectFrame";
 import type { Project } from "@/content/types";
@@ -31,9 +31,15 @@ const ProjectCard = ({ project: p, locale, sizes, priority }: Props) => {
 
       <div className="flex flex-1 flex-col gap-3">
         <div className="flex items-baseline justify-between gap-4">
-          <h3 className="font-acorn text-xl font-bold text-gray-100 transition-colors duration-300 group-hover:text-[color:var(--accent)] md:text-2xl">
-            {p.title[locale]}
-          </h3>
+          <ViewTransition
+            name={`project-title-${p.slug}`}
+            share="morph"
+            default="none"
+          >
+            <h3 className="font-acorn text-xl font-bold text-gray-100 transition-colors duration-300 group-hover:text-[color:var(--accent)] md:text-2xl">
+              {p.title[locale]}
+            </h3>
+          </ViewTransition>
           <span className="ltr flex-none font-mono text-xs text-muted">
             {p.year}
           </span>

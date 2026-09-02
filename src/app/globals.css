@@ -218,3 +218,37 @@ html[lang="ar"] .ltr[class*="tracking-"] {
 [dir="rtl"] .animate-move-right {
   animation-name: move-right-rtl;
 }
+
+/* ── View transitions ──────────────────────────────────────────────────────
+   Project thumbnails and titles carry a `project-…` name on both the list and
+   the detail page, so React pairs them and the browser morphs one into the
+   other. Everything else is left alone (`default="none"` on each component).   */
+::view-transition-group(.morph) {
+  animation-duration: 400ms;
+}
+
+/* Blur mid-flight: hides the pixel interpolation while the cover art and the
+   heading resize between their two very different boxes. */
+::view-transition-image-pair(.morph) {
+  animation-name: morph-blur;
+}
+
+@keyframes morph-blur {
+  30% {
+    filter: blur(3px);
+  }
+}
+
+/* The transition overlay swallows clicks; let them reach the live page. */
+::view-transition {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}

@@ -1,3 +1,5 @@
+import { ViewTransition } from "react";
+
 import * as motion from "motion/react-client";
 import Image from "next/image";
 import Link from "next/link";
@@ -84,11 +86,17 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                         {project.year}
                       </span>
                     </p>
-                    <h3 className="mb-4 text-2xl font-semibold">
-                      <Link href={detail} className="hover:text-green-500">
-                        {project.title[lang]}
-                      </Link>
-                    </h3>
+                    <ViewTransition
+                      name={`project-title-${project.slug}`}
+                      share="morph"
+                      default="none"
+                    >
+                      <h3 className="mb-4 text-2xl font-semibold">
+                        <Link href={detail} className="hover:text-green-500">
+                          {project.title[lang]}
+                        </Link>
+                      </h3>
+                    </ViewTransition>
                     <p className="relative z-10 mb-4 w-full rounded-lg text-sm text-white/70 md:bg-gray-800 md:p-6 md:text-base md:text-muted">
                       {project.tagline[lang]}
                     </p>
