@@ -50,7 +50,7 @@ export const profile = {
 
 	experience: [
 		{
-			company: { en: 'CartBuzz', ar: 'CartBuzz' },
+			company: { en: 'GoldenTik', ar: 'GoldenTik' },
 			role: { en: 'Software Engineer', ar: 'مهندس برمجيات' },
 			period: 'Since 2026',
 			highlights: {
