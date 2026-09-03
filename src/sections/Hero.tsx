@@ -31,7 +31,7 @@ const AnimatedLine = ({
     {units(text, lang).map((unit, index) => (
       <span
         key={unit + index}
-        className={`letter-animation whitespace-pre ${className}`}
+        className={`letter-animation whitespace-pre-wrap ${className}`}
         style={{ animationDelay: `${(index + offset) * 0.06}s` }}
       >
         {unit}
@@ -48,8 +48,8 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
   return (
     <div className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60">
       <section>
-        <div className="mx-auto">
-          <h1 className="mt-8 text-center font-acorn text-4xl font-bold tracking-wide sm:text-5xl md:text-7xl">
+        <div className="mx-auto px-4">
+          <h1 className="mt-8 text-center font-acorn text-3xl font-bold tracking-wide sm:text-5xl md:text-7xl">
             <AnimatedLine text={`${greeting} `} lang={lang} />
             <AnimatedLine
               text={name}
@@ -58,19 +58,19 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
               className="text-[#8fdcc2]"
             />
           </h1>
-          <h2 className="mb-6 mt-8 text-center font-acorn text-4xl font-bold tracking-wide md:text-7xl">
+          <h2 className="mb-6 mt-8 text-center font-acorn text-3xl font-bold tracking-wide sm:text-5xl md:text-7xl">
             <AnimatedLine text={t("hero.line2")} lang={lang} />
           </h2>
-          <p className="paragraph-animation paragraph-delay mx-auto text-center text-xs uppercase tracking-[0.2em] text-white/50 md:text-sm">
+          <p className="paragraph-animation paragraph-delay mx-auto text-center text-[0.65rem] uppercase tracking-[0.15em] text-white/50 sm:text-xs sm:tracking-[0.2em] md:text-sm">
             {t("hero.role")}
           </p>
-          <p className="paragraph-animation paragraph-delay m-auto mt-6 w-3/4 text-center text-sm text-white/80 md:text-lg lg:w-1/2">
+          <p className="paragraph-animation paragraph-delay m-auto mt-6 max-w-xl text-center text-sm text-white/80 md:text-lg">
             {t("hero.lede")}
           </p>
         </div>
-        <div className="buttons-animation mt-8 flex flex-col-reverse items-center justify-center gap-4 font-bold md:flex-row">
+        <div className="buttons-animation mt-8 flex flex-col-reverse items-center justify-center gap-4 px-4 font-bold md:flex-row">
           <Link href={href(lang, "hire-me")}>
-            <button className="h-14 rounded-xl border border-white/15 px-6">
+            <button className="h-12 rounded-xl border border-white/15 px-6">
               {t("hero.cta2")}
             </button>
           </Link>

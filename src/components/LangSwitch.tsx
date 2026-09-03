@@ -45,8 +45,6 @@ const Switch = ({
     <Link
       href={target}
       hrefLang={other}
-      lang={other}
-      dir={other === "ar" ? "rtl" : "ltr"}
       prefetch={false}
       aria-label={t("nav.langAria")}
       onClick={onNavigate}
@@ -55,14 +53,19 @@ const Switch = ({
         className,
       )}
     >
-      {full ? (
-        t("nav.lang")
-      ) : (
-        <>
-          <span className="hidden md:inline">{t("nav.lang")}</span>
-          <span className="md:hidden">{t("nav.langShort")}</span>
-        </>
-      )}
+      {/* ponytail: dir/lang sit on the label, not the link. Logical insets
+          (end-24) resolve against the element's own direction, so an rtl
+          link would jump to the opposite side of the page. */}
+      <span lang={other} dir={other === "ar" ? "rtl" : "ltr"}>
+        {full ? (
+          t("nav.lang")
+        ) : (
+          <>
+            <span className="hidden md:inline">{t("nav.lang")}</span>
+            <span className="md:hidden">{t("nav.langShort")}</span>
+          </>
+        )}
+      </span>
     </Link>
   );
 };
