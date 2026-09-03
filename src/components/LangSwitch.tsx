@@ -61,8 +61,8 @@ const Switch = ({
           t("nav.lang")
         ) : (
           <>
-            <span className="hidden md:inline">{t("nav.lang")}</span>
-            <span className="md:hidden">{t("nav.langShort")}</span>
+            <span className="hidden lg:inline">{t("nav.lang")}</span>
+            <span className="lg:hidden">{t("nav.langShort")}</span>
           </>
         )}
       </span>

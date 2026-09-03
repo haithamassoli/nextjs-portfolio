@@ -94,7 +94,7 @@ export const Header = ({ lang }: { lang: Locale }) => {
 
         <LangSwitch
           lang={lang}
-          className="animate-fade-in absolute end-24 top-0 md:end-8 md:top-0.5"
+          className="animate-fade-in absolute start-6 top-0 md:start-8 md:top-0.5"
         />
       </div>
 
