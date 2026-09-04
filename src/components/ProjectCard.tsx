@@ -1,9 +1,8 @@
-import { ViewTransition, type CSSProperties } from "react";
+import { ViewTransition } from "react";
 import Link from "next/link";
 import ProjectFrame from "@/components/ProjectFrame";
 import type { Project } from "@/content/types";
 import { href, type Locale } from "@/libs/i18n";
-import { accentOf } from "@/libs/project-view";
 import { useT } from "@/libs/ui";
 
 type Props = {
@@ -19,8 +18,7 @@ const ProjectCard = ({ project: p, locale, sizes, priority }: Props) => {
   return (
     <Link
       href={href(locale, `projects/${p.slug}`)}
-      style={{ "--accent": accentOf(p.slug) } as CSSProperties}
-      className="group flex h-full flex-col gap-5 rounded-xl text-start outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--accent)] focus-visible:ring-offset-4 focus-visible:ring-offset-gray-900"
+      className="group flex h-full flex-col gap-5 rounded-xl text-start outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-4 focus-visible:ring-offset-gray-900"
     >
       <ProjectFrame
         project={p}
@@ -36,7 +34,7 @@ const ProjectCard = ({ project: p, locale, sizes, priority }: Props) => {
             share="morph"
             default="none"
           >
-            <h3 className="font-acorn text-xl font-bold text-gray-100 transition-colors duration-300 group-hover:text-[color:var(--accent)] md:text-2xl">
+            <h3 className="font-acorn text-xl font-bold text-gray-100 transition-colors duration-300 group-hover:text-secondary md:text-2xl">
               {p.title[locale]}
             </h3>
           </ViewTransition>
@@ -62,7 +60,7 @@ const ProjectCard = ({ project: p, locale, sizes, priority }: Props) => {
           </ul>
         )}
 
-        <span className="mt-auto inline-flex items-center gap-2 pt-2 font-mono text-xs text-[color:var(--accent)]">
+        <span className="mt-auto inline-flex items-center gap-2 pt-2 font-mono text-xs text-secondary">
           {t("work.read")}
           <span
             aria-hidden

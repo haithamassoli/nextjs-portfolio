@@ -31,175 +31,122 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
           eyebrow={t("work.eyebrow")}
           description={t("featured.lede")}
         />
-        <ul className="mt-10 list-none p-0 md:mt-20">
-          {featuredProjects.map((project, i) => {
+        <ul className="mt-10 flex list-none flex-col gap-16 p-0 md:mt-16 md:gap-20">
+          {featuredProjects.map((project) => {
             const detail = href(lang, `projects/${project.slug}`);
             const external = primaryLink(project);
 
             return (
               <motion.li
                 key={project.slug}
-                className={`relative mb-24 grid grid-cols-12 items-center gap-4 bg-gray-800 md:w-full md:bg-transparent ${
-                  i % 2 === 0 ? "" : "md:text-end"
-                }`}
-                initial={{ opacity: 0, y: 120 }}
+                className="grid items-center gap-6 md:grid-cols-2 md:gap-10"
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{
                   opacity: 1,
                   y: 0,
                   transition: { duration: 0.6 },
                 }}
-                viewport={{
-                  once: true,
-                }}
+                viewport={{ once: true }}
               >
                 {project.cover && (
-                  <Image
-                    src={project.cover}
-                    alt=""
-                    aria-hidden
-                    width={800}
-                    height={600}
-                    className="absolute inset-0 h-full w-full rounded-lg object-cover opacity-10 md:hidden"
-                  />
+                  <Link
+                    href={external ?? detail}
+                    className="block overflow-hidden rounded-lg border border-white/10"
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                    aria-label={project.title[lang]}
+                  >
+                    <Image
+                      src={project.cover}
+                      alt={project.title[lang]}
+                      width={800}
+                      height={600}
+                      className="aspect-video w-full object-cover"
+                    />
+                  </Link>
                 )}
 
-                <div
-                  className={`col-span-12 row-start-1 row-end-[-1] md:col-span-7 ${
-                    i % 2 === 0 ? "md:col-start-1" : "md:col-start-6"
-                  }`}
-                >
-                  <motion.div
-                    className="relative z-10 rounded-lg p-6 shadow-lg md:bg-transparent md:p-0 md:shadow-none"
-                    initial={{ opacity: 0, y: 120 }}
-                    whileInView={{
-                      opacity: 1,
-                      y: 0,
-                      transition: { delay: 0.4, duration: 0.6 },
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
+                <div>
+                  <p className="mb-2 font-mono text-xs text-secondary">
+                    {t("featured.label")}
+                    <span className="ltr ms-2 inline-block text-muted">
+                      {project.year}
+                    </span>
+                  </p>
+                  <ViewTransition
+                    name={`project-title-${project.slug}`}
+                    share="morph"
+                    default="none"
                   >
-                    <p className="mb-2 text-sm text-green-500">
-                      {t("featured.label")}
-                      <span className="ltr ms-2 inline-block text-muted">
-                        {project.year}
-                      </span>
-                    </p>
-                    <ViewTransition
-                      name={`project-title-${project.slug}`}
-                      share="morph"
-                      default="none"
-                    >
-                      <h3 className="mb-4 text-2xl font-semibold">
-                        <Link href={detail} className="hover:text-green-500">
-                          {project.title[lang]}
-                        </Link>
-                      </h3>
-                    </ViewTransition>
-                    <p className="relative z-10 mb-4 w-full rounded-lg text-sm text-white/70 md:bg-gray-800 md:p-6 md:text-base md:text-muted">
-                      {project.tagline[lang]}
-                    </p>
-                    {project.stack.length > 0 && (
-                      <ul
-                        className={`mb-4 flex max-w-md flex-wrap gap-x-4 ${
-                          i % 2 === 0 ? "" : "md:ms-auto md:justify-end"
-                        }`}
-                      >
-                        {project.stack.slice(0, 6).map((tech) => (
-                          <li
-                            key={tech}
-                            className="ltr mb-2 text-sm text-white/70 md:text-muted"
-                          >
-                            {tech}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    <div
-                      className={`mt-4 flex items-center gap-4 ${
-                        i % 2 === 0 ? "" : "md:justify-end"
-                      }`}
-                    >
-                      <Link
-                        href={detail}
-                        className="text-sm font-semibold text-secondary hover:underline"
-                      >
-                        {t("work.read")}
-                        <span aria-hidden className="ms-1 rtl:-scale-x-100">
-                          →
-                        </span>
+                    <h3 className="mb-3 font-acorn text-2xl font-bold">
+                      <Link href={detail} className="hover:text-secondary">
+                        {project.title[lang]}
                       </Link>
-                      {project.links.github && (
-                        <Link
-                          href={project.links.github}
-                          className="size-6 text-white hover:text-green-500"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={t("project.github")}
+                    </h3>
+                  </ViewTransition>
+                  <p className="mb-4 max-w-[46ch] text-base text-muted">
+                    {project.tagline[lang]}
+                  </p>
+                  {project.stack.length > 0 && (
+                    <ul className="mb-5 flex flex-wrap gap-x-4 gap-y-1">
+                      {project.stack.slice(0, 6).map((tech) => (
+                        <li
+                          key={tech}
+                          className="ltr font-mono text-xs text-muted"
                         >
-                          <GitHubIcon />
-                        </Link>
-                      )}
-                      {project.links.playGoogle && (
-                        <Link
-                          href={project.links.playGoogle}
-                          className="size-6 text-white hover:text-green-500"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={t("project.play")}
-                        >
-                          <PlayStoreIcon />
-                        </Link>
-                      )}
-                      {project.links.live && (
-                        <Link
-                          href={project.links.live}
-                          className="size-6 text-gray-400 hover:text-green-500"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={t("project.live")}
-                        >
-                          <ExternalIcon />
-                        </Link>
-                      )}
-                    </div>
-                  </motion.div>
-                </div>
-
-                <motion.div
-                  className={`col-span-12 row-start-1 row-end-[-1] hidden md:col-span-7 md:block ${
-                    i % 2 === 0 ? "md:col-start-6" : "md:col-start-1"
-                  }`}
-                  initial={{ opacity: 0, y: 120 }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    transition: { duration: 0.6 },
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                >
-                  {project.cover && (
-                    <Link
-                      href={external ?? detail}
-                      className="relative block"
-                      target={external ? "_blank" : undefined}
-                      rel={external ? "noopener noreferrer" : undefined}
-                      aria-label={project.title[lang]}
-                    >
-                      <div className="absolute inset-0 bg-emerald-300 opacity-25 transition-opacity duration-300 hover:opacity-0"></div>
-                      <Image
-                        src={project.cover}
-                        alt={project.title[lang]}
-                        width={800}
-                        height={600}
-                        className="h-full w-full rounded-lg object-cover"
-                      />
-                    </Link>
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
                   )}
-                </motion.div>
+                  <div className="flex items-center gap-4">
+                    <Link
+                      href={detail}
+                      className="font-mono text-sm text-secondary hover:underline"
+                    >
+                      {t("work.read")}
+                      <span
+                        aria-hidden
+                        className="ms-1 inline-block rtl:rotate-180"
+                      >
+                        →
+                      </span>
+                    </Link>
+                    {project.links.github && (
+                      <Link
+                        href={project.links.github}
+                        className="size-5 text-white/70 hover:text-secondary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t("project.github")}
+                      >
+                        <GitHubIcon />
+                      </Link>
+                    )}
+                    {project.links.playGoogle && (
+                      <Link
+                        href={project.links.playGoogle}
+                        className="size-5 text-white/70 hover:text-secondary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t("project.play")}
+                      >
+                        <PlayStoreIcon />
+                      </Link>
+                    )}
+                    {project.links.live && (
+                      <Link
+                        href={project.links.live}
+                        className="size-5 text-white/70 hover:text-secondary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={t("project.live")}
+                      >
+                        <ExternalIcon />
+                      </Link>
+                    )}
+                  </div>
+                </div>
               </motion.li>
             );
           })}

@@ -26,12 +26,11 @@ const Grid = ({
   className?: string;
 }) => (
   <div
-    className={`grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 ${className}`}
+    className={`grid w-full grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3 ${className}`}
   >
     {items.map((project, i) => (
       <motion.div
         key={project.slug}
-        className="rounded-xl bg-gray-800 p-6 shadow-lg transition-transform duration-300 hover:-translate-y-2"
         initial={{ opacity: 0, y: 120 }}
         whileInView={{
           opacity: 1,
@@ -70,7 +69,7 @@ const Projects = ({ lang }: { lang: Locale }) => {
 
       {extra.length > 0 && (
         <details className="group mt-12">
-          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-green-400 bg-transparent px-4 py-2 text-center text-green-400 transition-all duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-green-400 hover:bg-opacity-10">
+          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-secondary bg-transparent px-4 py-2 text-center font-mono text-sm text-secondary transition-colors duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-secondary/10">
             <span className="group-open:hidden">{t("work.more")}</span>
             <span className="hidden group-open:inline">{t("work.less")}</span>
           </summary>
