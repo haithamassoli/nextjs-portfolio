@@ -26,17 +26,17 @@ const Grid = ({
   className?: string;
 }) => (
   <div
-    className={`grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 ${className}`}
+    className={`grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 ${className}`}
   >
     {items.map((project, i) => (
       <motion.div
         key={project.slug}
-        className="rounded-xl bg-gray-800 p-6 shadow-lg transition-transform duration-300 hover:-translate-y-2"
-        initial={{ opacity: 0, y: 120 }}
+        className="flex h-full flex-col rounded-2xl border border-white/10 bg-gray-800/40 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-gray-800/70 hover:shadow-xl"
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{
           opacity: 1,
           y: 0,
-          transition: { duration: 0.6, delay: offset ? 0 : 0.1 * i },
+          transition: { duration: 0.4, delay: offset ? 0 : 0.05 * (i % 3) },
         }}
         viewport={{ once: true }}
       >
@@ -66,13 +66,19 @@ const Projects = ({ lang }: { lang: Locale }) => {
         description={t("work.archiveLede")}
       />
 
-      <Grid items={preview} lang={lang} className="mt-10 md:mt-20" />
+      <Grid items={preview} lang={lang} className="mt-12 md:mt-16" />
 
       {extra.length > 0 && (
-        <details className="group mt-12">
-          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-secondary bg-transparent px-4 py-2 text-center text-secondary transition-all duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-secondary hover:bg-opacity-10">
+        <details className="group mt-10">
+          <summary className="mx-auto flex w-max cursor-pointer list-none items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-2.5 text-center text-sm font-medium text-white transition-all duration-300 marker:content-none hover:border-emerald-400/40 hover:bg-emerald-400/10 hover:text-emerald-300 [&::-webkit-details-marker]:hidden">
             <span className="group-open:hidden">{t("work.more")}</span>
             <span className="hidden group-open:inline">{t("work.less")}</span>
+            <span
+              aria-hidden
+              className="text-xs transition-transform duration-300 group-open:rotate-180"
+            >
+              ▼
+            </span>
           </summary>
           <Grid items={extra} lang={lang} offset={PREVIEW} className="mt-8" />
         </details>
@@ -80,18 +86,18 @@ const Projects = ({ lang }: { lang: Locale }) => {
 
       <motion.div
         className="mt-16 flex w-full flex-col items-center gap-4"
-        initial={{ opacity: 0, y: 120 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
         viewport={{ once: true }}
       >
         <Link
           href={href(lang, "projects")}
-          className="group/cta inline-flex items-center gap-3 rounded-xl border border-white bg-white px-8 py-4 text-base font-bold text-gray-900 transition-colors duration-300 hover:bg-transparent hover:text-white"
+          className="group/cta inline-flex items-center gap-3 rounded-xl border border-white bg-white px-8 py-3.5 text-base font-bold text-gray-900 transition-all duration-300 hover:bg-transparent hover:text-white"
         >
           <span>{t("work.all")}</span>
           <span
             aria-hidden
-            className="transition-transform duration-300 group-hover/cta:translate-x-1 rtl:rotate-180 rtl:group-hover/cta:-translate-x-1"
+            className="transition-transform duration-300 group-hover/cta:translate-x-1 rtl:-scale-x-100 rtl:group-hover/cta:-translate-x-1"
           >
             →
           </span>
