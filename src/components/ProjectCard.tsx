@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { Project } from "@/content/types";
 import { href, type Locale } from "@/libs/i18n";
 import { accentOf } from "@/libs/project-view";
-import { useT, formatPeriod, type UIKey } from "@/libs/ui";
+import { useT, type UIKey } from "@/libs/ui";
 
 type Props = {
   project: Project;
@@ -74,8 +74,8 @@ const ProjectCard = ({
               {p.title[locale]}
             </h3>
           </ViewTransition>
-          <span className="flex-none font-mono text-xs text-muted">
-            {formatPeriod(p.year, locale)}
+          <span className="ltr flex-none font-mono text-xs text-muted">
+            {p.year}
           </span>
         </div>
 
