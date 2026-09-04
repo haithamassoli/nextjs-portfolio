@@ -26,12 +26,11 @@ const Grid = ({
   className?: string;
 }) => (
   <div
-    className={`grid w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 ${className}`}
+    className={`grid w-full grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3 ${className}`}
   >
     {items.map((project, i) => (
       <motion.div
         key={project.slug}
-        className="rounded-xl bg-gray-800 p-6 shadow-lg transition-transform duration-300 hover:-translate-y-2"
         initial={{ opacity: 0, y: 120 }}
         whileInView={{
           opacity: 1,
@@ -70,7 +69,7 @@ const Projects = ({ lang }: { lang: Locale }) => {
 
       {extra.length > 0 && (
         <details className="group mt-12">
-          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-green-400 bg-transparent px-4 py-2 text-center text-green-400 transition-all duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-green-400 hover:bg-opacity-10">
+          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-primary bg-transparent px-4 py-2 text-center font-mono text-sm text-primary transition-colors duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-primary/10">
             <span className="group-open:hidden">{t("work.more")}</span>
             <span className="hidden group-open:inline">{t("work.less")}</span>
           </summary>
@@ -79,14 +78,14 @@ const Projects = ({ lang }: { lang: Locale }) => {
       )}
 
       <motion.div
-        className="mt-16 flex w-full flex-col items-center gap-4"
+        className="mt-16 flex w-full flex-col items-center gap-3"
         initial={{ opacity: 0, y: 120 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
         viewport={{ once: true }}
       >
         <Link
           href={href(lang, "projects")}
-          className="group/cta inline-flex items-center gap-3 rounded-xl border border-white bg-white px-8 py-4 text-base font-bold text-gray-900 transition-colors duration-300 hover:bg-transparent hover:text-white"
+          className="group/cta inline-flex items-center gap-2 font-mono text-sm text-primary transition-colors duration-300 hover:text-primary/80"
         >
           <span>{t("work.all")}</span>
           <span

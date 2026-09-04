@@ -57,7 +57,7 @@ const ProjectFilter = ({
               onClick={() => select(chip.value)}
               className={`rounded-full border px-4 py-1.5 text-sm transition duration-300 ${
                 on
-                  ? "border-secondary bg-secondary/10 text-secondary"
+                  ? "border-primary bg-primary/10 text-primary"
                   : "border-white/15 text-white/70 hover:border-white/40 hover:text-white"
               }`}
             >
