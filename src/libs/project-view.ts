@@ -13,18 +13,11 @@ const frames: Record<ProjectCategory, Frame> = {
   client: "browser",
 };
 
-/* Six accents, cycled in order so no two neighbouring cards share one. */
-const palette = [
-  "#64ffda",
-  "#8fdcce",
-  "#7dd3fc",
-  "#c4b5fd",
-  "#fcd34d",
-  "#fda4af",
-];
+/* Unified accent matching the site theme. */
+const palette = ["#64ffda"];
 
 export const frameOf = (p: Project): Frame => frames[p.category];
-export const accentOf = (slug: string) =>
+export const accentOf = (slug?: string) =>
   palette[Math.max(0, projects.findIndex((p) => p.slug === slug)) % palette.length];
 
 /** The host shown in the browser chrome of a card. */

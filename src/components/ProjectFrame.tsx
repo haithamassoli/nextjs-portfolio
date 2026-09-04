@@ -65,10 +65,12 @@ const ProjectFrame = ({
     <div
       aria-hidden
       className="min-h-56 w-full"
-      style={{
-        backgroundImage:
-          "linear-gradient(160deg, color-mix(in oklab, var(--accent) 16%, transparent), transparent 65%)",
-      }}
+      style={
+        {
+          backgroundImage:
+            "linear-gradient(160deg, color-mix(in oklab, var(--accent) 16%, transparent), transparent 65%)",
+        }
+      }
     />
   );
 
@@ -78,7 +80,6 @@ const ProjectFrame = ({
         data-frame={frame}
         className={twMerge(
           "relative overflow-hidden rounded-xl border border-white/10 bg-gray-800 transition-[border-color,transform] duration-500 ease-out group-hover:-translate-y-1 group-hover:border-[color:var(--accent)] group-focus-visible:-translate-y-1 group-focus-visible:border-[color:var(--accent)]",
-          frame === "editor" && "bg-[#10122c]",
           className,
         )}
       >
