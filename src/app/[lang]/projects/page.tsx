@@ -80,7 +80,7 @@ export default async function AllProjectsPage({
   return (
     <main className="mx-auto max-w-5xl px-6 pb-24 pt-32 md:px-8 md:pb-32 md:pt-40">
       <header className="text-center">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-secondary">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
           {t("work.eyebrow")}
         </p>
         <h1 className="mt-4 font-acorn text-4xl font-bold text-primary md:text-5xl">

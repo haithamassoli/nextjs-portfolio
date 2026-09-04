@@ -32,7 +32,7 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
           description={t("featured.lede")}
         />
         <ul className="mt-10 flex list-none flex-col gap-16 p-0 md:mt-16 md:gap-20">
-          {featuredProjects.map((project) => {
+          {featuredProjects.map((project, i) => {
             const detail = href(lang, `projects/${project.slug}`);
             const external = primaryLink(project);
 
@@ -51,7 +51,9 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                 {project.cover && (
                   <Link
                     href={external ?? detail}
-                    className="block overflow-hidden rounded-lg border border-white/10"
+                    className={`block overflow-hidden rounded-lg border border-white/10 ${
+                      i % 2 ? "md:order-2" : ""
+                    }`}
                     target={external ? "_blank" : undefined}
                     rel={external ? "noopener noreferrer" : undefined}
                     aria-label={project.title[lang]}
@@ -67,7 +69,7 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                 )}
 
                 <div>
-                  <p className="mb-2 font-mono text-xs text-secondary">
+                  <p className="mb-2 font-mono text-xs text-primary">
                     {t("featured.label")}
                     <span className="ltr ms-2 inline-block text-muted">
                       {project.year}
@@ -79,7 +81,7 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                     default="none"
                   >
                     <h3 className="mb-3 font-acorn text-2xl font-bold">
-                      <Link href={detail} className="hover:text-secondary">
+                      <Link href={detail} className="hover:text-primary">
                         {project.title[lang]}
                       </Link>
                     </h3>
@@ -102,7 +104,7 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                   <div className="flex items-center gap-4">
                     <Link
                       href={detail}
-                      className="font-mono text-sm text-secondary hover:underline"
+                      className="font-mono text-sm text-primary hover:underline"
                     >
                       {t("work.read")}
                       <span
@@ -115,7 +117,7 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                     {project.links.github && (
                       <Link
                         href={project.links.github}
-                        className="size-5 text-white/70 hover:text-secondary"
+                        className="size-5 text-white/70 hover:text-primary"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={t("project.github")}
@@ -126,7 +128,7 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                     {project.links.playGoogle && (
                       <Link
                         href={project.links.playGoogle}
-                        className="size-5 text-white/70 hover:text-secondary"
+                        className="size-5 text-white/70 hover:text-primary"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={t("project.play")}
@@ -137,7 +139,7 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                     {project.links.live && (
                       <Link
                         href={project.links.live}
-                        className="size-5 text-white/70 hover:text-secondary"
+                        className="size-5 text-white/70 hover:text-primary"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={t("project.live")}

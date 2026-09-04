@@ -61,7 +61,7 @@ const Heading = ({ children }: { children: ReactNode }) => (
   <h2 className="flex items-center gap-3 font-acorn text-2xl font-bold text-gray-100 md:text-3xl">
     <span
       aria-hidden
-      className="h-5 w-1 flex-none rounded-full bg-secondary"
+      className="h-5 w-1 flex-none rounded-full bg-primary"
     />
     {children}
   </h2>
@@ -118,7 +118,7 @@ export default async function ProjectPage({
     >
       <Link
         href={href(locale, "projects")}
-        className="inline-flex items-center gap-2 font-mono text-xs text-muted transition-colors duration-300 hover:text-secondary"
+        className="inline-flex items-center gap-2 font-mono text-xs text-muted transition-colors duration-300 hover:text-primary"
       >
         <span
           aria-hidden
@@ -165,7 +165,7 @@ export default async function ProjectPage({
             <span className="inline-flex items-center gap-2">
               <span
                 aria-hidden
-                className="size-1.5 rounded-full bg-secondary"
+                className="size-1.5 rounded-full bg-primary"
               />
               {t(`status.${project.status}` as UIKey)}
             </span>
@@ -223,7 +223,7 @@ export default async function ProjectPage({
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2.5 rounded-md border border-white/15 px-4 py-2.5 text-sm text-white/85 transition-colors duration-300 hover:border-secondary hover:text-secondary"
+                    className="inline-flex items-center gap-2.5 rounded-md border border-white/15 px-4 py-2.5 text-sm text-white/85 transition-colors duration-300 hover:border-primary hover:text-primary"
                   >
                     <span className="size-4 flex-none">
                       <Icon />
@@ -258,8 +258,8 @@ export default async function ProjectPage({
                       {c.problem[locale]}
                     </p>
                   </div>
-                  <div className="border-s-2 border-secondary ps-4">
-                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-secondary">
+                  <div className="border-s-2 border-primary ps-4">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-primary">
                       {L.solution}
                     </p>
                     <p className="mt-2 leading-relaxed text-white/90">
@@ -281,7 +281,7 @@ export default async function ProjectPage({
               <li key={i} className="flex gap-3 leading-relaxed text-muted">
                 <span
                   aria-hidden
-                  className="mt-2.5 size-1.5 flex-none rounded-full bg-secondary"
+                  className="mt-2.5 size-1.5 flex-none rounded-full bg-primary"
                 />
                 {o}
               </li>
@@ -298,7 +298,7 @@ export default async function ProjectPage({
           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
             {t("project.next")}
           </span>
-          <span className="inline-flex items-center gap-3 font-acorn text-2xl font-bold text-gray-100 transition-colors duration-300 group-hover:text-secondary md:text-3xl">
+          <span className="inline-flex items-center gap-3 font-acorn text-2xl font-bold text-gray-100 transition-colors duration-300 group-hover:text-primary md:text-3xl">
             {next.title[locale]}
             <span
               aria-hidden

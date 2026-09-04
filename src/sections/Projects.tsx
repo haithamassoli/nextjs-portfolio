@@ -69,7 +69,7 @@ const Projects = ({ lang }: { lang: Locale }) => {
 
       {extra.length > 0 && (
         <details className="group mt-12">
-          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-secondary bg-transparent px-4 py-2 text-center font-mono text-sm text-secondary transition-colors duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-secondary/10">
+          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-primary bg-transparent px-4 py-2 text-center font-mono text-sm text-primary transition-colors duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-primary/10">
             <span className="group-open:hidden">{t("work.more")}</span>
             <span className="hidden group-open:inline">{t("work.less")}</span>
           </summary>

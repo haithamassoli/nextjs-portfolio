@@ -23,7 +23,7 @@ const ProjectFrame = ({
   <ViewTransition name={`project-${p.slug}`} share="morph" default="none">
     <div
       className={twMerge(
-        "overflow-hidden rounded-xl border border-white/10 bg-gray-800 transition-[border-color,transform] duration-500 ease-out group-hover:-translate-y-1 group-hover:border-secondary group-focus-visible:-translate-y-1 group-focus-visible:border-secondary",
+        "overflow-hidden rounded-xl border border-white/10 bg-gray-800 transition-[border-color,transform] duration-500 ease-out group-hover:-translate-y-1 group-hover:border-primary group-focus-visible:-translate-y-1 group-focus-visible:border-primary",
         className,
       )}
     >
@@ -45,7 +45,7 @@ const ProjectFrame = ({
          */
         <div
           aria-hidden
-          className="aspect-video w-full bg-gradient-to-br from-secondary/15 to-transparent"
+          className="aspect-video w-full bg-gradient-to-br from-primary/15 to-transparent"
         />
       )}
     </div>
