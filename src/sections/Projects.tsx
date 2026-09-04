@@ -78,14 +78,14 @@ const Projects = ({ lang }: { lang: Locale }) => {
       )}
 
       <motion.div
-        className="mt-16 flex w-full flex-col items-center gap-4"
+        className="mt-16 flex w-full flex-col items-center gap-3"
         initial={{ opacity: 0, y: 120 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
         viewport={{ once: true }}
       >
         <Link
           href={href(lang, "projects")}
-          className="group/cta inline-flex items-center gap-3 rounded-xl border border-white bg-white px-8 py-4 text-base font-bold text-gray-900 transition-colors duration-300 hover:bg-transparent hover:text-white"
+          className="group/cta inline-flex items-center gap-2 font-mono text-sm text-primary transition-colors duration-300 hover:text-primary/80"
         >
           <span>{t("work.all")}</span>
           <span
