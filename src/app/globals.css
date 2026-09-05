@@ -57,10 +57,77 @@
   }
 }
 
+/* Each letter tips up out of the baseline like a flip-board tile, blurred
+   until it lands. The h1/h2 carry `perspective` so the rotateX reads as 3D. */
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0.5em) rotateX(-80deg) scale(0.85);
+    filter: blur(10px);
+  }
+  55% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
 .letter-animation {
-  display: inline;
+  display: inline-block;
   opacity: 0;
-  animation: slideUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  transform-origin: 50% 100%;
+  animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Each letter of the name carries the same gradient and the same stagger as
+   its rise, so a light band rolls through the name every few seconds. The
+   gradient sits on the letter, not a wrapper: background-clip: text does not
+   paint through transformed children. */
+.letter-animation.hero-name {
+  background: linear-gradient(
+    110deg,
+    #8fdcc2 0%,
+    #8fdcc2 40%,
+    #ffffff 50%,
+    #64ffda 60%,
+    #8fdcc2 70%,
+    #8fdcc2 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+    shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  40% {
+    background-position: 100% 0;
+  }
+  70%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-animation,
+  .paragraph-animation,
+  .buttons-animation {
+    animation-duration: 0.01ms;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+  }
+  .animate-blob,
+  .hero .animate-spin {
+    animation: none;
+  }
 }
 
 .paragraph-animation {

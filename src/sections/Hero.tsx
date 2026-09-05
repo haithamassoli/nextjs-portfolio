@@ -4,6 +4,7 @@ import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import HeroOrbit from "@/components/HeroOrbit";
+import HeroParallax from "@/components/HeroParallax";
 import { href, type Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
 
@@ -49,16 +50,16 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
     <div className="hero relative z-0 overflow-x-clip py-32 md:py-48 lg:py-60">
       <section>
         <div className="mx-auto px-4">
-          <h1 className="mt-8 text-center font-acorn text-3xl font-bold tracking-wide sm:text-5xl md:text-7xl">
+          <h1 className="mt-8 text-center font-acorn text-3xl font-bold tracking-wide [perspective:600px] sm:text-5xl md:text-7xl">
             <AnimatedLine text={`${greeting} `} lang={lang} />
             <AnimatedLine
               text={name}
               lang={lang}
               offset={units(greeting, lang).length}
-              className="text-[#8fdcc2]"
+              className="hero-name"
             />
           </h1>
-          <h2 className="mb-6 mt-8 text-center font-acorn text-3xl font-bold tracking-wide sm:text-5xl md:text-7xl">
+          <h2 className="mb-6 mt-8 text-center font-acorn text-3xl font-bold tracking-wide [perspective:600px] sm:text-5xl md:text-7xl">
             <AnimatedLine text={t("hero.line2")} lang={lang} />
           </h2>
           <p className="paragraph-animation paragraph-delay mx-auto text-center text-[0.65rem] uppercase tracking-[0.15em] text-white/50 sm:text-xs sm:tracking-[0.2em] md:text-sm">
@@ -70,21 +71,21 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
         </div>
         <div className="buttons-animation mt-8 flex flex-col-reverse items-center justify-center gap-4 px-4 font-bold md:flex-row">
           <Link href={href(lang, "hire-me")}>
-            <button className="h-12 rounded-xl border border-white/15 px-6">
+            <button className="h-12 rounded-xl border border-white/15 px-6 transition duration-300 hover:-translate-y-0.5 hover:border-white/40 hover:bg-white/5">
               {t("hero.cta2")}
             </button>
           </Link>
           <Link href={href(lang, "projects")}>
-            <button className="inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900">
+            <button className="group inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-10px_#64ffda]">
               <span>{t("hero.cta")}</span>
-              <span aria-hidden className="rtl:-scale-x-100">
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1">
                 →
               </span>
             </button>
           </Link>
         </div>
       </section>
-      <div className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
+      <HeroParallax className="absolute inset-0 -z-50 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5"
           style={{
@@ -178,7 +179,7 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
         <div className="animation-delay-4000 animate-blob absolute end-64 top-64 -z-10 h-72 w-72 rounded-full bg-yellow-300/40 opacity-40 blur-xl filter lg:bottom-1/2 lg:start-1/2" />
         <div className="animation-delay-2000 animate-blob absolute end-80 top-28 -z-10 h-72 w-72 rounded-full bg-[#cf94e56c] opacity-40 blur-xl filter lg:bottom-1/2 lg:start-1/3" />
         <div className="animation-delay-4000 animate-blob absolute end-36 top-40 -z-10 h-72 w-72 rounded-full bg-[#bddff973] opacity-40 blur-xl filter lg:bottom-1/2 lg:start-1/3" />
-      </div>
+      </HeroParallax>
     </div>
   );
 };

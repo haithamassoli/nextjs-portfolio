@@ -8,6 +8,7 @@ import { profile } from "@/content/profile";
 import { KEY_CODES } from "@/libs/key-codes";
 import type { Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
+import { reveal } from "@/libs/motion";
 
 const mobileTabVariants = {
   inactive: { opacity: 0.6 },
@@ -69,11 +70,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
 
       <motion.div
         className="mt-10 flex flex-col md:ms-20 md:mt-20 md:flex-row"
-        initial={{ opacity: 0, y: 120 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
-        viewport={{
-          once: true,
-        }}
+        {...reveal()}
       >
         <div
           className="no-scrollbar relative z-10 mb-8 flex overflow-x-auto md:mb-0 md:w-max md:flex-col md:overflow-x-visible"
@@ -160,9 +157,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
 
       <div className="mt-20 grid grid-cols-1 gap-10 lg:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
-          viewport={{ once: true }}
+          {...reveal()}
           className="text-start"
         >
           <h3 className="font-acorn text-2xl text-primary">{t("edu.title")}</h3>
@@ -185,13 +180,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, delay: 0.15 },
-          }}
-          viewport={{ once: true }}
+          {...reveal(0.15)}
           className="text-start"
         >
           <h3 className="font-acorn text-2xl text-primary">

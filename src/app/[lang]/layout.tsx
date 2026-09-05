@@ -3,9 +3,11 @@ import { notFound } from "next/navigation";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
+import { MotionConfig } from "motion/react";
 import { twMerge } from "tailwind-merge";
 import "../globals.css";
 import { Header } from "@/sections/Header";
+import ScrollProgress from "@/components/ScrollProgress";
 import { SITE, dirOf, isLocale, locales, type Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
 
@@ -103,10 +105,13 @@ export default async function RootLayout({
           "bg-gray-900 font-sans text-white antialiased",
         )}
       >
-        <Header lang={locale} />
-        <div id="content" className="duration-1000">
-          {children}
-        </div>
+        <MotionConfig reducedMotion="user">
+          <ScrollProgress />
+          <Header lang={locale} />
+          <div id="content" className="duration-1000">
+            {children}
+          </div>
+        </MotionConfig>
         <Analytics />
       </body>
     </html>

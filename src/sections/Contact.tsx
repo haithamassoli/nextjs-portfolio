@@ -1,4 +1,5 @@
 import * as motion from "motion/react-client";
+import { reveal } from "@/libs/motion";
 import Link from "next/link";
 
 import ArrowRightIcon from "@/assets/icons/arrow-up-right.svg";
@@ -14,11 +15,7 @@ export const ContactSection = ({ lang }: { lang: Locale }) => {
     <section className="py-16 lg:py-24" id="contact">
       <div className="mx-8 md:container">
         <motion.div
-          initial={{ opacity: 0, y: 120 }}
-          whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
-          viewport={{
-            once: true,
-          }}
+          {...reveal()}
           className="relative z-30 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-200 to-sky-300 px-10 py-8 text-center text-gray-900 md:text-start"
         >
           <div
