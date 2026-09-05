@@ -1,9 +1,13 @@
+import * as motion from "motion/react-client";
+
 import ContributionCalendar from "@/components/charts/ContributionCalendar";
+import CountUp from "@/components/CountUp";
 import CumulativeChart from "@/components/charts/CumulativeChart";
 import LanguageTreemap from "@/components/charts/LanguageTreemap";
 import { getDevStats } from "@/data/dev-stats";
 import type { Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
+import { reveal } from "@/libs/motion";
 
 const SOURCES = [
   { name: "GitHub", href: "https://github.com/haithamassoli" },
@@ -20,21 +24,26 @@ function Panel({
   title,
   description,
   descriptionId,
+  delay,
   children,
 }: {
   title: string;
   description: string;
   descriptionId: string;
+  delay?: number;
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-xl border border-white/10 bg-gray-800/60 p-5 md:p-6">
+    <motion.section
+      {...reveal(delay)}
+      className="rounded-xl border border-white/10 bg-gray-800/60 p-5 md:p-6"
+    >
       <h3 className="font-acorn text-lg font-bold text-primary">{title}</h3>
       <p id={descriptionId} className="mt-1 max-w-prose text-sm text-muted">
         {description}
       </p>
       <div className="mt-5">{children}</div>
-    </section>
+    </motion.section>
   );
 }
 
@@ -52,30 +61,38 @@ export default async function DevStats({ lang }: { lang: Locale }) {
 
   return (
     <section id="stats" className="container py-20 lg:py-28">
-      <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-        <span aria-hidden className="h-px w-10 bg-secondary/60" />
-        {t("stats.eyebrow")}
-      </p>
-      <h2 className="mt-5 font-acorn text-4xl font-bold text-white md:text-5xl">
-        {t("stats.title")}
-      </h2>
-      <p className="mt-4 max-w-2xl text-base text-white/80 md:text-lg">
-        {t("stats.lede")}
-      </p>
+      <motion.div {...reveal()}>
+        <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
+          <span aria-hidden className="h-px w-10 bg-secondary/60" />
+          {t("stats.eyebrow")}
+        </p>
+        <h2 className="mt-5 font-acorn text-4xl font-bold text-white md:text-5xl">
+          {t("stats.title")}
+        </h2>
+        <p className="mt-4 max-w-2xl text-base text-white/80 md:text-lg">
+          {t("stats.lede")}
+        </p>
+      </motion.div>
 
       <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
-        {tiles.map((tile) => (
-          <div key={tile.label} className="border-s-2 border-secondary/50 ps-4">
+        {tiles.map((tile, i) => (
+          <motion.div
+            key={tile.label}
+            {...reveal(0.1 * i)}
+            className="border-s-2 border-secondary/50 ps-4"
+          >
             <dt className="sr-only">{tile.label}</dt>
             <dd>
-              <span className="block font-acorn text-3xl font-bold text-primary md:text-4xl">
-                {num.format(tile.value)}
-              </span>
+              <CountUp
+                value={tile.value}
+                locale={tag(lang)}
+                className="block font-acorn text-3xl font-bold text-primary md:text-4xl"
+              />
               <span className="mt-1 block text-sm text-muted">
                 {tile.label}
               </span>
             </dd>
-          </div>
+          </motion.div>
         ))}
       </dl>
 
@@ -120,6 +137,7 @@ export default async function DevStats({ lang }: { lang: Locale }) {
           title={t("stats.languages")}
           description={t("stats.languagesDesc")}
           descriptionId="stats-languages-desc"
+          delay={0.15}
         >
           <LanguageTreemap
             languages={stats.languages}

@@ -1,3 +1,4 @@
+import Reveal from "@/components/Reveal";
 import type { Day } from "@/data/dev-stats";
 import type { Locale } from "@/libs/i18n";
 
@@ -118,7 +119,7 @@ export default function ContributionCalendar({
               ))}
             </div>
 
-            <div
+            <Reveal
               className="grid grid-flow-col grid-rows-7"
               style={{ gap: GAP }}
             >
@@ -131,12 +132,13 @@ export default function ContributionCalendar({
                 ) : (
                   <div
                     key={cell.date}
-                    className="rounded-[2px] ring-white/70 transition-shadow hover:ring-1"
+                    className="cal-cell rounded-[2px] ring-white/70 transition-shadow hover:ring-1"
                     style={{
                       width: CELL,
                       height: CELL,
                       backgroundColor: LEVELS[cell.level] ?? LEVELS[0],
-                    }}
+                      "--i": Math.floor(index / 7),
+                    } as React.CSSProperties}
                     title={
                       cell.count === null
                         ? full.format(utc(cell.date))
@@ -145,7 +147,7 @@ export default function ContributionCalendar({
                   />
                 ),
               )}
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>

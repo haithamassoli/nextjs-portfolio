@@ -116,14 +116,79 @@
   }
 }
 
+/* Dev stats. `Reveal` flips `.in-view` on once the block is on screen; each
+   child staggers itself from its `--i` (calendar: week column, treemap: rank). */
+.cal-cell,
+.tm-block {
+  opacity: 0;
+}
+
+.in-view .cal-cell {
+  animation: cell-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: calc(var(--i) * 18ms);
+}
+
+@keyframes cell-in {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.tm-block {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.in-view .tm-block {
+  animation: block-in 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: calc(var(--i) * 90ms);
+}
+
+@keyframes block-in {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The cumulative chart's end point breathes a ring outward. */
+.chart-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: chart-pulse 2.4s ease-out 2s infinite;
+}
+
+@keyframes chart-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .letter-animation,
   .paragraph-animation,
-  .buttons-animation {
+  .buttons-animation,
+  .in-view .cal-cell,
+  .in-view .tm-block {
     animation-duration: 0.01ms;
     animation-delay: 0s;
     animation-iteration-count: 1;
   }
+  .chart-pulse,
   .animate-blob,
   .hero .animate-spin {
     animation: none;

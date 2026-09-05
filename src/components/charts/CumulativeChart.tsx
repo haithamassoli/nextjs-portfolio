@@ -1,3 +1,5 @@
+import * as motion from "motion/react-client";
+
 import type { Day } from "@/data/dev-stats";
 import type { Locale } from "@/libs/i18n";
 
@@ -103,25 +105,51 @@ export default function CumulativeChart({
         ))}
       </g>
 
-      <path d={area} fill="url(#cumulative-fill)" />
-      <path
+      <motion.path
+        d={area}
+        fill="url(#cumulative-fill)"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        viewport={{ once: true }}
+      />
+      <motion.path
         d={line}
         fill="none"
         stroke="#64ffda"
         strokeWidth="2"
         strokeLinejoin="round"
         strokeLinecap="round"
+        initial={{ pathLength: 0 }}
+        whileInView={{ pathLength: 1 }}
+        transition={{ duration: 1.8, ease: "easeInOut" }}
+        viewport={{ once: true }}
       />
-      <circle cx={x(days.length - 1)} cy={y(max)} r="3.5" fill="#64ffda" />
-      <text
-        x={x(days.length - 1)}
-        y={y(max) - 10}
-        textAnchor="end"
-        fontSize="11"
-        fill="#e2e8f0"
+      <motion.g
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 1.7 }}
+        viewport={{ once: true }}
       >
-        {plain.format(max)}
-      </text>
+        <circle cx={x(days.length - 1)} cy={y(max)} r="3.5" fill="#64ffda" />
+        <circle
+          cx={x(days.length - 1)}
+          cy={y(max)}
+          r="3.5"
+          fill="none"
+          stroke="#64ffda"
+          className="chart-pulse"
+        />
+        <text
+          x={x(days.length - 1)}
+          y={y(max) - 10}
+          textAnchor="end"
+          fontSize="11"
+          fill="#e2e8f0"
+        >
+          {plain.format(max)}
+        </text>
+      </motion.g>
     </svg>
   );
 }
