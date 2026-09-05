@@ -1,4 +1,5 @@
 import * as motion from "motion/react-client";
+import { reveal } from "@/libs/motion";
 import Link from "next/link";
 
 import ProjectCard from "@/components/ProjectCard";
@@ -31,13 +32,7 @@ const Grid = ({
     {items.map((project, i) => (
       <motion.div
         key={project.slug}
-        initial={{ opacity: 0, y: 120 }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, delay: offset ? 0 : 0.1 * i },
-        }}
-        viewport={{ once: true }}
+        {...reveal(offset ? 0 : 0.08 * i)}
       >
         <ProjectCard project={project} locale={lang} sizes={CARD_SIZES} />
       </motion.div>
@@ -79,9 +74,7 @@ const Projects = ({ lang }: { lang: Locale }) => {
 
       <motion.div
         className="mt-16 flex w-full flex-col items-center gap-3"
-        initial={{ opacity: 0, y: 120 }}
-        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
-        viewport={{ once: true }}
+        {...reveal()}
       >
         <Link
           href={href(lang, "projects")}

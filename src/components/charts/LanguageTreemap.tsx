@@ -1,3 +1,4 @@
+import Reveal from "@/components/Reveal";
 import type { Slice } from "@/data/dev-stats";
 import type { Locale } from "@/libs/i18n";
 
@@ -119,7 +120,7 @@ export default function LanguageTreemap({
     .map((block) => ({ ...block, ink: INK[block.color] ?? "#e2e8f0" }));
 
   return (
-    <figure className="m-0">
+    <Reveal className="m-0">
       <svg
         viewBox={`0 0 ${W} ${H}`}
         className="ltr h-auto w-full"
@@ -127,8 +128,12 @@ export default function LanguageTreemap({
         aria-label={labels.title}
         aria-describedby={describedBy}
       >
-        {blocks.map(({ name, hours, share, color, ink, box }) => (
-          <g key={name} className="transition-opacity hover:opacity-80">
+        {blocks.map(({ name, hours, share, color, ink, box }, i) => (
+          <g
+            key={name}
+            className="tm-block"
+            style={{ "--i": i } as React.CSSProperties}
+          >
             <title>{`${name} · ${num.format(hours)} ${labels.hours} · ${pct.format(share)}`}</title>
             <rect
               x={box.x + GUTTER / 2}
@@ -137,9 +142,16 @@ export default function LanguageTreemap({
               height={Math.max(0, box.h - GUTTER)}
               rx="4"
               fill={color}
+              className="transition-opacity hover:opacity-80"
             />
             {box.w > 88 && box.h > 56 && (
-              <text x={box.x + 12} y={box.y + 26} fill={ink} fontSize="13">
+              <text
+                x={box.x + 12}
+                y={box.y + 26}
+                fill={ink}
+                fontSize="13"
+                className="pointer-events-none"
+              >
                 <tspan fontWeight="700">{name}</tspan>
                 <tspan x={box.x + 12} dy="16" fontSize="11" opacity="0.75">
                   {`${num.format(hours)} ${labels.hours} · ${pct.format(share)}`}
@@ -165,6 +177,6 @@ export default function LanguageTreemap({
           </span>
         ))}
       </figcaption>
-    </figure>
+    </Reveal>
   );
 }

@@ -1,6 +1,7 @@
 import { ViewTransition } from "react";
 
 import * as motion from "motion/react-client";
+import { reveal } from "@/libs/motion";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -40,13 +41,7 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
               <motion.li
                 key={project.slug}
                 className="grid items-center gap-6 md:grid-cols-2 md:gap-10"
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.6 },
-                }}
-                viewport={{ once: true }}
+                {...reveal()}
               >
                 {project.cover && (
                   <Link
