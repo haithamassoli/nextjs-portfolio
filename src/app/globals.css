@@ -2,6 +2,276 @@
 @tailwind components;
 @tailwind utilities;
 
+/* A short orbit → light-speed → signature entrance. Only transforms and
+   opacity animate; the page stays interactive underneath. */
+.site-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  pointer-events: none;
+  background: #080f13;
+  color: #e5fff7;
+  animation: intro-exit 0.8s cubic-bezier(0.4, 0, 0.2, 1) 2.4s both;
+}
+
+.intro-halo {
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(
+    ellipse,
+    #64ffda18,
+    #64ffda05 30%,
+    transparent 60%
+  );
+  animation: intro-halo 2.8s ease-out both;
+}
+
+.intro-rays,
+.intro-core,
+.intro-signature {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.intro-rays {
+  direction: ltr;
+  animation: intro-field 2.4s ease-in-out both;
+}
+
+.intro-ray-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--angle));
+}
+
+.intro-ray {
+  position: absolute;
+  width: var(--length);
+  height: 2px;
+  transform-origin: left;
+  background: linear-gradient(90deg, transparent, var(--ray-color) 80%, #fff);
+  box-shadow: 0 0 6px var(--ray-color);
+  animation: intro-ray 1.15s cubic-bezier(0.45, 0, 0.85, 0.5) var(--delay) both;
+}
+
+.intro-ray-track:nth-child(3n) .intro-ray {
+  height: 3px;
+}
+
+.intro-core {
+  animation: intro-core 1.9s ease-in-out both;
+}
+
+.intro-orbit,
+.intro-star {
+  grid-area: 1 / 1;
+}
+
+.intro-orbit {
+  width: clamp(64px, 12vmin, 110px);
+  aspect-ratio: 1;
+  border: 1px solid #8fdcce80;
+  border-radius: 50%;
+  box-shadow:
+    0 0 18px #64ffda12,
+    inset 0 0 18px #64ffda12;
+  animation: intro-orbit 1.9s ease-in-out both;
+}
+
+.intro-orbit-tilted {
+  animation-name: intro-orbit-tilted;
+}
+
+.intro-star {
+  width: clamp(64px, 14vmin, 120px);
+  height: auto;
+  filter: drop-shadow(0 0 12px #8fdcce90);
+  animation: intro-star 1.9s ease-in-out both;
+}
+
+.intro-star-secondary {
+  rotate: 45deg;
+  scale: 0.65;
+}
+
+.intro-signature {
+  align-content: center;
+  gap: 16px;
+  animation: intro-signature 1s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
+}
+
+.intro-monogram {
+  font-family: var(--font-acorn), serif;
+  font-size: clamp(80px, 16vmin, 136px);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  padding-inline-end: 0.08em;
+  text-shadow: 0 0 60px #64ffda25;
+}
+
+.intro-monogram span {
+  color: #64ffda;
+}
+
+.intro-name {
+  font-size: clamp(16px, 3vmin, 22px);
+  color: #8fdcce;
+}
+
+.intro-rule {
+  width: 40px;
+  height: 1px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, transparent, #64ffda, transparent);
+}
+
+@keyframes intro-ray {
+  0% {
+    opacity: 0;
+    transform: translateX(4vmin) scaleX(0.02);
+  }
+  15% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(80vmax) scaleX(2);
+  }
+}
+
+@keyframes intro-field {
+  from {
+    transform: rotate(-12deg) scale(0.8);
+  }
+  to {
+    transform: rotate(8deg) scale(1.1);
+  }
+}
+
+@keyframes intro-halo {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes intro-core {
+  0% {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+  20%,
+  65% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.15);
+  }
+}
+
+@keyframes intro-orbit {
+  from {
+    transform: rotate(-35deg) rotateX(55deg);
+  }
+  to {
+    transform: rotate(150deg) rotateX(70deg);
+  }
+}
+
+@keyframes intro-orbit-tilted {
+  from {
+    transform: rotate(55deg) rotateX(65deg);
+  }
+  to {
+    transform: rotate(-130deg) rotateX(45deg);
+  }
+}
+
+@keyframes intro-star {
+  0% {
+    transform: rotate(-90deg) scale(0.2);
+  }
+  65% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(45deg) scale(1.5);
+  }
+}
+
+@keyframes intro-signature {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes intro-exit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body:has(.site-intro[data-phase="playing"])
+    :is(
+      .hero .letter-animation,
+      .paragraph-animation,
+      .buttons-animation,
+      .animate-fade-in
+    ) {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-intro {
+    display: none;
+  }
+
+  .hero :is(.letter-animation, .paragraph-animation, .buttons-animation) {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .animate-fade-in {
+    animation: none;
+    opacity: 1;
+    transform: translateY(6rem);
+  }
+}
+
 @layer base {
   .nav-item {
     @apply rounded-full px-4 py-1.5 text-sm font-semibold text-white/70 transition duration-300 hover:bg-white/10 hover:text-white;

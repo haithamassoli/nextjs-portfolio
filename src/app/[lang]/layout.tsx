@@ -8,6 +8,7 @@ import { twMerge } from "tailwind-merge";
 import "../globals.css";
 import { Header } from "@/sections/Header";
 import ScrollProgress from "@/components/ScrollProgress";
+import SiteIntro from "@/components/SiteIntro";
 import { SITE, dirOf, isLocale, locales, type Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
 
@@ -106,6 +107,7 @@ export default async function RootLayout({
         )}
       >
         <MotionConfig reducedMotion="user">
+          <SiteIntro lang={locale} />
           <ScrollProgress />
           <Header lang={locale} />
           <div id="content" className="duration-1000">
