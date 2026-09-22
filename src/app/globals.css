@@ -106,17 +106,10 @@
   animation: intro-signature 1s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
 }
 
-.intro-monogram {
-  font-family: var(--font-acorn), serif;
-  font-size: clamp(80px, 16vmin, 136px);
-  line-height: 1;
-  letter-spacing: -0.08em;
-  padding-inline-end: 0.08em;
-  text-shadow: 0 0 60px #64ffda25;
-}
-
-.intro-monogram span {
-  color: #64ffda;
+.intro-logo {
+  width: clamp(240px, 46vmin, 400px);
+  height: auto;
+  filter: drop-shadow(0 0 30px #64ffda25);
 }
 
 .intro-name {

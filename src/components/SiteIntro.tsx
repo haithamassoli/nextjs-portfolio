@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import LogoIcon from "@/assets/icons/logo.svg";
 import StarIcon from "@/assets/icons/star.svg";
 import type { Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
@@ -85,9 +86,7 @@ export default function SiteIntro({ lang }: { lang: Locale }) {
           <StarIcon className="intro-star intro-star-secondary" />
         </div>
         <div className="intro-signature">
-          <div className="intro-monogram" dir="ltr">
-            ha<span>.</span>
-          </div>
+          <LogoIcon className="intro-logo" />
           <div className="intro-name font-acorn">
             {t(lang === "ar" ? "name.arabic" : "name.latin")}
           </div>
