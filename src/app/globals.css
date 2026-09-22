@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  background: #64ffda40;
+  color: #e5fff7;
+}
+
 /* A short orbit → light-speed → signature entrance. Only transforms and
    opacity animate; the page stays interactive underneath. */
 .site-intro {
