@@ -31,6 +31,15 @@ const config: Config = {
         primary: "#8fdcce",
         secondary: "#64ffda",
         muted: "#94a3b8",
+        // The hero's ground (#080f13) as gray-900, with its teal-tinted
+        // neighbours, so every section sits on the hero's colour.
+        gray: {
+          600: "#2a4650",
+          700: "#1c323a",
+          800: "#122229",
+          900: "#080f13",
+          950: "#04090c",
+        },
       },
       rotate: {
         "225": "225deg",

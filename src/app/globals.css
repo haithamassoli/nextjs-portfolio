@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  background: #64ffda40;
+  color: #e5fff7;
+}
+
 /* A short orbit → light-speed → signature entrance. Only transforms and
    opacity animate; the page stays interactive underneath. */
 .site-intro {
@@ -490,7 +495,7 @@ html {
 /* The hero is the intro's stage left running: the same ground, halo, a slow
    light-speed field and tilted orbits, so the intro dissolves into it. */
 .hero {
-  background: linear-gradient(to bottom, #080f13 75%, theme("colors.gray.900"));
+  background: theme("colors.gray.900");
 }
 
 .hero-stage {

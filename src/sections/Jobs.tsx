@@ -83,7 +83,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
               key={job.company.en}
               className={`whitespace-nowrap border-b-2 px-6 py-4 text-start text-sm ${
                 activeTabId === i
-                  ? "border-green-500 bg-gray-800 text-green-500"
+                  ? "border-secondary bg-gray-800 text-secondary"
                   : "border-gray-600 text-muted hover:bg-gray-800 focus:bg-gray-800"
               }`}
               onClick={() => setActiveTabId(i)}
@@ -141,7 +141,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: index * 0.15 }}
                         >
-                          <span aria-hidden className="text-lg text-green-500">
+                          <span aria-hidden className="text-lg text-secondary">
                             {rtl ? "◃" : "▹"}
                           </span>
                           <span>{point}</span>
