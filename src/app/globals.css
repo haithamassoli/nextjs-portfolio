@@ -277,10 +277,6 @@
     @apply rounded-full px-4 py-1.5 text-sm font-semibold text-white/70 transition duration-300 hover:bg-white/10 hover:text-white;
   }
 
-  .hero-ring {
-    @apply absolute inset-0 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5;
-  }
-
   @layer utilities {
     .container {
       @apply lg:max-w-5xl;
@@ -459,9 +455,13 @@
     animation-iteration-count: 1;
   }
   .chart-pulse,
-  .animate-blob,
-  .hero .animate-spin {
+  .hero .animate-spin,
+  .hero-halo,
+  .hero-orbit {
     animation: none;
+  }
+  .hero-rays {
+    display: none;
   }
 }
 
@@ -494,16 +494,124 @@ html {
   scrollbar-color: #64ffda transparent;
 }
 
+/* The hero is the intro's stage left running: the same ground, halo, a slow
+   light-speed field and tilted orbits, so the intro dissolves into it. */
 .hero {
-  background: linear-gradient(
-    to top,
-    hsla(158, 23%, 18%, 0) 0%,
-    hsla(158, 23%, 18%, 0.013) 9.7%,
-    hsla(158, 23%, 18%, 0.104) 25.5%,
-    hsla(160, 28%, 25%, 0.55) 52.8%,
-    hsla(160, 26%, 27%, 0.896) 75%,
-    hsl(160, 26%, 41%) 100%
-  );
+  background: linear-gradient(to bottom, #080f13 75%, theme("colors.gray.900"));
+}
+
+.hero-stage {
+  mask-image: linear-gradient(to bottom, black 70%, transparent);
+}
+
+.hero-halo {
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(ellipse, #64ffda1c, #64ffda06 30%, transparent 60%);
+  animation: hero-halo 9s ease-in-out infinite alternate;
+}
+
+.hero-rays {
+  position: absolute;
+  inset: 0;
+  direction: ltr;
+  opacity: 0.45;
+  /* Rays surface from behind the headline instead of crossing it. */
+  mask-image: radial-gradient(circle, transparent 14vmin, black 42vmin);
+  animation: hero-field 90s linear infinite;
+}
+
+.hero-ray {
+  animation: intro-ray 6s cubic-bezier(0.45, 0, 0.85, 0.5) var(--delay) infinite;
+}
+
+.hero-orbit {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: clamp(520px, 72vw, 1040px);
+  height: clamp(520px, 72vw, 1040px);
+  border: 1px solid #8fdcce38;
+  border-radius: 50%;
+  box-shadow:
+    0 0 24px #64ffda10,
+    inset 0 0 24px #64ffda10;
+  animation: hero-orbit 48s linear infinite;
+}
+
+.hero-orbit-tilted {
+  --tilt: 62deg;
+  animation-duration: 64s;
+  animation-direction: reverse;
+}
+
+.hero-rule {
+  width: 56px;
+  height: 1px;
+  margin: 28px auto 0;
+  background: linear-gradient(90deg, transparent, #64ffda, transparent);
+}
+
+.hero h1,
+.hero h2 {
+  text-shadow: 0 0 60px #64ffda25;
+}
+
+/* Letters land the way the intro signature does: out of a blur, scaling up. */
+@keyframes signature-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.3em) scale(0.85);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+.hero .letter-animation {
+  animation: signature-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero .letter-animation.hero-name {
+  text-shadow: none;
+  animation:
+    signature-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    shimmer 4s ease-in-out infinite;
+}
+
+.hero :is(.paragraph-animation, .buttons-animation) {
+  animation-name: signature-in;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes hero-halo {
+  from {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes hero-field {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-orbit {
+  from {
+    transform: rotate(-35deg) rotateX(var(--tilt, 72deg));
+  }
+  to {
+    transform: rotate(325deg) rotateX(var(--tilt, 72deg));
+  }
 }
 
 .btn {
