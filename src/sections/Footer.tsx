@@ -17,7 +17,7 @@ export const Footer = ({ lang }: { lang: Locale }) => {
 
   return (
     <footer className="relative z-10 overflow-x-clip">
-      <div className="absolute bottom-0 left-1/2 -z-10 h-[432px] w-[1600px] -translate-x-1/2 bg-emerald-300/40 [mask-image:radial-gradient(50%_50%_at_bottom_center,black,transparent)]"></div>
+      <div className="absolute bottom-0 left-1/2 -z-10 h-[432px] w-[1600px] -translate-x-1/2 bg-secondary/40 light:bg-secondary/15 [mask-image:radial-gradient(50%_50%_at_bottom_center,black,transparent)]"></div>
       <div className="container">
         <div className="flex flex-col items-center gap-6 border-t border-white/15 py-6 text-sm md:flex-row md:items-start md:justify-between">
           <div className="flex flex-col items-center gap-1 text-center md:items-start md:text-start">

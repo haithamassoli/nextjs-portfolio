@@ -63,25 +63,25 @@ export default function CumulativeChart({
   return (
     <svg
       viewBox={`0 0 ${W} ${H}`}
-      className="ltr h-auto w-full"
+      className="ltr h-auto w-full text-secondary"
       role="img"
       aria-label={`${labels.title}: ${plain.format(max)} ${labels.value}`}
       aria-describedby={describedBy}
     >
       <defs>
         <linearGradient id="cumulative-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#64ffda" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#64ffda" stopOpacity="0.02" />
+          <stop offset="0%" stopColor="currentColor" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0.02" />
         </linearGradient>
       </defs>
 
-      <g stroke="#94a3b8" strokeOpacity="0.18" strokeWidth="1">
+      <g className="stroke-muted" strokeOpacity="0.18" strokeWidth="1">
         {yTicks.map((v, i) => (
           <line key={i} x1={PAD.left} x2={W - PAD.right} y1={y(v)} y2={y(v)} />
         ))}
       </g>
 
-      <g fill="#94a3b8" fillOpacity="0.75" fontSize="10">
+      <g className="fill-muted" fillOpacity="0.75" fontSize="10">
         {yTicks.map((v, i) => (
           <text key={i} x={PAD.left - 8} y={y(v) + 3} textAnchor="end">
             {plain.format(v)}
@@ -116,7 +116,7 @@ export default function CumulativeChart({
       <motion.path
         d={line}
         fill="none"
-        stroke="#64ffda"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -131,13 +131,13 @@ export default function CumulativeChart({
         transition={{ duration: 0.5, delay: 1.7 }}
         viewport={{ once: true }}
       >
-        <circle cx={x(days.length - 1)} cy={y(max)} r="3.5" fill="#64ffda" />
+        <circle cx={x(days.length - 1)} cy={y(max)} r="3.5" fill="currentColor" />
         <circle
           cx={x(days.length - 1)}
           cy={y(max)}
           r="3.5"
           fill="none"
-          stroke="#64ffda"
+          stroke="currentColor"
           className="chart-pulse"
         />
         <text
@@ -145,7 +145,7 @@ export default function CumulativeChart({
           y={y(max) - 10}
           textAnchor="end"
           fontSize="11"
-          fill="#e2e8f0"
+          className="fill-white/90"
         >
           {plain.format(max)}
         </text>

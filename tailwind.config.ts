@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -27,18 +28,27 @@ const config: Config = {
         ibm: "var(--font-ibm)",
         thmanyah: "var(--font-thmanyah)",
       },
+      // Channels live in globals.css and flip under [data-theme="light"], so
+      // `white` is the ink and `gray` the ground in either theme.
       colors: {
-        primary: "#8fdcce",
-        secondary: "#64ffda",
-        muted: "#94a3b8",
+        white: "rgb(var(--c-white) / <alpha-value>)",
+        primary: "rgb(var(--c-primary) / <alpha-value>)",
+        secondary: "rgb(var(--c-secondary) / <alpha-value>)",
+        muted: "rgb(var(--c-muted) / <alpha-value>)",
+        ice: "rgb(var(--c-ice) / <alpha-value>)",
+        accent: {
+          1: "rgb(var(--c-accent-1) / <alpha-value>)",
+          2: "rgb(var(--c-accent-2) / <alpha-value>)",
+        },
+        "on-accent": "rgb(var(--c-on-accent) / <alpha-value>)",
         // The hero's ground (#080f13) as gray-900, with its teal-tinted
         // neighbours, so every section sits on the hero's colour.
         gray: {
-          600: "#2a4650",
-          700: "#1c323a",
-          800: "#122229",
-          900: "#080f13",
-          950: "#04090c",
+          600: "rgb(var(--c-gray-600) / <alpha-value>)",
+          700: "rgb(var(--c-gray-700) / <alpha-value>)",
+          800: "rgb(var(--c-gray-800) / <alpha-value>)",
+          900: "rgb(var(--c-gray-900) / <alpha-value>)",
+          950: "rgb(var(--c-gray-950) / <alpha-value>)",
         },
       },
       rotate: {
@@ -90,6 +100,10 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addVariant }) => {
+      addVariant("light", ':is([data-theme="light"] &)');
+    }),
+  ],
 };
 export default config;

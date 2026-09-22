@@ -12,7 +12,7 @@ const Checkbox = forwardRef<
   <Root
     ref={ref}
     className={cn(
-      "peer h-4 w-4 shrink-0 rounded-sm border border-neutral-50 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-emerald-300 data-[state=checked]:bg-emerald-300 data-[state=checked]:text-emerald-300",
+      "peer h-4 w-4 shrink-0 rounded-sm border border-neutral-50 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-emerald-300 data-[state=checked]:bg-emerald-300 data-[state=checked]:text-emerald-300 light:border-gray-600 light:data-[state=checked]:border-secondary light:data-[state=checked]:bg-secondary",
       className,
     )}
     {...props}

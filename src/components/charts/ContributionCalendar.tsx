@@ -4,14 +4,15 @@ import type { Locale } from "@/libs/i18n";
 
 /**
  * Five steps from the empty cell up to the site's teal. A sequential ramp:
- * one hue, monotonically lighter as the day gets busier.
+ * one hue, monotonically further from the ground as the day gets busier
+ * (lighter on dark, darker on light; see --c-cal-* in globals.css).
  */
 export const LEVELS = [
-  "#1f2937",
-  "#134e4a",
-  "#0d9488",
-  "#2dd4bf",
-  "#64ffda",
+  "rgb(var(--c-gray-700))",
+  "rgb(var(--c-cal-1))",
+  "rgb(var(--c-cal-2))",
+  "rgb(var(--c-cal-3))",
+  "rgb(var(--c-cal-4))",
 ] as const;
 
 const CELL = 11;

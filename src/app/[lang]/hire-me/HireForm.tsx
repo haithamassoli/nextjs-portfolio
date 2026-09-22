@@ -337,7 +337,7 @@ export default function HireForm({ lang }: { lang: Locale }) {
             <div key={skill.value} className="flex gap-x-7 py-7">
               <QuestionMark className="mt-1.5 h-6 w-6 flex-shrink-0" />
               <div>
-                <h3 className="text-2xl font-semibold text-gray-200">
+                <h3 className="text-2xl font-semibold text-white/90">
                   {t(skill.titleKey)}
                 </h3>
                 <p className="mt-1 max-w-[36ch] text-sm text-muted">

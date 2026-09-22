@@ -58,7 +58,7 @@ export async function generateMetadata({
 /* ---------- small local pieces, so the page body stays readable ---------- */
 
 const Heading = ({ children }: { children: ReactNode }) => (
-  <h2 className="flex items-center gap-3 font-acorn text-2xl font-bold text-gray-100 md:text-3xl">
+  <h2 className="flex items-center gap-3 font-acorn text-2xl font-bold text-white md:text-3xl">
     <span
       aria-hidden
       className="h-5 w-1 flex-none rounded-full bg-primary"
@@ -246,7 +246,7 @@ export default async function ProjectPage({
                 key={c.title[locale]}
                 className="rounded-xl bg-gray-800 p-6 shadow-lg md:p-7"
               >
-                <h3 className="font-acorn text-lg font-bold text-gray-100 md:text-xl">
+                <h3 className="font-acorn text-lg font-bold text-white md:text-xl">
                   {c.title[locale]}
                 </h3>
                 <div className="mt-5 flex flex-col gap-5">
@@ -298,7 +298,7 @@ export default async function ProjectPage({
           <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
             {t("project.next")}
           </span>
-          <span className="inline-flex items-center gap-3 font-acorn text-2xl font-bold text-gray-100 transition-colors duration-300 group-hover:text-primary md:text-3xl">
+          <span className="inline-flex items-center gap-3 font-acorn text-2xl font-bold text-white transition-colors duration-300 group-hover:text-primary md:text-3xl">
             {next.title[locale]}
             <span
               aria-hidden

@@ -74,7 +74,7 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
             <AnimatedLine text={t("hero.line2")} lang={lang} />
           </h2>
           <div className="paragraph-animation hero-rule" aria-hidden />
-          <p className="paragraph-animation paragraph-delay mx-auto mt-6 text-center text-[0.65rem] uppercase tracking-[0.15em] text-[#8fdcce]/70 sm:text-xs sm:tracking-[0.2em] md:text-sm">
+          <p className="paragraph-animation paragraph-delay mx-auto mt-6 text-center text-[0.65rem] uppercase tracking-[0.15em] text-primary/70 sm:text-xs sm:tracking-[0.2em] md:text-sm">
             {t("hero.role")}
           </p>
           <p className="paragraph-animation paragraph-delay m-auto mt-6 max-w-xl text-center text-sm text-white/80 md:text-lg">
@@ -88,7 +88,7 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
             </button>
           </Link>
           <Link href={href(lang, "projects")}>
-            <button className="group inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-10px_#64ffda]">
+            <button className="group inline-flex h-12 items-center gap-2 rounded-xl border border-white bg-white px-6 text-gray-900 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-10px_rgb(var(--c-secondary))]">
               <span>{t("hero.cta")}</span>
               <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1">
                 →
@@ -98,8 +98,9 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
         </div>
       </section>
       {/* The intro's stage, held open: the same halo, a slow light-speed
-          field and tilted orbits, so the intro fades into the hero. */}
-      <HeroParallax className="hero-stage absolute inset-0 -z-50">
+          field and tilted orbits, so the intro fades into the hero. Oversized
+          so the parallax drift never uncovers its edge. */}
+      <HeroParallax className="hero-stage absolute -inset-8 -z-50">
         <div
           className="absolute inset-0 opacity-5"
           style={{ backgroundImage: `url(${grainImage.src})` }}
@@ -133,7 +134,7 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
           shouldSpin
           spinDuration="6s"
         >
-          <StarIcon className="size-12 text-[#e5fff7] drop-shadow-[0_0_12px_#8fdcce90]" />
+          <StarIcon className="size-12 text-ice drop-shadow-[0_0_12px_rgb(var(--c-primary)/0.56)]" />
         </HeroOrbit>
         <HeroOrbit
           size={620}
@@ -143,7 +144,7 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
           shouldSpin
           spinDuration="6s"
         >
-          <StarIcon className="size-7 text-[#8fdcce] drop-shadow-[0_0_10px_#8fdcce90]" />
+          <StarIcon className="size-7 text-primary drop-shadow-[0_0_10px_rgb(var(--c-primary)/0.56)]" />
         </HeroOrbit>
         <HeroOrbit
           size={720}
@@ -163,7 +164,7 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
           shouldSpin
           spinDuration="6s"
         >
-          <StarIcon className="size-20 text-[#e5fff7] drop-shadow-[0_0_16px_#64ffda80]" />
+          <StarIcon className="size-20 text-ice drop-shadow-[0_0_16px_rgb(var(--c-secondary)/0.5)]" />
         </HeroOrbit>
       </HeroParallax>
     </div>

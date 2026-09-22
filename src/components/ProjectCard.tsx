@@ -39,7 +39,7 @@ const ProjectCard = ({ project: p, locale, sizes, priority }: Props) => {
             share="morph"
             default="none"
           >
-            <h3 className="font-acorn text-xl font-bold text-gray-100 transition-colors duration-300 group-hover:text-primary md:text-2xl">
+            <h3 className="font-acorn text-xl font-bold text-white transition-colors duration-300 group-hover:text-primary md:text-2xl">
               {p.title[locale]}
             </h3>
           </ViewTransition>

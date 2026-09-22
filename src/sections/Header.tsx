@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import LangSwitch from "@/components/LangSwitch";
+import ThemeToggle from "@/components/ThemeToggle";
 import { navLinks } from "@/data/nav";
 import type { Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
@@ -92,10 +93,10 @@ export const Header = ({ lang }: { lang: Locale }) => {
           ))}
         </nav>
 
-        <LangSwitch
-          lang={lang}
-          className="animate-fade-in absolute start-6 top-0 md:start-8 md:top-0.5"
-        />
+        <div className="animate-fade-in absolute start-6 top-0 flex gap-2 md:start-8 md:top-0.5">
+          <LangSwitch lang={lang} />
+          <ThemeToggle lang={lang} />
+        </div>
       </div>
 
       <div
@@ -135,7 +136,7 @@ export const Header = ({ lang }: { lang: Locale }) => {
         <aside
           id="mobile-menu"
           aria-hidden={!menuOpen}
-          className={`fixed bottom-0 end-0 top-0 z-[9] flex min-h-screen w-[min(75vw,400px)] transform items-center justify-center bg-slate-900 p-[50px_10px] shadow-lg transition-all duration-300 md:hidden ${
+          className={`fixed bottom-0 end-0 top-0 z-[9] flex min-h-screen w-[min(75vw,400px)] transform items-center justify-center bg-gray-800 p-[50px_10px] shadow-lg transition-all duration-300 md:hidden ${
             menuOpen
               ? "visible translate-x-0"
               : "invisible ltr:translate-x-full rtl:-translate-x-full"
