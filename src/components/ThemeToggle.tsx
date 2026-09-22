@@ -50,19 +50,17 @@ const ThemeToggle = ({
       Math.max(y, innerHeight - y),
     );
 
+    // The mask's solid core is 80% of --reveal, so overshoot to fully cover.
+    root().style.setProperty("--reveal-x", `${x}px`);
+    root().style.setProperty("--reveal-y", `${y}px`);
     root().classList.add("theme-reveal");
     const transition = document.startViewTransition(apply);
     transition.ready.then(() =>
       root().animate(
+        { "--reveal": ["0px", `${r / 0.8}px`] },
         {
-          clipPath: [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${r}px at ${x}px ${y}px)`,
-          ],
-        },
-        {
-          duration: 600,
-          easing: "cubic-bezier(0.4, 0, 0.2, 1)",
+          duration: 850,
+          easing: "cubic-bezier(0.65, 0, 0.35, 1)",
           pseudoElement: "::view-transition-new(root)",
         },
       ),
@@ -76,7 +74,7 @@ const ThemeToggle = ({
       onClick={toggle}
       aria-label={t("nav.theme")}
       className={twMerge(
-        "inline-flex size-9 items-center justify-center rounded-full border border-white/15 bg-white/10 text-white/80 backdrop-blur transition duration-300 hover:bg-white/20 hover:text-white",
+        "grid size-9 place-items-center rounded-full border border-white/15 bg-white/10 text-white/80 backdrop-blur transition duration-300 hover:bg-white/20 hover:text-white",
         className,
       )}
     >
@@ -87,7 +85,7 @@ const ThemeToggle = ({
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        className="size-[18px] light:hidden"
+        className="size-[18px] transition duration-500 [grid-area:1/1] light:-rotate-90 light:scale-0 light:opacity-0 motion-reduce:transition-none"
         aria-hidden
       >
         <circle cx="12" cy="12" r="4" />
@@ -100,7 +98,7 @@ const ThemeToggle = ({
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="hidden size-[18px] light:block"
+        className="size-[18px] rotate-90 scale-0 opacity-0 transition duration-500 [grid-area:1/1] light:rotate-0 light:scale-100 light:opacity-100 motion-reduce:transition-none"
         aria-hidden
       >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />

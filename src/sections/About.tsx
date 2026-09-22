@@ -38,7 +38,7 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
         />
         <div className="mt-20 flex flex-col gap-8">
           <Card className="p-6 md:p-10">
-            <p className="text-xs uppercase tracking-[0.2em] text-emerald-300 light:text-primary">
+            <p className="text-xs uppercase tracking-[0.2em] text-primary">
               {t("about.eyebrow")}
             </p>
             <div className="mt-4 flex flex-col gap-4 text-start text-sm text-white/80 md:text-base">
@@ -78,7 +78,7 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
                 {profile.interests.map((hobby, i) => (
                   <motion.div
                     key={hobby.en}
-                    className="absolute inline-flex cursor-pointer items-center gap-2 rounded-full bg-gradient-to-tl from-emerald-200 via-emerald-200 to-sky-200 px-6 py-1.5"
+                    className="absolute inline-flex cursor-pointer items-center gap-2 rounded-full bg-gradient-to-tl from-accent-1 to-accent-2 px-6 py-1.5"
                     style={{
                       insetInlineStart: SPOTS[i % SPOTS.length].start,
                       top: SPOTS[i % SPOTS.length].top,
@@ -86,7 +86,7 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
                     drag
                     dragConstraints={constraintRef}
                   >
-                    <span className="whitespace-nowrap font-medium text-[#04090c]">
+                    <span className="whitespace-nowrap font-medium text-on-accent">
                       {hobby[lang]}
                     </span>
                     <span>{hobby.emoji}</span>
@@ -104,9 +104,9 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
                 alt={t("about.mapAlt")}
                 className="h-full w-full object-cover"
               />
-              <div className="absolute start-1/2 top-1/2 size-20 -translate-y-1/2 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 after:absolute after:inset-0 after:rounded-full after:outline after:outline-2 after:-outline-offset-2 after:outline-gray-950/20 after:content-[''] ltr:-translate-x-1/2 rtl:translate-x-1/2">
-                <div className="absolute inset-0 -z-20 animate-ping rounded-full bg-gradient-to-r from-emerald-300 to-sky-400 [animation-duration:2s]"></div>
-                <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-emerald-300 to-sky-400"></div>
+              <div className="absolute start-1/2 top-1/2 size-20 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#8fdcce] to-[#64ffda] after:absolute after:inset-0 after:rounded-full after:outline after:outline-2 after:-outline-offset-2 after:outline-gray-950/20 after:content-[''] ltr:-translate-x-1/2 rtl:translate-x-1/2">
+                <div className="absolute inset-0 -z-20 animate-ping rounded-full bg-gradient-to-r from-[#8fdcce] to-[#64ffda] [animation-duration:2s]"></div>
+                <div className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-[#8fdcce] to-[#64ffda]"></div>
                 <Image
                   src={profileImage}
                   alt={profile.name[lang]}

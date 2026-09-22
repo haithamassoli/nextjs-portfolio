@@ -24,17 +24,17 @@ export const TapeSection = ({ lang }: { lang: Locale }) => {
 
   return (
     <div className="overflow-x-clip py-16 lg:py-24">
-      <div className="-mx-1 -rotate-3 bg-gradient-to-r from-sky-300 to-emerald-200 rtl:rotate-3">
+      <div className="-mx-1 -rotate-3 bg-gradient-to-r from-accent-1 to-accent-2 rtl:rotate-3">
         <div className="flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <div className="flex flex-none animate-move-left gap-4 py-3 pe-4 [animation-duration:30s]">
             {[...new Array(2)].fill(0).map((_, idx) => (
               <Fragment key={idx}>
                 {WORDS.map((key) => (
                   <div key={key} className="inline-flex items-center gap-4">
-                    <span className="whitespace-nowrap text-sm font-extrabold uppercase text-[#080f13]">
+                    <span className="whitespace-nowrap text-sm font-extrabold uppercase text-on-accent">
                       {t(key)}
                     </span>
-                    <StarIcon className="size-6 -rotate-12 text-[#080f13] rtl:rotate-12" />
+                    <StarIcon className="size-6 -rotate-12 text-on-accent rtl:rotate-12" />
                   </div>
                 ))}
               </Fragment>

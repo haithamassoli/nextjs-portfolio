@@ -98,8 +98,9 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
         </div>
       </section>
       {/* The intro's stage, held open: the same halo, a slow light-speed
-          field and tilted orbits, so the intro fades into the hero. */}
-      <HeroParallax className="hero-stage absolute inset-0 -z-50">
+          field and tilted orbits, so the intro fades into the hero. Oversized
+          so the parallax drift never uncovers its edge. */}
+      <HeroParallax className="hero-stage absolute -inset-8 -z-50">
         <div
           className="absolute inset-0 opacity-5"
           style={{ backgroundImage: `url(${grainImage.src})` }}

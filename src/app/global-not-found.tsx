@@ -29,7 +29,7 @@ export default function GlobalNotFound() {
         className={`${inter.variable} bg-gray-900 font-sans text-white antialiased`}
       >
         <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-          <p className="text-[clamp(100px,25vw,200px)] leading-none text-emerald-500">
+          <p className="text-[clamp(100px,25vw,200px)] leading-none text-secondary">
             404
           </p>
           <h1 className="text-[clamp(30px,5vw,50px)] font-normal">

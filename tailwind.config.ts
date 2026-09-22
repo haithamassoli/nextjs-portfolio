@@ -36,6 +36,11 @@ const config: Config = {
         secondary: "rgb(var(--c-secondary) / <alpha-value>)",
         muted: "rgb(var(--c-muted) / <alpha-value>)",
         ice: "rgb(var(--c-ice) / <alpha-value>)",
+        accent: {
+          1: "rgb(var(--c-accent-1) / <alpha-value>)",
+          2: "rgb(var(--c-accent-2) / <alpha-value>)",
+        },
+        "on-accent": "rgb(var(--c-on-accent) / <alpha-value>)",
         // The hero's ground (#080f13) as gray-900, with its teal-tinted
         // neighbours, so every section sits on the hero's colour.
         gray: {

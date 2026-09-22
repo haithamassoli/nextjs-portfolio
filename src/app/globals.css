@@ -19,6 +19,10 @@
   --c-cal-2: 13 148 136;
   --c-cal-3: 45 212 191;
   --c-cal-4: 100 255 218;
+  /* Gradient surfaces (tape, contact, hobby chips) and the ink on them. */
+  --c-accent-1: 143 220 206;
+  --c-accent-2: 100 255 218;
+  --c-on-accent: 8 15 19;
   color-scheme: dark;
 }
 
@@ -37,6 +41,10 @@
   --c-cal-2: 45 212 191;
   --c-cal-3: 13 148 136;
   --c-cal-4: 17 94 89;
+  /* Deep teal so the pale ink keeps AA contrast along the whole gradient. */
+  --c-accent-1: 17 94 89;
+  --c-accent-2: 15 128 118;
+  --c-on-accent: 240 253 250;
   color-scheme: light;
 }
 
@@ -44,6 +52,15 @@
    need darkening to stay visible. */
 [data-theme="light"] :is(.intro-rays, .hero-rays) {
   filter: brightness(0.6) saturate(1.8);
+}
+
+/* The logo's fills are the dark theme's ice and mint; re-ink it on light. */
+[data-theme="light"] .intro-logo path {
+  fill: rgb(var(--c-white));
+}
+
+[data-theme="light"] .intro-logo path:last-child {
+  fill: rgb(var(--c-secondary));
 }
 
 ::selection {
@@ -791,12 +808,27 @@ html[lang="ar"] .ltr[class*="tracking-"] {
   }
 }
 
-/* Theme switch: ThemeToggle grows the new theme as a circle out of the button
-   by animating the new snapshot's clip-path; the old snapshot stays still. */
+/* Theme switch: ThemeToggle grows the new theme as a soft-edged circle out of
+   the button by animating --reveal (the radius) on the new snapshot's mask.
+   --reveal-x/y are set on <html>. The old snapshot stays still. */
+@property --reveal {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
 html.theme-reveal::view-transition-old(root),
 html.theme-reveal::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+html.theme-reveal::view-transition-new(root) {
+  mask-image: radial-gradient(
+    circle at var(--reveal-x) var(--reveal-y),
+    #000 calc(var(--reveal) * 0.8),
+    transparent var(--reveal)
+  );
 }
 
 /* The transition overlay swallows clicks; let them reach the live page. */

@@ -13,7 +13,7 @@ const NotFoundPage = () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
       <title>{t("404.title")}</title>
-      <p className="letter-animation text-[clamp(100px,25vw,200px)] leading-none text-emerald-500">
+      <p className="letter-animation text-[clamp(100px,25vw,200px)] leading-none text-secondary">
         404
       </p>
       <h1 className="not-found-animation text-[clamp(30px,5vw,50px)] font-normal">

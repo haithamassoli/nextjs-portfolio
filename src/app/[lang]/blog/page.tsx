@@ -51,14 +51,14 @@ export default async function BlogPage({
     <div className="mx-auto mt-24 flex w-full max-w-xl flex-col gap-5 p-5">
       <SectionHeader eyebrow={t("blog.eyebrow")} description={t("blog.lede")} />
       <div className="mt-16 flex flex-col items-center justify-center rounded-2xl p-12 text-center backdrop-blur-sm">
-        <h2 className="mb-4 bg-gradient-to-r from-cyan-400 to-primary bg-clip-text text-4xl font-bold text-transparent">
+        <h2 className="mb-4 bg-gradient-to-r from-accent-1 to-accent-2 bg-clip-text text-4xl font-bold text-transparent">
           {t("blog.soon")}
         </h2>
         <p className="mb-6 text-base text-white/80">{t("blog.body")}</p>
         <div className="flex gap-x-2">
-          <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-          <div className="animation-delay-200 h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-          <div className="animation-delay-400 h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
+          <div className="h-2 w-2 animate-pulse rounded-full bg-secondary" />
+          <div className="animation-delay-200 h-2 w-2 animate-pulse rounded-full bg-secondary" />
+          <div className="animation-delay-400 h-2 w-2 animate-pulse rounded-full bg-secondary" />
         </div>
       </div>
     </div>
