@@ -54,7 +54,7 @@ export default async function BlogPage({
         <h2 className="mb-4 bg-gradient-to-r from-cyan-400 to-primary bg-clip-text text-4xl font-bold text-transparent">
           {t("blog.soon")}
         </h2>
-        <p className="mb-6 text-base text-gray-300">{t("blog.body")}</p>
+        <p className="mb-6 text-base text-white/80">{t("blog.body")}</p>
         <div className="flex gap-x-2">
           <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
           <div className="animation-delay-200 h-2 w-2 animate-pulse rounded-full bg-emerald-500" />

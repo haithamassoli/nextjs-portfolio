@@ -132,7 +132,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
                       {period(job.period)}
                       {job.location ? ` · ${job.location[lang]}` : ""}
                     </p>
-                    <ul className="relative list-none text-gray-300">
+                    <ul className="relative list-none text-white/80">
                       {job.highlights[lang].map((point, index) => (
                         <motion.li
                           key={point}

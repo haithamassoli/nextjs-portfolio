@@ -8,6 +8,7 @@ import { twMerge } from "tailwind-merge";
 import "../globals.css";
 import { Header } from "@/sections/Header";
 import SiteIntro from "@/components/SiteIntro";
+import { themeScript } from "@/libs/theme";
 import { SITE, dirOf, isLocale, locales, type Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
 
@@ -95,7 +96,15 @@ export default async function RootLayout({
   const locale: Locale = lang;
 
   return (
-    <html lang={locale} dir={dirOf(locale)} className="scroll-smooth">
+    <html
+      lang={locale}
+      dir={dirOf(locale)}
+      className="scroll-smooth"
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
         id="home"
         className={twMerge(

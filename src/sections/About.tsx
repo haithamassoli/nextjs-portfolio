@@ -38,7 +38,7 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
         />
         <div className="mt-20 flex flex-col gap-8">
           <Card className="p-6 md:p-10">
-            <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">
+            <p className="text-xs uppercase tracking-[0.2em] text-emerald-300 light:text-primary">
               {t("about.eyebrow")}
             </p>
             <div className="mt-4 flex flex-col gap-4 text-start text-sm text-white/80 md:text-base">
@@ -86,7 +86,7 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
                     drag
                     dragConstraints={constraintRef}
                   >
-                    <span className="whitespace-nowrap font-medium text-gray-950">
+                    <span className="whitespace-nowrap font-medium text-[#04090c]">
                       {hobby[lang]}
                     </span>
                     <span>{hobby.emoji}</span>

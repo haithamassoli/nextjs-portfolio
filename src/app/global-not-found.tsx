@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import "./globals.css";
 import { SITE, defaultLocale, dirOf, href } from "@/libs/i18n";
+import { themeScript } from "@/libs/theme";
 import { ui } from "@/libs/ui";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -20,7 +21,10 @@ export const metadata: Metadata = {
 
 export default function GlobalNotFound() {
   return (
-    <html lang={defaultLocale} dir={dirOf(defaultLocale)}>
+    <html lang={defaultLocale} dir={dirOf(defaultLocale)} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body
         className={`${inter.variable} bg-gray-900 font-sans text-white antialiased`}
       >

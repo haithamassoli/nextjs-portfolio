@@ -16,7 +16,7 @@ export const ContactSection = ({ lang }: { lang: Locale }) => {
       <div className="mx-8 md:container">
         <motion.div
           {...reveal()}
-          className="relative z-30 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-200 to-sky-300 px-10 py-8 text-center text-gray-900 md:text-start"
+          className="relative z-30 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-200 to-sky-300 px-10 py-8 text-center text-[#080f13] md:text-start"
         >
           <div
             className="absolute inset-0 -z-10 opacity-5"

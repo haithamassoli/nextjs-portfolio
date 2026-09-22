@@ -31,10 +31,10 @@ export const TapeSection = ({ lang }: { lang: Locale }) => {
               <Fragment key={idx}>
                 {WORDS.map((key) => (
                   <div key={key} className="inline-flex items-center gap-4">
-                    <span className="whitespace-nowrap text-sm font-extrabold uppercase text-gray-900">
+                    <span className="whitespace-nowrap text-sm font-extrabold uppercase text-[#080f13]">
                       {t(key)}
                     </span>
-                    <StarIcon className="size-6 -rotate-12 text-gray-900 rtl:rotate-12" />
+                    <StarIcon className="size-6 -rotate-12 text-[#080f13] rtl:rotate-12" />
                   </div>
                 ))}
               </Fragment>

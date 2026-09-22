@@ -21,13 +21,13 @@ const RadioGroupItem = forwardRef<
     <Item
       ref={ref}
       className={cn(
-        "aspect-square h-4 w-4 rounded-full border border-neutral-200 text-emerald-300 ring-offset-neutral-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "aspect-square h-4 w-4 rounded-full border border-neutral-200 text-emerald-300 ring-offset-neutral-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-neutral-300 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 light:border-gray-600 light:text-secondary",
         className,
       )}
       {...props}
     >
       <Indicator className="flex items-center justify-center">
-        <span className="h-2.5 w-2.5 rounded-full bg-emerald-300 fill-current text-current" />
+        <span className="h-2.5 w-2.5 rounded-full bg-emerald-300 fill-current light:bg-secondary text-current" />
       </Indicator>
     </Item>
   );
