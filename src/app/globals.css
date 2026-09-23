@@ -808,27 +808,24 @@ html[lang="ar"] .ltr[class*="tracking-"] {
   }
 }
 
-/* Theme switch: ThemeToggle grows the new theme as a soft-edged circle out of
-   the button by animating --reveal (the radius) on the new snapshot's mask.
-   --reveal-x/y are set on <html>. The old snapshot stays still. */
-@property --reveal {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
-
+/* Fade the new theme over a still snapshot of the old one. */
 html.theme-reveal::view-transition-old(root),
 html.theme-reveal::view-transition-new(root) {
-  animation: none;
   mix-blend-mode: normal;
 }
 
+html.theme-reveal::view-transition-old(root) {
+  animation: none;
+}
+
 html.theme-reveal::view-transition-new(root) {
-  mask-image: radial-gradient(
-    circle at var(--reveal-x) var(--reveal-y),
-    #000 calc(var(--reveal) * 0.8),
-    transparent var(--reveal)
-  );
+  animation: theme-fade-in 400ms ease-out both;
+}
+
+@keyframes theme-fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 /* The transition overlay swallows clicks; let them reach the live page. */

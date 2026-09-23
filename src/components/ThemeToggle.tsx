@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, type MouseEvent } from "react";
+import { useLayoutEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
 import type { Locale } from "@/libs/i18n";
@@ -23,7 +23,7 @@ const ThemeToggle = ({
     if (!root().dataset.theme) new Function(themeScript)();
   }, []);
 
-  const toggle = (event: MouseEvent<HTMLButtonElement>) => {
+  const toggle = () => {
     const next = root().dataset.theme === "light" ? "dark" : "light";
     const apply = () => {
       root().dataset.theme = next;
@@ -39,32 +39,8 @@ const ThemeToggle = ({
       return apply();
     }
 
-    // Grow from the button's centre (keyboard clicks carry no pointer position)
-    // to the farthest corner of the viewport.
-    const { left, top, width, height } =
-      event.currentTarget.getBoundingClientRect();
-    const x = left + width / 2;
-    const y = top + height / 2;
-    const r = Math.hypot(
-      Math.max(x, innerWidth - x),
-      Math.max(y, innerHeight - y),
-    );
-
-    // The mask's solid core is 80% of --reveal, so overshoot to fully cover.
-    root().style.setProperty("--reveal-x", `${x}px`);
-    root().style.setProperty("--reveal-y", `${y}px`);
     root().classList.add("theme-reveal");
     const transition = document.startViewTransition(apply);
-    transition.ready.then(() =>
-      root().animate(
-        { "--reveal": ["0px", `${r / 0.8}px`] },
-        {
-          duration: 850,
-          easing: "cubic-bezier(0.65, 0, 0.35, 1)",
-          pseudoElement: "::view-transition-new(root)",
-        },
-      ),
-    );
     transition.finished.finally(() => root().classList.remove("theme-reveal"));
   };
 
@@ -85,7 +61,7 @@ const ThemeToggle = ({
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        className="size-[18px] transition duration-500 [grid-area:1/1] light:-rotate-90 light:scale-0 light:opacity-0 motion-reduce:transition-none"
+        className="size-[18px] transition duration-300 ease-out [grid-area:1/1] light:-rotate-90 light:scale-0 light:opacity-0 motion-reduce:transition-none"
         aria-hidden
       >
         <circle cx="12" cy="12" r="4" />
@@ -98,7 +74,7 @@ const ThemeToggle = ({
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="size-[18px] rotate-90 scale-0 opacity-0 transition duration-500 [grid-area:1/1] light:rotate-0 light:scale-100 light:opacity-100 motion-reduce:transition-none"
+        className="size-[18px] rotate-90 scale-0 opacity-0 transition duration-300 ease-out [grid-area:1/1] light:rotate-0 light:scale-100 light:opacity-100 motion-reduce:transition-none"
         aria-hidden
       >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
