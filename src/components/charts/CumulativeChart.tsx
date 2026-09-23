@@ -61,95 +61,111 @@ export default function CumulativeChart({
   });
 
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      className="ltr h-auto w-full text-secondary"
-      role="img"
-      aria-label={`${labels.title}: ${plain.format(max)} ${labels.value}`}
-      aria-describedby={describedBy}
-    >
-      <defs>
-        <linearGradient id="cumulative-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="currentColor" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="currentColor" stopOpacity="0.02" />
-        </linearGradient>
-      </defs>
-
-      <g className="stroke-muted" strokeOpacity="0.18" strokeWidth="1">
-        {yTicks.map((v, i) => (
-          <line key={i} x1={PAD.left} x2={W - PAD.right} y1={y(v)} y2={y(v)} />
-        ))}
-      </g>
-
-      <g className="fill-muted" fillOpacity="0.75" fontSize="10">
-        {yTicks.map((v, i) => (
-          <text key={i} x={PAD.left - 8} y={y(v) + 3} textAnchor="end">
-            {plain.format(v)}
-          </text>
-        ))}
-        {xTicks.map((tick) => (
-          <text
-            key={tick.i}
-            x={x(tick.i)}
-            y={H - 8}
-            textAnchor={
-              tick.i === 0
-                ? "start"
-                : tick.i === days.length - 1
-                  ? "end"
-                  : "middle"
-            }
-          >
-            {tick.text}
-          </text>
-        ))}
-      </g>
-
-      <motion.path
-        d={area}
-        fill="url(#cumulative-fill)"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-        viewport={{ once: true }}
-      />
-      <motion.path
-        d={line}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        transition={{ duration: 1.8, ease: "easeInOut" }}
-        viewport={{ once: true }}
-      />
-      <motion.g
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 1.7 }}
-        viewport={{ once: true }}
+    <div className="ltr relative text-secondary">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        className="h-auto w-full"
+        role="img"
+        aria-label={`${labels.title}: ${plain.format(max)} ${labels.value}`}
+        aria-describedby={describedBy}
       >
-        <circle cx={x(days.length - 1)} cy={y(max)} r="3.5" fill="currentColor" />
-        <circle
-          cx={x(days.length - 1)}
-          cy={y(max)}
-          r="3.5"
+        <defs>
+          <linearGradient id="cumulative-fill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.02" />
+          </linearGradient>
+        </defs>
+
+        <g className="stroke-muted" strokeOpacity="0.18" strokeWidth="1">
+          {yTicks.map((v, i) => (
+            <line
+              key={i}
+              x1={PAD.left}
+              x2={W - PAD.right}
+              y1={y(v)}
+              y2={y(v)}
+            />
+          ))}
+        </g>
+
+        <g className="fill-muted" fillOpacity="0.75" fontSize="10">
+          {yTicks.map((v, i) => (
+            <text key={i} x={PAD.left - 8} y={y(v) + 3} textAnchor="end">
+              {plain.format(v)}
+            </text>
+          ))}
+          {xTicks.map((tick) => (
+            <text
+              key={tick.i}
+              x={x(tick.i)}
+              y={H - 8}
+              textAnchor={
+                tick.i === 0
+                  ? "start"
+                  : tick.i === days.length - 1
+                    ? "end"
+                    : "middle"
+              }
+            >
+              {tick.text}
+            </text>
+          ))}
+        </g>
+
+        <motion.path
+          d={area}
+          fill="url(#cumulative-fill)"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          viewport={{ once: true }}
+        />
+        <motion.path
+          d={line}
           fill="none"
           stroke="currentColor"
-          className="chart-pulse"
+          strokeWidth="2"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+          viewport={{ once: true }}
         />
-        <text
-          x={x(days.length - 1)}
-          y={y(max) - 10}
-          textAnchor="end"
-          fontSize="11"
-          className="fill-white/90"
+        <motion.g
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1.7 }}
+          viewport={{ once: true }}
         >
-          {plain.format(max)}
-        </text>
-      </motion.g>
-    </svg>
+          <circle
+            cx={x(days.length - 1)}
+            cy={y(max)}
+            r="3.5"
+            fill="currentColor"
+          />
+          <text
+            x={x(days.length - 1)}
+            y={y(max) - 10}
+            textAnchor="end"
+            fontSize="11"
+            className="fill-white/90"
+          >
+            {plain.format(max)}
+          </text>
+        </motion.g>
+      </svg>
+      {/* Sized and placed in viewBox percentages so it tracks the scaled SVG. */}
+      <span
+        aria-hidden
+        className="chart-pulse absolute aspect-square rounded-full border border-current"
+        style={{
+          left: `${(x(days.length - 1) / W) * 100}%`,
+          top: `${(y(max) / H) * 100}%`,
+          width: `${(7 / W) * 100}%`,
+          translate: "-50% -50%",
+        }}
+      />
+    </div>
   );
 }

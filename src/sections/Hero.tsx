@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import Link from "next/link";
 
 import grainImage from "@/assets/images/grain.jpg";
@@ -6,18 +5,9 @@ import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import HeroOrbit from "@/components/HeroOrbit";
 import HeroParallax from "@/components/HeroParallax";
+import HeroRays from "@/components/HeroRays";
 import { href, type Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
-
-// Same palette as the SiteIntro light-speed field.
-const RAY_COLORS = [
-  "#64ffda",
-  "#8fdcce",
-  "#e5fff7",
-  "#bddff9",
-  "#cf94e5",
-  "#e8b89c",
-];
 
 /**
  * Arabic letters join up, so splitting a word into per-letter spans would
@@ -106,24 +96,7 @@ export const HeroSection = ({ lang }: { lang: Locale }) => {
           style={{ backgroundImage: `url(${grainImage.src})` }}
         />
         <div className="hero-halo" />
-        <div className="hero-rays">
-          {Array.from({ length: 40 }, (_, i) => (
-            <span
-              key={i}
-              className="intro-ray-track"
-              style={
-                {
-                  "--angle": `${i * 137.508}deg`,
-                  "--delay": `${-((i * 7) % 40) * 0.15}s`,
-                  "--length": `${18 + ((i * 11) % 30)}vmin`,
-                  "--ray-color": RAY_COLORS[i % RAY_COLORS.length],
-                } as CSSProperties
-              }
-            >
-              <span className="intro-ray hero-ray" />
-            </span>
-          ))}
-        </div>
+        <HeroRays />
         <div className="hero-orbit" />
         <div className="hero-orbit hero-orbit-tilted" />
         <HeroOrbit

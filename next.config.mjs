@@ -3,6 +3,8 @@ const nextConfig = {
   // Still experimental in 16.3.4 and off by default. Without it, app/global-not-found.tsx
   // is ignored and paths deeper than /[lang] have no layout to render a 404 into.
   experimental: { globalNotFound: true },
+  // The project screenshots are 0.4-3MB PNGs; AVIF is ~20% smaller than WebP.
+  images: { formats: ["image/avif", "image/webp"] },
   async redirects() {
     return [
       { source: "/", destination: "/en", permanent: false },

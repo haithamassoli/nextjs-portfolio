@@ -1,11 +1,8 @@
-"use client";
-
 import Image from "next/image";
-import { useRef } from "react";
-import { motion } from "motion/react";
 
 import Card from "@/components/Card";
 import CardHeader from "@/components/CardHeader";
+import Hobbies from "@/components/Hobbies";
 import SectionHeader from "@/components/SectionHeader";
 import ToolboxItems from "@/components/ToolboxItems";
 import mapImage from "@/assets/images/map.png";
@@ -15,19 +12,8 @@ import { profile } from "@/content/profile";
 import type { Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
 
-/** Where each interest chip starts out inside the card, before it is dragged. */
-const SPOTS = [
-  { start: "5%", top: "6%" },
-  { start: "48%", top: "6%" },
-  { start: "30%", top: "38%" },
-  { start: "8%", top: "34%" },
-  { start: "62%", top: "44%" },
-  { start: "38%", top: "70%" },
-];
-
 export const AboutSection = ({ lang }: { lang: Locale }) => {
   const t = useT(lang);
-  const constraintRef = useRef(null);
 
   return (
     <section className="py-16 lg:py-24" id="about">
@@ -53,6 +39,13 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
               title={t("about.stackTitle")}
               description={t("about.stackLede")}
             />
+            <svg className="absolute size-0" aria-hidden>
+              <linearGradient id="tech-icon-gradient">
+                <stop offset="0%" stopColor="#8fdcc2" />
+                <stop offset="50%" stopColor="#A7F3DF" />
+                <stop offset="100%" stopColor="#7dd3fc" />
+              </linearGradient>
+            </svg>
             <ToolboxItems
               items={toolboxItems}
               itemsWrapperClassName="animate-move-left [animation-duration:32s]"
@@ -74,25 +67,7 @@ export const AboutSection = ({ lang }: { lang: Locale }) => {
                 description={t("about.hobbiesLede")}
                 className="px-6 py-6"
               />
-              <div className="relative flex-1" ref={constraintRef}>
-                {profile.interests.map((hobby, i) => (
-                  <motion.div
-                    key={hobby.en}
-                    className="absolute inline-flex cursor-pointer items-center gap-2 rounded-full bg-gradient-to-tl from-accent-1 to-accent-2 px-6 py-1.5"
-                    style={{
-                      insetInlineStart: SPOTS[i % SPOTS.length].start,
-                      top: SPOTS[i % SPOTS.length].top,
-                    }}
-                    drag
-                    dragConstraints={constraintRef}
-                  >
-                    <span className="whitespace-nowrap font-medium text-on-accent">
-                      {hobby[lang]}
-                    </span>
-                    <span>{hobby.emoji}</span>
-                  </motion.div>
-                ))}
-              </div>
+              <Hobbies lang={lang} />
             </Card>
 
             <Card

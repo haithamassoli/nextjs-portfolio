@@ -1,7 +1,10 @@
 import { Fragment } from "react";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import TapeSvg from "@/assets/icons/stuf.svg";
+// An <img>, not an inline component: inlined, this 37KB SVG shipped four
+// times in the HTML (twice in the markup, twice again in the RSC payload).
+import tapeSvg from "@/assets/icons/stuf.svg?url";
 import { AboutSection } from "@/sections/About";
 import { ContactSection } from "@/sections/Contact";
 import DevStats from "@/sections/DevStats";
@@ -37,7 +40,12 @@ export default async function Home({
           {[...new Array(2)].fill(0).map((_, idx) => (
             <Fragment key={idx}>
               <div className="transition duration-300">
-                <TapeSvg className="mt-6 select-none grayscale transition-[filter] duration-500 ease-in-out group-hover:filter-none" />
+                <Image
+                  src={tapeSvg}
+                  alt=""
+                  draggable={false}
+                  className="mt-6 select-none grayscale transition-[filter] duration-500 ease-in-out group-hover:filter-none"
+                />
               </div>
             </Fragment>
           ))}
