@@ -14,7 +14,6 @@ export const Header = ({ lang }: { lang: Locale }) => {
   const links = navLinks(lang);
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -47,18 +46,21 @@ export const Header = ({ lang }: { lang: Locale }) => {
     document.getElementById("content")?.classList.toggle("blur", menuOpen);
   }, [menuOpen]);
 
+  // The last position lives in the closure, not in state: storing it re-rendered
+  // the header and re-bound this listener on every scroll event. `visible`
+  // only changes on a direction flip, so React bails out of the rest.
   useEffect(() => {
+    if (menuOpen) return;
+    let prev = window.scrollY;
     const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      if (!menuOpen) {
-        setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-        setPrevScrollPos(currentScrollPos);
-      }
+      const current = window.scrollY;
+      setVisible(prev > current || current < 10);
+      prev = current;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos, menuOpen]);
+  }, [menuOpen]);
 
   return (
     <>

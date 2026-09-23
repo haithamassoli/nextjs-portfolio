@@ -485,10 +485,11 @@
   }
 }
 
-/* The cumulative chart's end point breathes a ring outward. */
+/* The cumulative chart's end point breathes a ring outward. An HTML ring over
+   the SVG: Chrome never composites SVG animations, so an animated <circle>
+   ran a main-thread frame 60 times a second, even off screen. */
 .chart-pulse {
-  transform-box: fill-box;
-  transform-origin: center;
+  opacity: 0;
   animation: chart-pulse 2.4s ease-out 2s infinite;
 }
 
@@ -580,8 +581,10 @@ html {
   animation: hero-field 90s linear infinite;
 }
 
+/* HeroRays animates these with element.animate(); hidden until it does. */
 .hero-ray {
-  animation: intro-ray 6s cubic-bezier(0.45, 0, 0.85, 0.5) var(--delay) infinite;
+  animation: none;
+  opacity: 0;
 }
 
 .hero-orbit {
@@ -634,11 +637,13 @@ html {
   animation: signature-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* ponytail: background-position can't run on the compositor, so an infinite
+   shimmer repainted the name every frame forever. Three sweeps, then it rests. */
 .hero .letter-animation.hero-name {
   text-shadow: none;
   animation:
     signature-in 1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-    shimmer 4s ease-in-out infinite;
+    shimmer 4s ease-in-out 3;
 }
 
 .hero :is(.paragraph-animation, .buttons-animation) {

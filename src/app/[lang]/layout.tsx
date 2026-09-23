@@ -22,10 +22,12 @@ const acorn = localFont({
   variable: "--font-acorn",
 });
 
-// Arabic display + body face. Weights match the files shipped in src/fonts.
+// Arabic display + body face. Weights match the classes the site uses (no 300).
+// Not preloaded: the fonts are per-layout, not per-locale, so preloading put
+// ~370KB of Arabic glyphs on the critical path of every English page. The
+// `html[lang="ar"]` rules pull them in on Arabic pages, with `swap`.
 const thmanyah = localFont({
   src: [
-    { path: "../../fonts/thmanyahsans-Light.woff2", weight: "300", style: "normal" },
     { path: "../../fonts/thmanyahsans-Regular.woff2", weight: "400", style: "normal" },
     { path: "../../fonts/thmanyahsans-Medium.woff2", weight: "500", style: "normal" },
     { path: "../../fonts/thmanyahsans-Bold.woff2", weight: "700", style: "normal" },
@@ -33,6 +35,7 @@ const thmanyah = localFont({
   ],
   variable: "--font-thmanyah",
   display: "swap",
+  preload: false,
 });
 
 export function generateStaticParams() {
