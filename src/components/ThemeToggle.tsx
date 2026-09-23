@@ -32,14 +32,19 @@ const ThemeToggle = ({
       } catch {}
     };
 
+    // .theme-reveal switches off CSS transitions: otherwise ~80 colour/border
+    // fades repaint the page for a second and the hero drops to ~15fps.
+    root().classList.add("theme-reveal");
+
     if (
       !document.startViewTransition ||
       matchMedia("(prefers-reduced-motion: reduce)").matches
     ) {
-      return apply();
+      apply();
+      getComputedStyle(root()).color; // flush styles while transitions are off
+      return root().classList.remove("theme-reveal");
     }
 
-    root().classList.add("theme-reveal");
     const transition = document.startViewTransition(apply);
     transition.finished.finally(() => root().classList.remove("theme-reveal"));
   };
@@ -61,7 +66,7 @@ const ThemeToggle = ({
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        className="size-[18px] transition duration-300 ease-out [grid-area:1/1] light:-rotate-90 light:scale-0 light:opacity-0 motion-reduce:transition-none"
+        className="theme-icon size-[18px] transition duration-300 ease-out [grid-area:1/1] light:-rotate-90 light:scale-0 light:opacity-0 motion-reduce:transition-none"
         aria-hidden
       >
         <circle cx="12" cy="12" r="4" />
@@ -74,7 +79,7 @@ const ThemeToggle = ({
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="size-[18px] rotate-90 scale-0 opacity-0 transition duration-300 ease-out [grid-area:1/1] light:rotate-0 light:scale-100 light:opacity-100 motion-reduce:transition-none"
+        className="theme-icon size-[18px] rotate-90 scale-0 opacity-0 transition duration-300 ease-out [grid-area:1/1] light:rotate-0 light:scale-100 light:opacity-100 motion-reduce:transition-none"
         aria-hidden
       >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />

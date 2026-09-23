@@ -24,8 +24,13 @@ try {
     const start = document.startViewTransition.bind(document);
     let transition;
     document.startViewTransition = update => (transition = start(update));
+    const before = new Set(document.getAnimations());
     button.click();
     await transition.ready;
+    // Only the toggle's own icon may transition; page-wide colour fades janked the hero.
+    const strays = document.getAnimations()
+      .filter(a => !before.has(a) && a instanceof CSSTransition && !a.effect.target.closest('.theme-icon'))
+      .map(a => a.transitionProperty);
     const early = await new Promise(resolve => {
       const deadline = performance.now() + 600;
       const sample = () => {
@@ -37,10 +42,11 @@ try {
     });
     await transition.finished;
     document.startViewTransition = start;
-    return { early, theme: root.dataset.theme, stored: localStorage.getItem('theme') };
+    return { early, strays, theme: root.dataset.theme, stored: localStorage.getItem('theme') };
   })()`);
 
   assert.equal(reveal.theme, "light");
+  assert.deepEqual(reveal.strays, [], "Theme switch should not start CSS transitions");
   assert.equal(reveal.stored, "light");
   assert.ok(
     reveal.early > 0 && reveal.early < 1,
@@ -50,13 +56,15 @@ try {
   browser("set", "media", "dark", "reduced-motion");
   assert.deepEqual(
     evaluate(`(() => {
+      const before = new Set(document.getAnimations());
       document.querySelector('button[aria-label="Toggle light and dark theme"]').click();
-      return { theme: document.documentElement.dataset.theme, stored: localStorage.getItem('theme'), animating: document.documentElement.classList.contains('theme-reveal') };
+      const strays = document.getAnimations().filter(a => !before.has(a) && a instanceof CSSTransition && !a.effect.target.closest('.theme-icon')).length;
+      return { strays, theme: document.documentElement.dataset.theme, stored: localStorage.getItem('theme'), animating: document.documentElement.classList.contains('theme-reveal') };
     })()`),
-    { theme: "dark", stored: "dark", animating: false },
+    { strays: 0, theme: "dark", stored: "dark", animating: false },
   );
   console.log(
-    "Theme transition fades smoothly, persists the choice, and respects reduced motion.",
+    "Theme transition fades smoothly, starts no page-wide CSS transitions, persists the choice, and respects reduced motion.",
   );
 } finally {
   browser("close");

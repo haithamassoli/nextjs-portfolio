@@ -37,7 +37,7 @@ export default async function Home({
           {[...new Array(2)].fill(0).map((_, idx) => (
             <Fragment key={idx}>
               <div className="transition duration-300">
-                <TapeSvg className="mt-6 select-none grayscale transition-all duration-500 ease-in-out group-hover:filter-none" />
+                <TapeSvg className="mt-6 select-none grayscale transition-[filter] duration-500 ease-in-out group-hover:filter-none" />
               </div>
             </Fragment>
           ))}
