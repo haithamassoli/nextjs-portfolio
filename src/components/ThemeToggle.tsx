@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, type MouseEvent } from "react";
 import { twMerge } from "tailwind-merge";
 
 import type { Locale } from "@/libs/i18n";
@@ -23,7 +23,7 @@ const ThemeToggle = ({
     if (!root().dataset.theme) new Function(themeScript)();
   }, []);
 
-  const toggle = () => {
+  const toggle = (event: MouseEvent<HTMLButtonElement>) => {
     const next = root().dataset.theme === "light" ? "dark" : "light";
     const apply = () => {
       root().dataset.theme = next;
@@ -45,7 +45,32 @@ const ThemeToggle = ({
       return root().classList.remove("theme-reveal");
     }
 
+    // Grow the new theme as a circle from the button to the farthest corner.
+    const { left, top, width, height } =
+      event.currentTarget.getBoundingClientRect();
+    const x = left + width / 2;
+    const y = top + height / 2;
+    const r = Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y),
+    );
+
     const transition = document.startViewTransition(apply);
+    transition.ready.then(() =>
+      root().animate(
+        {
+          clipPath: [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${r}px at ${x}px ${y}px)`,
+          ],
+        },
+        {
+          duration: 700,
+          easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      ),
+    );
     transition.finished.finally(() => root().classList.remove("theme-reveal"));
   };
 

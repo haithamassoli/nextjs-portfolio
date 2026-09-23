@@ -25,21 +25,32 @@ try {
     let transition;
     document.startViewTransition = update => (transition = start(update));
     const before = new Set(document.getAnimations());
+    // Read at click time: the header may still be sliding in.
+    const { left, top, width, height } = button.getBoundingClientRect();
+    const cx = left + width / 2, cy = top + height / 2;
     button.click();
     await transition.ready;
     // Only the toggle's own icon may transition; page-wide colour fades janked the hero.
     const strays = document.getAnimations()
       .filter(a => !before.has(a) && a instanceof CSSTransition && !a.effect.target.closest('.theme-icon'))
       .map(a => a.transitionProperty);
-    const early = await new Promise(resolve => {
-      const deadline = performance.now() + 600;
+    // Sample the reveal mid-flight: a circle centred on the button, partly grown.
+    const clips = [];
+    await new Promise(resolve => {
+      const deadline = performance.now() + 900;
       const sample = () => {
-        const opacity = Number(getComputedStyle(root, '::view-transition-new(root)').opacity);
-        if ((opacity > 0 && opacity < 1) || performance.now() > deadline) resolve(opacity);
+        clips.push(getComputedStyle(root, '::view-transition-new(root)').clipPath);
+        if (performance.now() > deadline) resolve();
         else requestAnimationFrame(sample);
       };
       requestAnimationFrame(sample);
     });
+    const radii = clips
+      .map(c => c.match(/circle\\(([\\d.]+)px at (-?[\\d.]+)px (-?[\\d.]+)px\\)/))
+      .filter(m => m && Math.abs(m[2] - cx) < 1 && Math.abs(m[3] - cy) < 1)
+      .map(m => Number(m[1]));
+    const growing = radii.length > 3 && radii.every((r, i) => i === 0 || r >= radii[i - 1]);
+    const early = { growing, first: radii[0], last: radii.at(-1), clip: clips[1] };
     await transition.finished;
     document.startViewTransition = start;
     return { early, strays, theme: root.dataset.theme, stored: localStorage.getItem('theme') };
@@ -49,8 +60,8 @@ try {
   assert.deepEqual(reveal.strays, [], "Theme switch should not start CSS transitions");
   assert.equal(reveal.stored, "light");
   assert.ok(
-    reveal.early > 0 && reveal.early < 1,
-    `New theme should fade in smoothly; got ${JSON.stringify(reveal)}`,
+    reveal.early.growing && reveal.early.first < reveal.early.last,
+    `New theme should grow as a circle from the toggle; got ${JSON.stringify(reveal)}`,
   );
 
   browser("set", "media", "dark", "reduced-motion");
@@ -64,7 +75,7 @@ try {
     { strays: 0, theme: "dark", stored: "dark", animating: false },
   );
   console.log(
-    "Theme transition fades smoothly, starts no page-wide CSS transitions, persists the choice, and respects reduced motion.",
+    "Theme switch reveals in a growing circle from the toggle, starts no page-wide CSS transitions, persists the choice, and respects reduced motion.",
   );
 } finally {
   browser("close");

@@ -808,7 +808,7 @@ html[lang="ar"] .ltr[class*="tracking-"] {
   }
 }
 
-/* No per-element colour fades while the theme flips; the snapshot fade below
+/* No per-element colour fades while the theme flips; the circular reveal below
    covers it. Only the toggle's sun/moon keeps its swap. */
 html.theme-reveal *:not(.theme-icon),
 html.theme-reveal *::before,
@@ -816,24 +816,12 @@ html.theme-reveal *::after {
   transition: none !important;
 }
 
-/* Fade the new theme over a still snapshot of the old one. */
+/* ThemeToggle grows the new theme as a circle out of the button (a clip-path
+   animation on the new snapshot) over a still snapshot of the old one. */
 html.theme-reveal::view-transition-old(root),
 html.theme-reveal::view-transition-new(root) {
-  mix-blend-mode: normal;
-}
-
-html.theme-reveal::view-transition-old(root) {
   animation: none;
-}
-
-html.theme-reveal::view-transition-new(root) {
-  animation: theme-fade-in 500ms cubic-bezier(0.45, 0, 0.55, 1) both;
-}
-
-@keyframes theme-fade-in {
-  from {
-    opacity: 0;
-  }
+  mix-blend-mode: normal;
 }
 
 /* The transition overlay swallows clicks; let them reach the live page. */
