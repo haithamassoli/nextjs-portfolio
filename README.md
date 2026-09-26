@@ -1,37 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Haitham Assoli — Portfolio
 
-## Getting Started
+My portfolio for web and mobile work, with project case studies, experience, and a way to get in touch. Browse it in [English](https://assoli.site/en) or [Arabic](https://assoli.site/ar).
 
-First, run the development server:
+![Preview of Haitham Assoli's portfolio homepage](public/og.png)
+
+## Built with
+
+Next.js 16, React 19, TypeScript, Tailwind CSS, and Motion. The site supports both left-to-right and right-to-left layouts, light and dark themes, and reduced-motion preferences.
+
+## Run locally
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/en](http://localhost:3000/en). For a production build, run `npm run build` followed by `npm run start`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Update the content
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Edit the bio and experience in [`src/content/profile.ts`](src/content/profile.ts).
+- Edit project case studies in [`src/content/projects.ts`](src/content/projects.ts).
+- Edit interface translations in [`src/libs/ui.ts`](src/libs/ui.ts).
 
-## Learn More
+## Contact
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# frontend-tribe-portofolio
+[Website](https://assoli.site) · [GitHub](https://github.com/haithamassoli) · [LinkedIn](https://www.linkedin.com/in/haithamassoli/) · [Email](mailto:haitham.b.assoli@gmail.com)
