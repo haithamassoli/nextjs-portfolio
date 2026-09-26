@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import MotionReel from "@/components/MotionReel";
 
 // An <img>, not an inline component: inlined, this 37KB SVG shipped four
 // times in the HTML (twice in the markup, twice again in the RSC payload).
@@ -30,6 +31,7 @@ export default async function Home({
 
   return (
     <>
+      <MotionReel lang={lang} />
       <HeroSection lang={lang} />
 
       <div
