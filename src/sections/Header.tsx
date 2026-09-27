@@ -9,7 +9,14 @@ import { navLinks } from "@/data/nav";
 import type { Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
 
-export const Header = ({ lang }: { lang: Locale }) => {
+export const Header = ({
+  lang,
+  children,
+}: {
+  lang: Locale;
+  /** Sits at the top end of the bar: the showreel's play button. */
+  children?: React.ReactNode;
+}) => {
   const t = useT(lang);
   const links = navLinks(lang);
 
@@ -98,6 +105,10 @@ export const Header = ({ lang }: { lang: Locale }) => {
         <div className="animate-fade-in absolute start-6 top-0 flex gap-2 md:start-8 md:top-0.5">
           <LangSwitch lang={lang} />
           <ThemeToggle lang={lang} />
+        </div>
+
+        <div className="animate-fade-in absolute end-20 top-0 md:end-8 md:top-0.5">
+          {children}
         </div>
       </div>
 

@@ -1,0 +1,641 @@
+/* The showreel is a 16:9 stage sized in container units (cqw), so the
+   composition scales like a video on any screen. This file only lays the
+   frame out; every move lives on the Web Animations timeline in
+   ShowreelPlayer. Colours are fixed: a reel looks the same in either theme. */
+
+.reel {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #020507;
+  color: #e5fff7;
+  overflow: hidden;
+}
+
+.reel[open] {
+  display: grid;
+  place-items: center;
+}
+
+.reel::backdrop {
+  background: #020507;
+}
+
+html:has(.reel[open]) {
+  overflow: hidden;
+}
+
+.reel-stage {
+  grid-area: 1 / 1;
+  position: relative;
+  width: min(100vw, 177.78dvh);
+  height: min(56.25vw, 100dvh);
+  overflow: hidden;
+  container-type: size;
+  background: #04090c;
+  isolation: isolate;
+}
+
+/* Nothing shows before the timeline starts except the waiting dot. */
+.reel[data-state="loading"] :is(.reel-shake > :not(.reel-dot), .reel-hud) {
+  visibility: hidden;
+}
+
+.reel[data-state="loading"] .reel-dot {
+  animation: reel-breathe 1.2s ease-in-out infinite;
+}
+
+@keyframes reel-breathe {
+  50% {
+    transform: scale(0.5);
+    opacity: 0.4;
+  }
+}
+
+.reel-cam,
+.reel-shake,
+.reel-center,
+.reel-a,
+.reel-d,
+.reel-shot,
+.reel-wall,
+.reel-flood,
+.reel-scrim,
+.reel-flash,
+.reel-vignette {
+  position: absolute;
+  inset: 0;
+}
+
+.reel-center,
+.reel-flood {
+  display: grid;
+  place-items: center;
+}
+
+.reel-center > *,
+.reel-flood > * {
+  grid-area: 1 / 1;
+}
+
+.reel-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.14em 0.04em;
+  margin: -0.14em -0.04em;
+}
+
+.reel-mask > span {
+  display: inline-block;
+  transform-origin: 0 0;
+}
+
+.reel-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgb(229 255 247 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(229 255 247 / 0.05) 1px, transparent 1px);
+  background-size: 5cqw 5cqw;
+}
+
+/* ── A: dot, line, name ─────────────────────────────────────────────────── */
+
+.reel-dot {
+  position: absolute;
+  left: calc(50% - 0.7cqw);
+  top: calc(50% - 0.7cqw);
+  width: 1.4cqw;
+  height: 1.4cqw;
+  border-radius: 50%;
+  background: #64ffda;
+  box-shadow:
+    0 0 1.5cqw #64ffda,
+    0 0 4cqw rgb(100 255 218 / 0.5);
+}
+
+.reel-line {
+  position: absolute;
+  left: 4cqw;
+  right: 4cqw;
+  top: calc(50% - 0.08cqw);
+  height: 0.16cqw;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #64ffda 20%,
+    #e5fff7 50%,
+    #64ffda 80%,
+    transparent
+  );
+}
+
+.reel-ring,
+.reel-burst {
+  position: absolute;
+  left: calc(50% - 10cqw);
+  top: calc(50% - 10cqw);
+  width: 20cqw;
+  height: 20cqw;
+  border-radius: 50%;
+  border: 0.18cqw solid #64ffda;
+}
+
+.reel-name {
+  font-size: 10cqw;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.reel-sub {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + 8.5cqw);
+  text-align: center;
+  font: 500 1.15cqw / 1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.7em;
+  padding-inline-start: 0.7em;
+  text-transform: uppercase;
+  color: #8fdcce;
+}
+
+/* ── B: design. build. ship. ────────────────────────────────────────────── */
+
+.reel-word {
+  font-size: 16cqw;
+  font-weight: 900;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.reel-outline {
+  color: transparent;
+  -webkit-text-stroke: 0.22cqw #64ffda;
+}
+
+.reel-word-wrap {
+  position: relative;
+}
+
+.reel-block {
+  position: absolute;
+  inset: 8% -3%;
+  background: #64ffda;
+}
+
+.reel-flood {
+  background: #64ffda;
+  color: #04090c;
+}
+
+/* ── C: one shot per project ────────────────────────────────────────────── */
+
+.reel-glow {
+  position: absolute;
+  inset-inline-end: -18cqw;
+  top: -12cqw;
+  width: 80cqw;
+  height: 80cqw;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--glow), transparent);
+}
+
+.reel-num {
+  position: absolute;
+  inset-inline-end: 3cqw;
+  bottom: -6cqw;
+  font-size: 30cqw;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 0.1cqw rgb(229 255 247 / 0.16);
+}
+
+.reel-media {
+  position: absolute;
+  inset-inline-end: 5cqw;
+  top: 12cqw;
+  width: 52cqw;
+  height: 32.5cqw;
+  perspective: 100cqw;
+}
+
+/* Phone covers are a transparent 16:9 canvas with the handset in the middle
+   two-thirds; oversize the box so the handset itself fills the frame. */
+.reel-media.reel-phone {
+  inset-inline-end: -36cqw;
+  top: -8cqw;
+  width: 128cqw;
+  height: 72cqw;
+}
+
+.reel-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 1cqw;
+  overflow: hidden;
+}
+
+.reel-phone .reel-card {
+  border-radius: 0;
+  overflow: visible;
+}
+
+.reel-strip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* The hairline frame rides on each strip, so sliced entries assemble it too. */
+.reel-media:not(.reel-phone) .reel-strip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1cqw;
+  box-shadow: inset 0 0 0 0.08cqw rgb(229 255 247 / 0.2);
+}
+
+.reel-strip img {
+  object-fit: cover;
+  object-position: top;
+}
+
+.reel-phone .reel-strip img {
+  object-fit: contain;
+}
+
+.reel-copy {
+  position: absolute;
+  inset-inline-start: 6cqw;
+  top: 50%;
+  width: 36cqw;
+  transform: translateY(-50%);
+}
+
+.reel-meta {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  font-size: 1.05cqw;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #64ffda;
+}
+
+.reel-meta::before {
+  content: "";
+  width: 3cqw;
+  height: 0.12cqw;
+  background: currentColor;
+}
+
+.reel-title {
+  margin-top: 1.4cqw;
+  font-size: 6.4cqw;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+html[lang="ar"] .reel-title {
+  line-height: 1.35;
+}
+
+.reel-tagline {
+  margin-top: 1.6cqw;
+  max-width: 30cqw;
+  font-size: 1.5cqw;
+  line-height: 1.55;
+  color: rgb(229 255 247 / 0.72);
+}
+
+.reel-streak {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 40cqw;
+  height: 0.3cqw;
+  background: linear-gradient(90deg, transparent, #64ffda, #e5fff7);
+}
+
+/* ── D: the wall ────────────────────────────────────────────────────────── */
+
+.reel-wall {
+  perspective: 90cqw;
+}
+
+.reel-plane {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 1.1cqw;
+  width: 150cqw;
+}
+
+.reel-tile {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 0.6cqw;
+  overflow: hidden;
+  background: #0b1418;
+  box-shadow: 0 0 0 0.06cqw rgb(229 255 247 / 0.15);
+}
+
+.reel-tile img {
+  object-fit: cover;
+  object-position: top;
+}
+
+.reel-scrim {
+  background: radial-gradient(
+    ellipse 45% 55% at 50% 50%,
+    rgb(4 9 12 / 0.94),
+    rgb(4 9 12 / 0.5) 60%,
+    transparent
+  );
+}
+
+.reel-count {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reel-count-n {
+  font-size: 20cqw;
+  font-weight: 700;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+
+.reel-count-l {
+  margin-top: 1.2cqw;
+  font-size: 1.4cqw;
+  letter-spacing: 0.6em;
+  padding-inline-start: 0.6em;
+  text-transform: uppercase;
+  color: #64ffda;
+}
+
+.reel-chips {
+  display: flex;
+  gap: 0.8cqw;
+  margin-top: 2.4cqw;
+}
+
+.reel-chip {
+  padding: 0.5cqw 1.2cqw;
+  border: 0.08cqw solid rgb(100 255 218 / 0.5);
+  border-radius: 99cqw;
+  background: rgb(4 9 12 / 0.7);
+  font-size: 1.2cqw;
+}
+
+/* ── E: the signature ───────────────────────────────────────────────────── */
+
+.reel-ray {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30cqw;
+  height: 0.14cqw;
+  margin-top: -0.07cqw;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #64ffda, transparent);
+}
+
+.reel-end {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2cqw;
+}
+
+.reel-logo svg {
+  display: block;
+  width: 44cqw;
+  height: auto;
+}
+
+.reel-role {
+  font: 500 1.2cqw / 1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.5em;
+  padding-inline-start: 0.5em;
+  text-transform: uppercase;
+  color: #8fdcce;
+}
+
+/* Tracking pulls Arabic's joined letters apart; space the words instead. */
+html[lang="ar"] :is(.reel-role, .reel-count-l, .reel-meta > :not(.ltr)) {
+  font-family: inherit;
+  letter-spacing: normal;
+  padding: 0;
+  word-spacing: 0.3em;
+}
+
+.reel-url {
+  position: relative;
+  padding-bottom: 0.5cqw;
+  font-size: 2cqw;
+  font-weight: 600;
+  color: #64ffda;
+}
+
+.reel-url-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.12cqw;
+  background: currentColor;
+  transform-origin: 0 50%;
+}
+
+/* ── Frame: HUD, flash, grain ───────────────────────────────────────────── */
+
+.reel-hud {
+  position: absolute;
+  inset: 2.6cqw;
+  font: 500 0.85cqw / 1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgb(229 255 247 / 0.55);
+}
+
+.reel-corner {
+  position: absolute;
+  width: 1.8cqw;
+  height: 1.8cqw;
+  border: 0 solid rgb(229 255 247 / 0.45);
+}
+
+.reel-corner:nth-child(1) {
+  top: 0;
+  left: 0;
+  border-width: 0.1cqw 0 0 0.1cqw;
+}
+
+.reel-corner:nth-child(2) {
+  top: 0;
+  right: 0;
+  border-width: 0.1cqw 0.1cqw 0 0;
+}
+
+.reel-corner:nth-child(3) {
+  bottom: 0;
+  left: 0;
+  border-width: 0 0 0.1cqw 0.1cqw;
+}
+
+.reel-corner:nth-child(4) {
+  bottom: 0;
+  right: 0;
+  border-width: 0 0.1cqw 0.1cqw 0;
+}
+
+.reel-rec,
+.reel-tc {
+  position: absolute;
+  top: 0.5cqw;
+  display: flex;
+  align-items: center;
+  gap: 0.6cqw;
+}
+
+.reel-rec {
+  left: 3cqw;
+}
+
+.reel-rec::before {
+  content: "";
+  width: 0.6cqw;
+  height: 0.6cqw;
+  border-radius: 50%;
+  background: #ff4d6d;
+  animation: reel-blink 1s steps(1) infinite;
+}
+
+@keyframes reel-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.reel-tc {
+  right: 3cqw;
+  font-variant-numeric: tabular-nums;
+}
+
+.reel-bar {
+  position: absolute;
+  left: 3cqw;
+  right: 3cqw;
+  bottom: 0.4cqw;
+  height: 0.08cqw;
+  background: rgb(229 255 247 / 0.15);
+}
+
+.reel-bar > i {
+  position: absolute;
+  inset: 0;
+  background: #64ffda;
+  transform-origin: 0 50%;
+}
+
+.reel-flash {
+  background: #e5fff7;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reel-grain {
+  position: absolute;
+  inset: -50%;
+  background-size: 16cqw;
+  opacity: 0.07;
+  pointer-events: none;
+  animation: reel-grain 0.5s steps(1) infinite;
+}
+
+@keyframes reel-grain {
+  20% {
+    transform: translate(-6%, 4%);
+  }
+  40% {
+    transform: translate(5%, -7%);
+  }
+  60% {
+    transform: translate(-3%, 8%);
+  }
+  80% {
+    transform: translate(7%, 2%);
+  }
+}
+
+.reel-vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.6));
+  pointer-events: none;
+}
+
+/* ── Controls ───────────────────────────────────────────────────────────── */
+
+.reel-btn {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgb(229 255 247 / 0.2);
+  border-radius: 999px;
+  background: rgb(229 255 247 / 0.08);
+  color: #e5fff7;
+  backdrop-filter: blur(8px);
+  transition: background 0.3s;
+}
+
+.reel-btn:hover {
+  background: rgb(229 255 247 / 0.18);
+}
+
+.reel-btn:focus-visible {
+  outline: 2px solid #64ffda;
+  outline-offset: 3px;
+}
+
+.reel-close {
+  position: fixed;
+  top: 1rem;
+  inset-inline-end: 1rem;
+  z-index: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.reel-replay {
+  grid-area: 1 / 1;
+  z-index: 1;
+  display: none;
+  gap: 0.75rem;
+  grid-auto-flow: column;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.reel[data-state="ended"] .reel-replay {
+  display: grid;
+}

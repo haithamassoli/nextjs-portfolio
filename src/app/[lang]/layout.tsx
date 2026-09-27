@@ -8,9 +8,23 @@ import { twMerge } from "tailwind-merge";
 import "../globals.css";
 import { Header } from "@/sections/Header";
 import SiteIntro from "@/components/SiteIntro";
+import Showreel from "@/components/Showreel";
+import { projects } from "@/content";
 import { themeScript } from "@/libs/theme";
 import { SITE, dirOf, isLocale, locales, type Locale } from "@/libs/i18n";
 import { useT } from "@/libs/ui";
+
+/** The projects the showreel cuts between, in order. */
+const REEL = [
+  "aoun",
+  "malabji",
+  "gift",
+  "pastehtml",
+  "eecommittee",
+  "azkari",
+  "rooh-al-jouf",
+  "hijabk",
+];
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -119,7 +133,22 @@ export default async function RootLayout({
       >
         <MotionConfig reducedMotion="user">
           <SiteIntro lang={locale} />
-          <Header lang={locale} />
+          <Header lang={locale}>
+            <Showreel
+              lang={locale}
+              shots={projects
+                .filter((p) => REEL.includes(p.slug))
+                .sort((a, b) => REEL.indexOf(a.slug) - REEL.indexOf(b.slug))
+                .map((p) => ({
+                  title: p.title[locale],
+                  tagline: p.tagline[locale],
+                  category: p.category,
+                  year: p.year,
+                  cover: p.cover,
+                }))}
+              covers={projects.map((p) => p.cover)}
+            />
+          </Header>
           <div id="content" className="duration-1000">
             {children}
           </div>
