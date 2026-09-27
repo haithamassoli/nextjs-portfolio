@@ -6,6 +6,7 @@ import { Fragment, useEffect, useRef, useState, type CSSProperties } from "react
 import LogoIcon from "@/assets/icons/logo.svg";
 import grain from "@/assets/images/grain.jpg";
 import type { Locale } from "@/libs/i18n";
+import { createSfx, rnd, sym } from "@/libs/sfx";
 import { useT, type UIKey } from "@/libs/ui";
 import "./showreel.css";
 
@@ -34,13 +35,6 @@ const WEB_IN = ["wipe", "flip", "slices", "zoom", "doors"];
 const PHONE_IN = ["rise", "iris", "swing"];
 const COLS = 9;
 const ROWS = 5;
-
-/** Seeded noise: every replay jitters the same way. */
-const rnd = (n: number) => {
-  const x = Math.sin(n * 91.345) * 43758.5453;
-  return x - Math.floor(x);
-};
-const sym = (n: number) => rnd(n) * 2 - 1;
 
 const timecode = (s: number) => {
   const f = Math.floor(s * 25);
@@ -468,7 +462,7 @@ function play(
     ".reel-name .reel-mask > span",
     0.8,
     0.9,
-    { transform: ["translateY(70%) scale(0.8)", "none"], filter: ["blur(0.6cqw)", "blur(0)"] },
+    { transform: ["translateY(70%) scale(0.8)", "none"] },
     EXPO_OUT,
     0.025,
   );
@@ -482,7 +476,6 @@ function play(
 
   at(".reel-a", 1.95, 0.4, {
     transform: ["none", "scale(7)"],
-    filter: ["blur(0)", "blur(1.5cqw)"],
     opacity: [1, 0],
   }, EXPO_IN);
   sfx.whoosh(T + 1.85, 0.5, 200, 5000, 0, 0, 0.55);
@@ -491,7 +484,6 @@ function play(
   at(".reel-design", 2.3, 0.5, (i) => ({
     transform: [`scale(${2.6 + i * 0.6})`, `scale(${1 + i * 0.1})`],
     opacity: [0, i ? 0.4 - i * 0.12 : 1],
-    filter: ["blur(1cqw)", "blur(0)"],
   }), EXPO_OUT, 0.05);
   sfx.impact(T + 2.36, 0.9);
   shake(2.36, 1);
@@ -535,10 +527,10 @@ function play(
 
   // ── C: one shot per project ───────────────────────────────────────────
   at(".reel-grid", SHOTS_AT, W - SHOTS_AT, [
-    { opacity: 0, backgroundPosition: "0 0" },
+    { opacity: 0, transform: "none" },
     { opacity: 1, offset: 0.05 },
     { opacity: 1, offset: 0.95 },
-    { opacity: 0, backgroundPosition: "-30cqw 0" },
+    { opacity: 0, transform: "translateX(-30cqw)" },
   ], "linear");
 
   q(".reel-shot").forEach((shot, n) => {
@@ -570,7 +562,6 @@ function play(
     at($(".reel-tagline"), s + 0.3, 0.6, {
       opacity: [0, 1],
       transform: ["translateY(1.2cqw)", "none"],
-      filter: ["blur(0.4cqw)", "blur(0)"],
     });
     sfx.tick(T + s + 0.1, 2400, 0.22);
     sfx.pop(T + s + 0.15, 0.4);
@@ -598,7 +589,6 @@ function play(
       case "zoom":
         at(card, s, 0.75, {
           transform: ["scale(0.15) rotate(-12deg)", "none"],
-          filter: ["blur(1cqw)", "blur(0)"],
           opacity: [0, 1],
         }, "cubic-bezier(0.2, 1.25, 0.3, 1)");
         sfx.bwup(T + s);
@@ -641,7 +631,6 @@ function play(
     at($(".reel-media"), out, 0.35, {
       transform: ["none", `translateX(${n % 2 ? 12 : -12}cqw) scale(0.9)`],
       opacity: [1, 0],
-      filter: ["blur(0)", "blur(0.8cqw)"],
     }, EXPO_IN);
   });
 
@@ -691,7 +680,6 @@ function play(
   at(".reel-d", X, 0.4, {
     transform: ["none", "scale(4)"],
     opacity: [1, 0],
-    filter: ["blur(0)", "blur(1cqw)"],
   }, EXPO_IN);
   sfx.whoosh(T + X - 0.05, 0.45, 200, 5000, 0, 0, 0.5);
 
@@ -724,7 +712,6 @@ function play(
   at(".reel-logo", B + 0.05, 0.9, {
     clipPath: ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
     transform: ["scale(1.15)", "none"],
-    filter: ["blur(1cqw)", "blur(0)"],
   });
   const role = q(".reel-role .reel-mask > span");
   at(role, B + 0.7, 0.05, { opacity: [0, 1] }, "linear", 0.03);
@@ -733,23 +720,29 @@ function play(
   at(".reel-url-line", B + 1.4, 0.7, { transform: ["scaleX(0)", "none"] }, EXPO_IN_OUT);
   sfx.pop(T + B + 1.3, 0.5);
 
-  // Old-TV power-off: squeeze to a line, then to nothing.
+  // Old-TV power-off: squeeze to a line, then to nothing. The flash rides
+  // inside the camera, so it lights the line up without a filter.
   at(".reel-cam", Z, 0.5, [
-    { transform: "none", filter: "brightness(1)", easing: EXPO_IN },
-    { transform: "scale(1, 0.006)", filter: "brightness(3)", offset: 0.5, easing: EXPO_IN_OUT },
-    { transform: "scale(0, 0.006)", filter: "brightness(3)" },
+    { transform: "none", easing: EXPO_IN },
+    { transform: "scale(1, 0.006)", offset: 0.5, easing: EXPO_IN_OUT },
+    { transform: "scale(0, 0.006)" },
   ], "linear");
+  at(".reel-flash", Z, 0.5, { opacity: [0, 0.8, 0.8], offset: [0, 0.5, 1] }, EXPO_IN);
   sfx.off(T + Z);
 
-  // Timecode and the project counter are text, so they tick per frame.
+  // Timecode and the project counter are text, so they tick per frame. Only
+  // real changes touch the DOM: each write costs a style and layout pass.
   const [tc] = q(".reel-tc");
   const [counter] = q(".reel-count-n");
+  const write = (el: HTMLElement, text: string) => {
+    if (el.textContent !== text) el.textContent = text;
+  };
   let raf = requestAnimationFrame(function frame(now) {
     const s = Math.max(0, (now - begin) / 1000);
     const k = Math.min(1, Math.max(0, (s - C) / COUNT_LEN));
-    tc.textContent = timecode(Math.min(s, END));
-    counter.textContent = String(Math.round(total * (1 - (1 - k) ** 3))).padStart(2, "0");
-    raf = requestAnimationFrame(frame);
+    write(tc, timecode(Math.min(s, END)));
+    write(counter, String(Math.round(total * (1 - (1 - k) ** 3))).padStart(2, "0"));
+    if (s < END) raf = requestAnimationFrame(frame);
   });
   const timer = setTimeout(onEnd, offset + END * 1000);
 
@@ -758,136 +751,5 @@ function play(
     cancelAnimationFrame(raf);
     clearTimeout(timer);
     sfx.bus.disconnect();
-  };
-}
-
-type Mix = { attack?: number; pan?: number; pan1?: number; wet?: number };
-
-/**
- * Every sound is synthesised: breath-like noise sweeps, lip pops, tongue
- * clicks and thumps. No music, no audio files.
- */
-function createSfx(ctx: AudioContext) {
-  const rate = ctx.sampleRate;
-  const bus = ctx.createGain();
-  bus.gain.value = 0.9;
-  bus.connect(ctx.createDynamicsCompressor()).connect(ctx.destination);
-
-  // A small room: two seconds of decaying noise as the reverb impulse.
-  const verb = ctx.createConvolver();
-  const ir = ctx.createBuffer(2, rate * 2, rate);
-  for (let c = 0; c < 2; c++) {
-    const d = ir.getChannelData(c);
-    for (let i = 0; i < d.length; i++) {
-      d[i] = (Math.random() * 2 - 1) * (1 - i / d.length) ** 4;
-    }
-  }
-  verb.buffer = ir;
-  verb.connect(bus);
-
-  const noise = ctx.createBuffer(1, rate, rate);
-  const n = noise.getChannelData(0);
-  for (let i = 0; i < n.length; i++) n[i] = Math.random() * 2 - 1;
-
-  const voice = (t: number, dur: number, peak: number, mix: Mix = {}) => {
-    const { attack = 0.004, pan = 0, pan1 = pan, wet = 0.15 } = mix;
-    const g = ctx.createGain();
-    const p = ctx.createStereoPanner();
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(peak, t + attack);
-    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    p.pan.setValueAtTime(pan, t);
-    p.pan.linearRampToValueAtTime(pan1, t + dur);
-    g.connect(p).connect(bus);
-    if (wet) {
-      const w = ctx.createGain();
-      w.gain.value = wet;
-      p.connect(w).connect(verb);
-    }
-    return g;
-  };
-
-  const tone = (
-    t: number,
-    dur: number,
-    f0: number,
-    f1: number,
-    peak: number,
-    type: OscillatorType = "sine",
-    mix?: Mix,
-  ) => {
-    const o = ctx.createOscillator();
-    o.type = type;
-    o.frequency.setValueAtTime(f0, t);
-    o.frequency.exponentialRampToValueAtTime(f1, t + dur);
-    o.connect(voice(t, dur, peak, mix));
-    o.start(t);
-    o.stop(t + dur + 0.05);
-  };
-
-  const hiss = (
-    t: number,
-    dur: number,
-    type: BiquadFilterType,
-    f0: number,
-    f1: number,
-    q: number,
-    peak: number,
-    mix?: Mix,
-  ) => {
-    const src = ctx.createBufferSource();
-    const f = ctx.createBiquadFilter();
-    src.buffer = noise;
-    src.loop = true;
-    f.type = type;
-    f.Q.value = q;
-    f.frequency.setValueAtTime(f0, t);
-    f.frequency.exponentialRampToValueAtTime(f1, t + dur);
-    src.connect(f).connect(voice(t, dur, peak, mix));
-    src.start(t, Math.random());
-    src.stop(t + dur + 0.05);
-  };
-
-  return {
-    bus,
-    /** Lips: a pop that falls in pitch. */
-    pop: (t: number, v = 0.5) => {
-      tone(t, 0.09, 1000, 180, v);
-      hiss(t, 0.02, "highpass", 3000, 3000, 0.7, v * 0.25);
-    },
-    /** Tongue click. */
-    tick: (t: number, f = 2600, v = 0.2) =>
-      hiss(t, 0.03, "bandpass", f, f * 0.8, 5, v, { wet: 0.05 }),
-    /** Breath through a sweeping band: swells, then cuts. */
-    whoosh: (t: number, dur: number, f0: number, f1: number, pan = -0.6, pan1 = 0.6, v = 0.45) =>
-      hiss(t, dur, "bandpass", f0, f1, 1.2, v, { attack: dur * 0.6, pan, pan1, wet: 0.2 }),
-    swish: (t: number) =>
-      hiss(t, 0.16, "highpass", 2500, 6000, 0.7, 0.25, { attack: 0.08, pan: 0.5, pan1: -0.5 }),
-    impact: (t: number, v = 1) => {
-      tone(t, 0.7, 130, 38, v, "sine", { wet: 0.3 });
-      tone(t, 0.12, 300, 80, v * 0.35, "triangle");
-      hiss(t, 0.25, "lowpass", 3000, 200, 0.7, v * 0.5, { wet: 0.4 });
-    },
-    thump: (t: number) => tone(t, 0.3, 160, 50, 0.6),
-    sub: (t: number) => tone(t, 1.8, 70, 28, 0.8, "sine", { wet: 0 }),
-    /** A "bwup" up-glide, like a beatboxer's lip bend. */
-    bwup: (t: number) => tone(t, 0.16, 160, 720, 0.35),
-    glitch: (t: number, dur: number) => {
-      for (let i = 0; i < 12; i++) {
-        const f = 90 + rnd(i) * 1800;
-        tone(t + (i * dur) / 12, dur / 14, f, f, 0.12, "square", { wet: 0 });
-      }
-    },
-    shimmer: (t: number) => {
-      for (let i = 0; i < 10; i++) {
-        const f = 2400 + rnd(i + 20) * 3600;
-        tone(t + i * 0.035, 0.35, f, f * 1.02, 0.05, "sine", { pan: sym(i), wet: 0.8 });
-      }
-    },
-    /** Power-off: a falling whine and a final click. */
-    off: (t: number) => {
-      tone(t, 0.5, 1400, 45, 0.35);
-      hiss(t + 0.45, 0.03, "highpass", 2000, 2000, 0.7, 0.3);
-    },
   };
 }
