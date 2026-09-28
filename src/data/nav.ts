@@ -16,5 +16,6 @@ export const navLinks = (lang: Locale): NavLink[] => [
   { href: href(lang, "projects"), key: "nav.work" },
   { href: `${href(lang)}#about`, key: "nav.about" },
   { href: `${href(lang)}#contact`, key: "nav.contact" },
+  { href: href(lang, "reel"), key: "nav.reel" },
   { href: "https://cv.assoli.site", key: "nav.cv", external: true },
 ];

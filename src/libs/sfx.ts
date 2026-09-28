@@ -5,6 +5,9 @@ export const rnd = (n: number) => {
 };
 export const sym = (n: number) => rnd(n) * 2 - 1;
 
+/** MIDI note number to Hz. */
+const hz = (m: number) => 440 * 2 ** ((m - 69) / 12);
+
 type Mix = { attack?: number; pan?: number; pan1?: number; wet?: number };
 
 /**
@@ -92,6 +95,26 @@ export function createSfx(ctx: AudioContext) {
     src.stop(t + dur + 0.05);
   };
 
+  /** An oscillator through a lowpass: the pitched instruments of the reel's score. */
+  const synth = (
+    t: number,
+    dur: number,
+    f: number,
+    type: OscillatorType,
+    peak: number,
+    cutoff: number,
+    mix?: Mix,
+  ) => {
+    const o = ctx.createOscillator();
+    const lp = ctx.createBiquadFilter();
+    o.type = type;
+    o.frequency.value = f;
+    lp.frequency.value = cutoff;
+    o.connect(lp).connect(voice(t, dur, peak, mix));
+    o.start(t);
+    o.stop(t + dur + 0.05);
+  };
+
   return {
     bus,
     /** Lips: a pop that falls in pitch. */
@@ -133,5 +156,40 @@ export function createSfx(ctx: AudioContext) {
       tone(t, 0.5, 1400, 45, 0.35);
       hiss(t + 0.45, 0.03, "highpass", 2000, 2000, 0.7, 0.3);
     },
+
+    // A small drum machine and two synths, for scores rather than effects.
+    kick: (t: number, v = 0.9) => {
+      tone(t, 0.32, 150, 42, v, "sine", { wet: 0 });
+      hiss(t, 0.012, "highpass", 3000, 3000, 0.7, v * 0.2, { wet: 0 });
+    },
+    hat: (t: number, v = 0.07) =>
+      hiss(t, 0.045, "highpass", 7500, 7500, 0.7, v, { wet: 0.05 }),
+    clap: (t: number, v = 0.4) => {
+      hiss(t, 0.16, "bandpass", 1400, 1100, 0.9, v, { wet: 0.35 });
+      tone(t, 0.06, 220, 160, v * 0.4, "triangle", { wet: 0 });
+    },
+    crash: (t: number, v = 0.16) =>
+      hiss(t, 1.6, "highpass", 6000, 4000, 0.5, v, { wet: 0.5 }),
+    /** Noise that climbs and swells into a downbeat. */
+    riser: (t: number, dur: number, v = 0.3) =>
+      hiss(t, dur, "bandpass", 300, 7000, 2, v, { attack: dur * 0.95, wet: 0.3 }),
+    bass: (t: number, note: number, dur = 0.22, v = 0.3) => {
+      synth(t, dur, hz(note), "sawtooth", v, 520, { wet: 0 });
+      tone(t, dur, hz(note), hz(note), v * 0.8, "sine", { wet: 0 });
+    },
+    /** Detuned saws per note, swelling in and fading across `dur`. */
+    pad: (t: number, notes: number[], dur: number, v = 0.035, cutoff = 1400) =>
+      notes.forEach((note, i) =>
+        [-8, 8].forEach((cents) =>
+          synth(t, dur, hz(note) * 2 ** (cents / 1200), "sawtooth", v, cutoff, {
+            attack: dur * 0.3,
+            pan: cents > 0 ? 0.4 - i * 0.2 : i * 0.2 - 0.4,
+            wet: 0.5,
+          }),
+        ),
+      ),
+    /** A struck sine: a bell, a marimba, a bouncing ball. */
+    note: (t: number, note: number, v = 0.2, dur = 0.6) =>
+      tone(t, dur, hz(note), hz(note), v, "sine", { attack: 0.005, wet: 0.5 }),
   };
 }

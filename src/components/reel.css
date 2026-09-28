@@ -1,0 +1,1073 @@
+/* The reel page's player. The stage is 16:9 and sized in container units
+   (cqw), so the composition scales like video at any size, full screen
+   included. This file only lays frames out; every move is on the Web
+   Animations timeline in ReelPlayer. Colours are fixed: a reel looks the same
+   in either theme. */
+
+.rl-player {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #04090c;
+  color: #e5fff7;
+  box-shadow:
+    0 0 0 1px rgb(229 255 247 / 0.1),
+    0 40px 100px -30px rgb(0 0 0 / 0.7);
+}
+
+.rl-player:fullscreen {
+  display: grid;
+  place-items: center;
+  border-radius: 0;
+  background: #000;
+}
+
+.rl-view {
+  position: relative;
+}
+
+.rl-player:fullscreen .rl-view {
+  width: min(100vw, 177.78vh);
+}
+
+.rl-stage {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  container-type: inline-size;
+  background: #04090c;
+  isolation: isolate;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.rl-cam,
+.rl-shake,
+.rl-scene,
+.rl-dotfill,
+.rl-scrim,
+.rl-flash,
+.rl-vignette,
+.rl-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+/* Hidden until the timeline opens each scene's window. */
+.rl-scene {
+  visibility: hidden;
+}
+
+.rl-w {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.rl-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.14em 0.04em;
+  margin: -0.14em -0.04em;
+}
+
+.rl-mask > span {
+  display: inline-block;
+}
+
+.rl-bx,
+.rl-bx > div,
+.rl-ball {
+  position: absolute;
+}
+
+.rl-bx > div,
+.rl-ball {
+  inset: 0;
+}
+
+.rl-ball {
+  border-radius: 50%;
+  background: #64ffda;
+  transform-origin: 50% 100%;
+}
+
+/* ── Intro ──────────────────────────────────────────────────────────────── */
+
+.rl-floor {
+  position: absolute;
+  left: 20cqw;
+  right: 20cqw;
+  top: 33.92cqw;
+  height: 0.16cqw;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #64ffda 15%,
+    #e5fff7 50%,
+    #64ffda 85%,
+    transparent
+  );
+}
+
+/* Its bottom edge is the floor, and it clips there: the name rises out of the line. */
+.rl-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22.25cqw;
+  text-align: center;
+  font-size: 8cqw;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+  clip-path: inset(-50% -10% 0 -10%);
+}
+
+.rl-sub {
+  position: absolute;
+  left: 50%;
+  top: 36.2cqw;
+  translate: -50% 0;
+  white-space: nowrap;
+  font: 500 1.05cqw / 1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.6em;
+  padding-inline-start: 0.6em;
+  text-transform: uppercase;
+  color: #8fdcce;
+}
+
+.rl-intro .rl-bx {
+  left: 48.8cqw;
+  top: 31.6cqw;
+  width: 2.4cqw;
+  height: 2.4cqw;
+}
+
+.rl-intro .rl-ball {
+  box-shadow: 0 0 1.5cqw rgb(100 255 218 / 0.6);
+}
+
+.rl-burst {
+  position: absolute;
+  left: 40cqw;
+  top: 24cqw;
+  width: 20cqw;
+  height: 20cqw;
+  border-radius: 50%;
+  border: 0.18cqw solid #64ffda;
+}
+
+.rl-dotfill {
+  background: #64ffda;
+}
+
+/* ── Manifesto ──────────────────────────────────────────────────────────── */
+
+.rl-word {
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.rl-word > * {
+  grid-area: 1 / 1;
+}
+
+.rl-big {
+  font-size: 15cqw;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.rl-outline {
+  color: transparent;
+  -webkit-text-stroke: 0.2cqw #64ffda;
+}
+
+.rl-typed {
+  position: relative;
+  font: 700 13cqw / 1.1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: nowrap;
+}
+
+.rl-caret {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 12%;
+  bottom: 12%;
+  width: 0.55em;
+  background: currentColor;
+}
+
+/* ── Project shots ──────────────────────────────────────────────────────── */
+
+.rl-shot {
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.rl-back {
+  position: absolute;
+  left: -30cqw;
+  right: -30cqw;
+  top: 50%;
+  translate: 0 -50%;
+  text-align: center;
+  font-size: 22cqw;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 0.1cqw color-mix(in srgb, var(--ink) 16%, transparent);
+}
+
+.rl-copy {
+  position: absolute;
+  inset-inline-start: 7cqw;
+  top: 50%;
+  translate: 0 -50%;
+  width: 32cqw;
+}
+
+.rl-meta {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  font: 500 0.95cqw / 1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.rl-meta::before {
+  content: "";
+  width: 3cqw;
+  height: 0.12cqw;
+  background: currentColor;
+}
+
+.rl-title {
+  margin-top: 1.4cqw;
+  font-size: 5.2cqw;
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.rl-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7cqw;
+  margin-top: 2cqw;
+}
+
+.rl-chip {
+  padding: 0.45cqw 1cqw;
+  border: 0.08cqw solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-radius: 99cqw;
+  font-size: 1cqw;
+  white-space: nowrap;
+}
+
+.rl-media {
+  position: absolute;
+  inset-inline-end: 6cqw;
+  top: 12.5cqw;
+  width: 50cqw;
+  height: 31.25cqw;
+}
+
+.rl-media img {
+  object-fit: cover;
+  object-position: top;
+}
+
+/* A browser window whose frame draws itself. */
+.rl-browser {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1.1cqw;
+  bottom: -1.1cqw;
+}
+
+.rl-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2.2cqw;
+  display: flex;
+  align-items: center;
+  gap: 0.55cqw;
+  padding: 0 1.1cqw;
+  background: color-mix(in srgb, var(--ink) 12%, var(--bg));
+  transform-origin: 50% 0;
+}
+
+.rl-bar > i {
+  width: 0.75cqw;
+  height: 0.75cqw;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.rl-bar > i:nth-child(2) {
+  background: #febc2e;
+}
+
+.rl-bar > i:nth-child(3) {
+  background: #28c840;
+}
+
+.rl-screen {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2.2cqw;
+  bottom: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.rl-edges {
+  position: absolute;
+  inset: 0;
+}
+
+.rl-edges > i {
+  position: absolute;
+  background: var(--accent);
+}
+
+/* Top and left grow from the top-left corner, right and bottom meet them
+   at the bottom-right. */
+.rl-edges > i:nth-child(1),
+.rl-edges > i:nth-child(4) {
+  left: 0;
+  right: 0;
+  height: 0.12cqw;
+  transform-origin: 0 50%;
+}
+
+.rl-edges > i:nth-child(2),
+.rl-edges > i:nth-child(3) {
+  top: 0;
+  bottom: 0;
+  width: 0.12cqw;
+  transform-origin: 50% 0;
+}
+
+.rl-edges > i:nth-child(1) {
+  top: 0;
+}
+
+.rl-edges > i:nth-child(2) {
+  left: 0;
+}
+
+.rl-edges > i:nth-child(3) {
+  right: 0;
+}
+
+.rl-edges > i:nth-child(4) {
+  bottom: 0;
+}
+
+/* Phone shots are a 16:9 canvas with the handset in its middle 67%; the
+   box is the handset, the image overflows it. */
+.rl-ph {
+  position: relative;
+  height: 38cqw;
+  aspect-ratio: 0.455;
+  transform-origin: 50% 90%;
+}
+
+.rl-ph > div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 148.2%;
+  aspect-ratio: 16 / 9;
+  translate: -50% -50%;
+}
+
+.rl-media .rl-ph img {
+  object-fit: contain;
+}
+
+.rl-fan .rl-ph,
+.rl-solo .rl-ph {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+
+.rl-solo .rl-ph {
+  height: 42cqw;
+}
+
+.rl-cols {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4cqw;
+}
+
+/* Screens run left to right in either language: the scan line and the
+   converge into the next shot's iris count on that order. */
+html[dir="rtl"] .rl-cols {
+  flex-direction: row-reverse;
+}
+
+.rl-cols .rl-ph {
+  flex: none;
+  height: 27cqw;
+}
+
+.rl-tint {
+  position: absolute;
+  inset: 1% 3%;
+  border-radius: 2cqw;
+  background: var(--accent);
+  opacity: 0;
+}
+
+.rl-scan {
+  position: absolute;
+  top: -4cqw;
+  bottom: -4cqw;
+  left: 0;
+  width: 0.2cqw;
+  background: var(--accent);
+  box-shadow:
+    0 0 1.5cqw var(--accent),
+    0 0 4cqw var(--accent);
+}
+
+.rl-slice {
+  position: absolute;
+  inset: 0;
+}
+
+/* Code that renders into a page. */
+.rl-code {
+  position: absolute;
+  left: -3cqw;
+  top: -1cqw;
+  z-index: 1;
+  margin: 0;
+  padding: 1.4cqw 1.8cqw;
+  border-radius: 0.8cqw;
+  background: #151515;
+  color: #f5f5f5;
+  font: 500 1.3cqw / 1.9 ui-monospace, SFMono-Regular, Menlo, monospace;
+  box-shadow: 0.6cqw 0.6cqw 0 var(--accent);
+}
+
+.rl-line {
+  display: block;
+  width: max-content;
+  white-space: pre;
+}
+
+.rl-line b {
+  font-weight: 500;
+  color: #ffd43b;
+}
+
+.rl-line em {
+  font-style: normal;
+  color: #6ee7a0;
+}
+
+.rl-paste {
+  position: absolute;
+  right: -1cqw;
+  bottom: -3cqw;
+  width: 38cqw;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 0.25cqw solid #151515;
+  border-radius: 0.6cqw;
+  background: #fff;
+  box-shadow: 1cqw 1cqw 0 #151515;
+}
+
+.rl-sticker {
+  position: absolute;
+  right: -3cqw;
+  top: 5cqw;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 9cqw;
+  height: 9cqw;
+  background: var(--accent);
+  color: #fff;
+  font: 800 1.6cqw / 1 ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0.1em;
+  clip-path: polygon(
+    100% 50%, 89.6% 60.6%, 93.3% 75%, 79% 79%, 75% 93.3%, 60.6% 89.6%,
+    50% 100%, 39.4% 89.6%, 25% 93.3%, 21% 79%, 6.7% 75%, 10.4% 60.6%,
+    0% 50%, 10.4% 39.4%, 6.7% 25%, 21% 21%, 25% 6.7%, 39.4% 10.4%,
+    50% 0%, 60.6% 10.4%, 75% 6.7%, 79% 21%, 93.3% 25%, 89.6% 39.4%
+  );
+}
+
+/* A card flying out of a receding floor. */
+.rl-shot[data-fx="depth"] {
+  perspective: 60cqw;
+  perspective-origin: 50% 30%;
+}
+
+.rl-floor3d {
+  position: absolute;
+  left: -60cqw;
+  right: -60cqw;
+  top: 36cqw;
+  height: 50cqw;
+  overflow: hidden;
+  transform: rotateX(70deg);
+  transform-origin: 50% 0;
+  -webkit-mask-image: linear-gradient(transparent, #000 25%, #000 60%, transparent);
+  mask-image: linear-gradient(transparent, #000 25%, #000 60%, transparent);
+}
+
+/* Taller than the floor by the distance it scrolls, a whole number of cells. */
+.rl-grid3d {
+  position: absolute;
+  inset: -16cqw 0 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--accent) 45%, transparent) 0.15cqw, transparent 0.15cqw),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 45%, transparent) 0.15cqw, transparent 0.15cqw);
+  background-size: 8cqw 8cqw;
+}
+
+.rl-persp {
+  perspective: 90cqw;
+}
+
+.rl-card3d,
+.rl-mac {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 1cqw;
+  box-shadow:
+    0 0 0 0.08cqw rgb(255 255 255 / 0.18),
+    0 4cqw 8cqw -2cqw rgb(0 0 0 / 0.8);
+}
+
+.rl-glare {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.3), transparent);
+}
+
+.rl-pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 36cqw;
+  height: 36cqw;
+  margin: -18cqw;
+  border-radius: 50%;
+  border: 0.15cqw solid var(--accent);
+}
+
+.rl-orb {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.rl-orb:nth-child(1) {
+  left: 6cqw;
+  top: -3cqw;
+  width: 20cqw;
+  height: 20cqw;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.rl-orb:nth-child(2) {
+  right: 9cqw;
+  top: 3cqw;
+  width: 3.2cqw;
+  height: 3.2cqw;
+  background: var(--accent);
+}
+
+.rl-orb:nth-child(3) {
+  right: 5cqw;
+  bottom: -1cqw;
+  width: 9cqw;
+  height: 9cqw;
+  border: 0.2cqw solid var(--accent);
+}
+
+.rl-streaks > i {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 50cqw;
+  height: 0.25cqw;
+  background: linear-gradient(90deg, #e5fff7, transparent);
+}
+
+/* ── Everything: two rings ──────────────────────────────────────────────── */
+
+.rl-wall {
+  perspective: 70cqw;
+  background: radial-gradient(ellipse at 50% 60%, #0b1a20, #04090c 70%);
+}
+
+.rl-rig,
+.rl-ring {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+.rl-rig {
+  left: 50%;
+  top: 50%;
+}
+
+.rl-tile {
+  position: absolute;
+  left: -7.5cqw;
+  top: -4.6875cqw;
+  width: 15cqw;
+  height: 9.375cqw;
+  transform: rotateY(calc(var(--i) * 30deg)) translateZ(30cqw);
+}
+
+.rl-tile > div {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 0.6cqw;
+  background: #0b1418;
+  box-shadow: 0 0 0 0.06cqw rgb(229 255 247 / 0.2);
+}
+
+.rl-tile img {
+  object-fit: cover;
+}
+
+.rl-scrim {
+  background: radial-gradient(
+    ellipse 32% 40% at 50% 50%,
+    rgb(4 9 12 / 0.92),
+    rgb(4 9 12 / 0.45) 65%,
+    transparent
+  );
+}
+
+.rl-count {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rl-count-n {
+  font-size: 15cqw;
+  font-weight: 700;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+
+.rl-count-l {
+  margin-top: 1.2cqw;
+  font: 500 1.2cqw / 1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.6em;
+  padding-inline-start: 0.6em;
+  text-transform: uppercase;
+  color: #64ffda;
+}
+
+.rl-cats {
+  display: flex;
+  gap: 0.7cqw;
+  margin-top: 2.2cqw;
+}
+
+.rl-cat {
+  padding: 0.45cqw 1.1cqw;
+  border: 0.08cqw solid rgb(100 255 218 / 0.5);
+  border-radius: 99cqw;
+  background: rgb(4 9 12 / 0.7);
+  font-size: 1.1cqw;
+}
+
+/* ── Sign-off ───────────────────────────────────────────────────────────── */
+
+.rl-rays {
+  position: absolute;
+  left: 50%;
+  top: 24.7cqw;
+}
+
+.rl-rays > i {
+  position: absolute;
+  left: 0;
+  top: -0.07cqw;
+  width: 30cqw;
+  height: 0.14cqw;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #64ffda, transparent);
+}
+
+/* Place and size match LOGO_* in ReelPlayer, which aims the iris at the dot. */
+.rl-logo {
+  position: absolute;
+  left: 26cqw;
+  top: 19cqw;
+  width: 48cqw;
+}
+
+.rl-logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Stroke width is in the logo's own units: ~0.17cqw at this size. */
+.rl-logo path {
+  fill-opacity: 0;
+  stroke: #64ffda;
+  stroke-width: 28;
+  stroke-linejoin: round;
+}
+
+.rl-logo path + path {
+  fill-opacity: 1;
+  stroke: none;
+}
+
+/* The logo's full stop, as a box the ball rests in. */
+.rl-end .rl-bx {
+  left: 94.466%;
+  top: 78.289%;
+  width: 5.018%;
+  height: 19.545%;
+}
+
+/* The sparkle over the i. */
+.rl-twinkle {
+  position: absolute;
+  left: 30.33%;
+  top: 17.87%;
+}
+
+.rl-twinkle > i {
+  position: absolute;
+  left: 0;
+  top: -0.06cqw;
+  width: 1.4cqw;
+  height: 0.12cqw;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #8fdcce, transparent);
+}
+
+.rl-role {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 33.6cqw;
+  text-align: center;
+  font: 500 1.1cqw / 1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #8fdcce;
+}
+
+.rl-role > span {
+  display: inline-block;
+  padding-inline-start: 0.5em;
+}
+
+.rl-url {
+  position: absolute;
+  left: 50%;
+  top: 37.4cqw;
+  translate: -50% 0;
+  padding-bottom: 0.5cqw;
+  font-size: 1.9cqw;
+  font-weight: 600;
+  color: #64ffda;
+}
+
+.rl-url > i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0.12cqw;
+  background: currentColor;
+  transform-origin: 0 50%;
+}
+
+/* ── Frame: HUD, flash, grain ───────────────────────────────────────────── */
+
+.rl-hud {
+  position: absolute;
+  inset: 2.4cqw;
+  z-index: 1;
+  pointer-events: none;
+  font: 500 0.78cqw / 1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgb(229 255 247 / 0.65);
+  text-shadow: 0 0 0.6cqw rgb(0 0 0 / 0.6);
+}
+
+.rl-hud > * {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.6cqw;
+}
+
+.rl-rec {
+  top: 0;
+  left: 0;
+}
+
+.rl-rec > i {
+  width: 0.55cqw;
+  height: 0.55cqw;
+  border-radius: 50%;
+  background: #ff4d6d;
+}
+
+.rl-tc {
+  top: 0;
+  right: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.rl-chap {
+  bottom: 0;
+  left: 0;
+}
+
+.rl-fmt {
+  bottom: 0;
+  right: 0;
+}
+
+.rl-flash {
+  background: #e5fff7;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.rl-grain {
+  position: absolute;
+  inset: -50%;
+  background-size: 16cqw;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.rl-vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.55));
+  pointer-events: none;
+}
+
+/* Tracking pulls Arabic's joined letters apart; space the words instead. */
+html[lang="ar"] :is(.rl-sub, .rl-count-l, .rl-role, .rl-meta > :not(.ltr)) {
+  font-family: inherit;
+  letter-spacing: normal;
+  word-spacing: 0.3em;
+}
+
+html[lang="ar"] :is(.rl-sub, .rl-count-l, .rl-role > span) {
+  padding: 0;
+}
+
+html[lang="ar"] .rl-typed {
+  font-family: inherit;
+}
+
+html[lang="ar"] .rl-title {
+  line-height: 1.35;
+}
+
+/* ── Controls ───────────────────────────────────────────────────────────── */
+
+/* Bottom-left, like a video poster, so the frame behind it stays readable. */
+.rl-overlay {
+  z-index: 2;
+  display: grid;
+  place-content: end start;
+  justify-items: start;
+  gap: 0.9rem;
+  width: 100%;
+  border: 0;
+  padding: 0 5% 6%;
+  cursor: pointer;
+  color: #e5fff7;
+  background: linear-gradient(to top right, rgb(4 9 12 / 0.9), rgb(4 9 12 / 0.15) 65%);
+}
+
+.rl-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1.5rem 0.85rem 1.2rem;
+  border-radius: 999px;
+  background: #64ffda;
+  color: #04090c;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: 0 10px 40px -10px rgb(100 255 218 / 0.7);
+  transition: transform 0.3s;
+}
+
+.rl-overlay:hover .rl-cta {
+  transform: scale(1.05);
+}
+
+.rl-overlay:focus-visible {
+  outline: none;
+}
+
+.rl-overlay:focus-visible .rl-cta {
+  outline: 2px solid #e5fff7;
+  outline-offset: 4px;
+}
+
+.rl-hint {
+  font: 500 0.7rem / 1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgb(229 255 247 / 0.75);
+}
+
+.rl-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid rgb(229 255 247 / 0.08);
+  background: #081014;
+}
+
+.rl-player:fullscreen .rl-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5rem 1.25rem 1rem;
+  border: 0;
+  background: linear-gradient(transparent, rgb(0 0 0 / 0.75));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.rl-player:fullscreen:hover .rl-controls,
+.rl-player:fullscreen .rl-controls:focus-within {
+  opacity: 1;
+}
+
+.rl-btn {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  color: #e5fff7;
+  transition: background 0.2s;
+}
+
+.rl-btn:hover {
+  background: rgb(229 255 247 / 0.1);
+}
+
+.rl-btn:focus-visible,
+.rl-scrub input:focus-visible {
+  outline: 2px solid #64ffda;
+  outline-offset: 2px;
+}
+
+.rl-time {
+  flex: none;
+  font: 500 0.75rem / 1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+  color: rgb(229 255 247 / 0.7);
+}
+
+.rl-scrub {
+  position: relative;
+  flex: 1;
+  display: grid;
+  align-items: center;
+  height: 2rem;
+}
+
+.rl-scrub input {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.rl-scrub input::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #64ffda calc(var(--p, 0) * 100%), rgb(229 255 247 / 0.2) 0);
+}
+
+.rl-scrub input::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #64ffda calc(var(--p, 0) * 100%), rgb(229 255 247 / 0.2) 0);
+}
+
+.rl-scrub input::-webkit-slider-thumb {
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: 50%;
+  background: #e5fff7;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.rl-scrub input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 50%;
+  background: #e5fff7;
+}
+
+/* Chapter cuts, lined up with where the thumb's centre can go. */
+.rl-scrub > i {
+  position: absolute;
+  left: calc(6px + var(--at) * (100% - 12px));
+  top: 50%;
+  width: 2px;
+  height: 4px;
+  margin: -2px 0 0 -1px;
+  background: #04090c;
+  pointer-events: none;
+}
