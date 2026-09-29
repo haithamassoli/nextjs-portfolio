@@ -31,6 +31,12 @@ html:has(.reel[open]) {
   overflow: hidden;
 }
 
+/* The page's own animations would keep running under the reel; skip
+   rendering it while the reel covers it. */
+html:has(.reel[open]) #content {
+  content-visibility: hidden;
+}
+
 .reel-stage {
   grid-area: 1 / 1;
   position: relative;
@@ -97,9 +103,10 @@ html:has(.reel[open]) {
   transform-origin: 0 0;
 }
 
+/* Wider than the stage so it can drift by a transform, not a repaint. */
 .reel-grid {
   position: absolute;
-  inset: 0;
+  inset: 0 -30cqw 0 0;
   background-image:
     linear-gradient(rgb(229 255 247 / 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgb(229 255 247 / 0.05) 1px, transparent 1px);

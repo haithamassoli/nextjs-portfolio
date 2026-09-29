@@ -554,6 +554,12 @@ html {
   scrollbar-color: rgb(var(--c-secondary)) transparent;
 }
 
+/* Remembers the page's height so the showreel can stop rendering it (see
+   showreel.css) without the scroll position collapsing. */
+#content {
+  contain-intrinsic-block-size: auto 100vh;
+}
+
 /* The hero is the intro's stage left running: the same ground, halo, a slow
    light-speed field and tilted orbits, so the intro dissolves into it. */
 .hero {

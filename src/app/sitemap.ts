@@ -14,6 +14,7 @@ const paths: {
   { path: "", priority: 1, changeFrequency: "monthly" },
   { path: "/projects", priority: 0.9, changeFrequency: "monthly" },
   { path: "/hire-me", priority: 0.8, changeFrequency: "yearly" },
+  { path: "/reel", priority: 0.6, changeFrequency: "yearly" },
   { path: "/blog", priority: 0.4, changeFrequency: "monthly" },
   ...projects.map((project) => ({
     path: `/projects/${project.slug}`,
