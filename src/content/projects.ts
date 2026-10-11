@@ -528,6 +528,294 @@ export const projects: Project[] = [
 		sourced: false,
 	},
 	{
+		slug: 'wens',
+		title: { en: 'Wens', ar: 'ونس' },
+		tagline: {
+			en: 'Short games for couples, on one phone, with no sign-up.',
+			ar: 'ألعاب قصيرة للزوجين، على هاتف واحد، وبلا تسجيل.',
+		},
+		summary: {
+			en: 'An Arabic, mobile-first site with 39 short games and activities for spouses: conversation cards, guessing games, timed challenges, and a few canvas games played on the same screen. Pick a mood and how many minutes you have, and start in under a minute.',
+			ar: 'موقع عربي مصمّم للهاتف أولًا يضم 39 لعبة ونشاطًا قصيرًا للزوجين: بطاقات حوار، وألعاب توقّع، وتحديات بمؤقت، وبعض الألعاب المرسومة على الشاشة نفسها. اختارا المزاج وكم لديكما من الوقت، وابدآ في أقل من دقيقة.',
+		},
+		category: 'web',
+		status: 'live',
+		featured: false,
+		year: '2026',
+		role: {
+			en: 'Solo: product, content and engineering',
+			ar: 'منفردًا: المنتج والمحتوى والبرمجة',
+		},
+		stack: [
+			'Next.js 16',
+			'React 19',
+			'TypeScript',
+			'Tailwind CSS 4',
+			'Serwist (PWA)',
+			'Canvas 2D',
+			'Biome',
+			'node:test',
+		],
+		cover: '/projects/wens.png',
+		gallery: ['/projects/wens.png'],
+		links: {
+			live: 'https://wens.assoli.site',
+			github: 'https://github.com/haithamassoli/wens',
+		},
+		overview: {
+			en: [
+				'Looking for something to do together often takes longer than the activity itself, and most couple apps start with a sign-up form. Wens starts with two questions: what mood are you in, and how many minutes do you have.',
+				'Every game runs on one shared phone. Turns are passed by hand, and when one partner answers in secret the screen hides it before handing over. Answers stay in page memory; the browser keeps only settings, favourites and which cards you have already seen.',
+				'It began as a PRD with six games and grew to 39, each with its own rules engine and tests, over a bank of more than 1,500 hand-written Arabic cards.',
+			],
+			ar: [
+				'البحث عن شيء تفعلانه معًا يستغرق أحيانًا أطول من النشاط نفسه، ومعظم تطبيقات الأزواج تبدأ بنموذج تسجيل. أما «ونس» فيبدأ بسؤالين: ما مزاجكما، وكم لديكما من الدقائق.',
+				'كل لعبة تعمل على هاتف واحد مشترك. يُمرَّر الدور باليد، وحين يجيب أحدكما سرًّا تُخفي الشاشة إجابته قبل التسليم. تبقى الإجابات في ذاكرة الصفحة فقط، ولا يحفظ المتصفح إلا الإعدادات والمفضلة والبطاقات التي رأيتماها.',
+				'بدأ بوثيقة متطلبات من ست ألعاب، وكبر إلى 39 لعبة، لكلٍّ منها محرك قواعد واختبارات، فوق بنك يزيد على 1,500 بطاقة عربية مكتوبة يدويًا.',
+			],
+		},
+		challenges: [
+			{
+				title: {
+					en: '39 games without 39 kinds of bug',
+					ar: '39 لعبة بلا 39 نوعًا من الأخطاء',
+				},
+				problem: {
+					en: 'Turn order, scoring and when an answer may be revealed are where these games break. Writing that logic inside React components would mean testing it by tapping through every game on a phone.',
+					ar: 'ترتيب الأدوار والنقاط ولحظة كشف الإجابة هي مواضع انكسار هذه الألعاب. وكتابة هذا المنطق داخل مكوّنات React تعني اختباره بالنقر عبر كل لعبة على الهاتف.',
+				},
+				solution: {
+					en: 'Each game is a pure, DOM-free reducer behind one contract: build the deck, start, reduce an event, derive the result. Invalid events return the same state untouched, and results are recomputed from completed rounds, never from counters. Node runs the tests directly with no test runner installed.',
+					ar: 'كل لعبة مُختزِل نقي بلا DOM خلف عقد واحد: بناء الرزمة، والبدء، ومعالجة الحدث، واشتقاق النتيجة. والحدث غير الصالح يعيد الحالة نفسها دون تغيير، والنتيجة تُحسب من الجولات المكتملة لا من العدّادات. ويشغّل Node الاختبارات مباشرة بلا أداة اختبار مثبّتة.',
+				},
+			},
+			{
+				title: {
+					en: 'A secret on a shared screen',
+					ar: 'سرّ على شاشة مشتركة',
+				},
+				problem: {
+					en: 'In a guessing game one partner answers and the other predicts, on the same phone. If the answer is still on screen when the phone changes hands, the round is over before it starts.',
+					ar: 'في ألعاب التوقّع يجيب أحدكما ويتوقّع الآخر، على الهاتف نفسه. وإن بقيت الإجابة على الشاشة لحظة انتقال الهاتف، تنتهي الجولة قبل أن تبدأ.',
+				},
+				solution: {
+					en: 'The engines model a handoff phase between the two inputs. Nothing typed so far is rendered during it, and the engine accepts input only from the player whose turn it is. The UI cannot leak what the state never exposes in that phase.',
+					ar: 'تتضمن المحركات مرحلة تسليم بين الإدخالين، لا يُعرض فيها شيء مما كُتب، ولا يقبل المحرك إدخالًا إلا ممن عليه الدور. فلا تستطيع الواجهة تسريب ما لا تكشفه الحالة في تلك المرحلة أصلًا.',
+				},
+			},
+			{
+				title: {
+					en: 'Editing content without breaking favourites',
+					ar: 'تعديل المحتوى دون كسر المفضلة',
+				},
+				problem: {
+					en: 'Cards get rewritten and retired. A favourite saved last month that points at a deleted card would crash the page or quietly show the wrong one.',
+					ar: 'تُعاد كتابة البطاقات وتُسحب. والمفضلة المحفوظة الشهر الماضي التي تشير إلى بطاقة محذوفة قد تُسقط الصفحة أو تعرض بطاقة أخرى بصمت.',
+				},
+				solution: {
+					en: 'Cards are JSON with stable ids and a draft → review → published → archived status, validated against a schema before every build. Archived cards stay in the file, so an old favourite shows a polite "no longer available" note.',
+					ar: 'البطاقات ملفات JSON بمعرّفات ثابتة وحالة مسودة ← مراجعة ← منشورة ← مؤرشفة، تُفحص بمخطط قبل كل بناء. وتبقى البطاقات المؤرشفة في الملف، فتعرض المفضلة القديمة ملاحظة لطيفة بأنها «لم تعد متاحة».',
+				},
+			},
+		],
+		outcomes: {
+			en: [
+				'39 games and activities, from conversation cards to three canvas games.',
+				'More than 1,500 Arabic cards, schema-checked on every build.',
+				'No accounts and no analytics; answers never leave the phone.',
+			],
+			ar: [
+				'39 لعبة ونشاطًا، من بطاقات الحوار إلى ثلاث ألعاب مرسومة على الشاشة.',
+				'أكثر من 1,500 بطاقة عربية تُفحص بالمخطط في كل بناء.',
+				'بلا حسابات وبلا تحليلات؛ والإجابات لا تغادر الهاتف.',
+			],
+		},
+		sourced: true,
+	},
+	{
+		slug: 'maan',
+		title: { en: "Ma'an", ar: 'معًا' },
+		tagline: {
+			en: 'A private space for couples, played on one phone or two.',
+			ar: 'مساحة خاصة للزوجين، على هاتف واحد أو هاتفين.',
+		},
+		summary: {
+			en: 'An Arabic, adults-only site for married couples with illustrated guides and games: challenge cards, a choice wheel, a desire match, and a paced evening path. Each partner sets limits in secret and only what both accept is shown. No accounts.',
+			ar: 'موقع عربي للبالغين المتزوجين يجمع أدلة مصوّرة وألعابًا: بطاقات تحدٍّ، وعجلة اختيار، وتوافق رغبات، ومسار سهرة متدرّج. يحدد كل طرف حدوده سرًّا، ولا يظهر إلا ما يقبله الطرفان. بلا حسابات.',
+		},
+		category: 'web',
+		status: 'live',
+		featured: false,
+		year: '2026',
+		role: {
+			en: 'Solo: product and engineering',
+			ar: 'منفردًا: المنتج والبرمجة',
+		},
+		stack: [
+			'Next.js 16',
+			'React 19',
+			'TypeScript',
+			'Convex',
+			'Tailwind CSS 4',
+			'Biome',
+			'node:test',
+		],
+		cover: '/projects/maan.png',
+		gallery: ['/projects/maan.png'],
+		links: {
+			live: 'https://romantic.assoli.site',
+			github: 'https://github.com/haithamassoli/romantic-game',
+		},
+		overview: {
+			en: [
+				"Ma'an is built around one rule: nothing appears unless both partners accepted it. Before the first game each partner sets their limits privately, and every card, challenge and guide is filtered against both sets before it is shown.",
+				'Couples can play on one phone, passing it between them, or link two phones with a short code and play in real time. There are no names, emails or profiles; preferences stay in the browser and shared sessions expire after 24 hours of inactivity.',
+				'Content is managed from a small admin, so new guides and challenges can be added, tagged, or hidden without touching the site.',
+			],
+			ar: [
+				'بُني «معًا» حول قاعدة واحدة: لا يظهر شيء إلا إذا قبله الطرفان. قبل أول لعبة يحدد كل طرف حدوده سرًّا، وتُصفّى كل بطاقة وتحدٍّ ودليل بحدود الاثنين قبل عرضها.',
+				'يلعب الزوجان على هاتف واحد يتبادلانه، أو يربطان هاتفين برمز قصير ويلعبان آنيًا. لا أسماء ولا بريد ولا ملفات شخصية؛ تبقى التفضيلات في المتصفح، وتنتهي الجلسة المشتركة بعد 24 ساعة من الخمول.',
+				'يُدار المحتوى من لوحة إدارة صغيرة، فتُضاف الأدلة والتحديات وتُوسم وتُخفى دون لمس الموقع.',
+			],
+		},
+		challenges: [
+			{
+				title: {
+					en: "One partner's limits must never reach the other",
+					ar: 'حدود أحد الطرفين لا تصل إلى الآخر أبدًا',
+				},
+				problem: {
+					en: "In a two-phone session each partner's no is private. If the server sent both sets of limits to both phones and filtered there, the other partner's refusals would be one devtools tab away.",
+					ar: 'في جلسة الهاتفين يبقى رفض كل طرف خاصًا به. ولو أرسل الخادم الحدّين إلى الهاتفين وصفّى هناك، لكانت رفوض الطرف الآخر على بُعد نافذة أدوات مطوّر واحدة.',
+				},
+				solution: {
+					en: 'Both limit sets are combined on the server in Convex, and phones only ever receive the already-filtered pool. What each phone may see is decided in a single function, so there is one place to audit instead of every query.',
+					ar: 'يُدمج الحدّان على الخادم في Convex، ولا يصل إلى الهاتفين إلا ما صُفّي مسبقًا. وما يحقّ لكل هاتف رؤيته يُحدَّد في دالة واحدة، فيكون للتدقيق موضع واحد بدل كل استعلام.',
+				},
+			},
+			{
+				title: {
+					en: 'Real-time sessions with no accounts',
+					ar: 'جلسات آنية بلا حسابات',
+				},
+				problem: {
+					en: 'Linking two phones normally means logging both people in. Here there is no account, so the session itself has to be the credential, and a guessable one would let a stranger join.',
+					ar: 'ربط هاتفين يعني عادةً تسجيل دخول الشخصين. وهنا لا حسابات، فيجب أن تكون الجلسة نفسها هي بيانات الاعتماد، والجلسة القابلة للتخمين تتيح لغريب أن ينضم.',
+				},
+				solution: {
+					en: 'Each phone holds a random player key and every function finds the session through that key, so a wrong key gets nothing back. Invites are short-lived, and a scheduled job deletes sessions once they expire.',
+					ar: 'يحمل كل هاتف مفتاح لاعب عشوائيًا، وكل دالة تصل إلى الجلسة عبر هذا المفتاح، فالمفتاح الخاطئ لا يعيد شيئًا. والدعوات قصيرة العمر، ومهمة مجدولة تحذف الجلسات عند انتهاء صلاحيتها.',
+				},
+			},
+		],
+		outcomes: {
+			en: [
+				'Six games that run on one phone or across two in real time.',
+				'Only mutually accepted content is ever shown; refusals stay private.',
+				'No accounts, and shared session data is deleted when it expires.',
+			],
+			ar: [
+				'ست ألعاب تعمل على هاتف واحد أو آنيًا عبر هاتفين.',
+				'لا يظهر إلا المحتوى المقبول من الطرفين، وتبقى الرفوض خاصة.',
+				'بلا حسابات، وتُحذف بيانات الجلسة المشتركة عند انتهاء صلاحيتها.',
+			],
+		},
+		sourced: true,
+	},
+	{
+		slug: 'irtajil',
+		title: { en: 'Irtajil', ar: 'ارتجل' },
+		tagline: {
+			en: 'Press a button, get a topic you did not choose, and talk.',
+			ar: 'اضغط زرًا، واحصل على موضوع لم تختره، وتحدّث.',
+		},
+		summary: {
+			en: 'An Arabic site for practising impromptu speaking. It deals a random topic from 800 hand-written prompts, then runs a countdown while you talk. No backend, no account, and it works offline.',
+			ar: 'موقع عربي للتدرّب على التحدث والارتجال. يسحب موضوعًا عشوائيًا من 800 موضوع مكتوب يدويًا، ثم يشغّل عدًّا تنازليًا وأنت تتحدث. بلا خادم، وبلا حساب، ويعمل دون اتصال.',
+		},
+		category: 'web',
+		status: 'live',
+		featured: false,
+		year: '2026',
+		role: { en: 'Solo', ar: 'منفردًا' },
+		stack: ['Astro', 'JavaScript', 'PWA', 'Service Worker', 'localStorage'],
+		cover: '/projects/irtajil.png',
+		gallery: ['/projects/irtajil.png'],
+		links: {
+			live: 'https://irtajil.assoli.site',
+			github: 'https://github.com/haithamassoli/Irtajil',
+		},
+		overview: {
+			en: [
+				'People practising for interviews or public speaking spend their time choosing a topic instead of talking, and they unconsciously pick topics they already know. The practice ends up with no pressure and no surprise.',
+				'Irtajil takes the choice away. Pick a mode, quick-fire or deep-dive, and a category, everyday or out of your comfort zone. Press for a topic, read it, then press start. The topic is only counted as used when you commit to it.',
+				'The whole site is one static Astro page with a single interactive island. All four topic banks ship inside the bundle and all state lives in localStorage, so there is nothing to run and nothing to break.',
+			],
+			ar: [
+				'من يتدرّب للمقابلات أو للحديث أمام الناس يقضي وقته في اختيار الموضوع بدل التحدث، ويختار دون وعي مواضيع يعرفها أصلًا. فيصير التدريب بلا ضغط ولا مفاجأة.',
+				'«ارتجل» ينزع منك الاختيار. اختر النمط، لحظي أو متعمّق، والتصنيف، عام أو خارج منطقة الراحة. اضغط لتحصل على موضوع، اقرأه، ثم اضغط ابدأ. ولا يُحتسب الموضوع مستهلكًا إلا حين تلتزم به.',
+				'الموقع كله صفحة Astro ثابتة بجزيرة تفاعلية واحدة. بنوك المواضيع الأربعة داخل الحزمة، وكل الحالة في localStorage، فلا شيء يحتاج تشغيلًا ولا شيء ينكسر.',
+			],
+		},
+		challenges: [
+			{
+				title: {
+					en: 'Never repeat a topic, without storing any text',
+					ar: 'لا تكرار للمواضيع، دون تخزين أي نص',
+				},
+				problem: {
+					en: 'Users should not see a topic they already spoke on. Storing the topic text in history is wasteful, but storing only its position breaks the moment the topic list changes.',
+					ar: 'لا ينبغي أن يرى المستخدم موضوعًا تحدّث فيه من قبل. وتخزين نص الموضوع في السجل إهدار، أما تخزين موضعه فقط فينكسر لحظة تغيّر قائمة المواضيع.',
+				},
+				solution: {
+					en: 'A topic is identified by bank key and index, and the banks are append-only: no deletes, no reordering, no edits. A check script enforces it, failing on count changes, duplicates across banks, and blank or too-short lines. The history is the only source of truth, and the used set is derived from it on load.',
+					ar: 'يُعرَّف الموضوع بمفتاح البنك وفهرسه، والبنوك تقبل الإضافة في النهاية فقط: لا حذف ولا إعادة ترتيب ولا تعديل. ويفرض ذلك سكربت فحص يفشل عند تغيّر العدد، أو التكرار بين البنوك، أو السطر الفارغ أو القصير. والسجل هو مصدر الحقيقة الوحيد، ومجموعة المستهلَك تُشتق منه عند الإقلاع.',
+				},
+			},
+			{
+				title: {
+					en: 'A timer that does not drift',
+					ar: 'مؤقت لا ينحرف',
+				},
+				problem: {
+					en: 'Browsers throttle setInterval in background tabs, so a countdown that counts ticks finishes late as soon as you switch away from it.',
+					ar: 'تُبطئ المتصفحات setInterval في التبويبات الخلفية، فالعدّ التنازلي الذي يعدّ النبضات ينتهي متأخرًا بمجرد أن تنتقل عنه.',
+				},
+				solution: {
+					en: 'The remaining time is computed from the difference in Date.now(), and the interval only redraws. A 60-second timer ends within a second of 60 even when the tab was hidden.',
+					ar: 'يُحسب الوقت المتبقي من فارق Date.now()، والمؤقت الدوري يعيد الرسم فقط. فينتهي مؤقت الستين ثانية خلال ثانية من الستين حتى لو كان التبويب مخفيًا.',
+				},
+			},
+			{
+				title: {
+					en: 'Offline with zero dependencies',
+					ar: 'دون اتصال وبلا اعتماديات',
+				},
+				problem: {
+					en: 'A service worker plugin would be the only dependency besides Astro, and a hand-written cache list goes stale the moment a hashed file name changes.',
+					ar: 'إضافة service worker ستكون الاعتمادية الوحيدة بجانب Astro، وقائمة التخزين المكتوبة يدويًا تتقادم لحظة تغيّر اسم ملف مُجزّأ.',
+				},
+				solution: {
+					en: 'A small build script walks the final output and generates the cache list from the real hashed file names. The Arabic font is served locally, so after the first visit the site works fully offline.',
+					ar: 'سكربت بناء صغير يمرّ على المخرجات النهائية ويولّد قائمة التخزين من أسماء الملفات المجزّأة الفعلية. والخط العربي يُقدَّم محليًا، فيعمل الموقع بالكامل دون اتصال بعد أول زيارة.',
+				},
+			},
+		],
+		outcomes: {
+			en: [
+				'800 original Arabic topics across four banks, with no duplicates.',
+				'Installable and fully usable offline.',
+				'No backend, no database, and no dependencies besides Astro.',
+			],
+			ar: [
+				'800 موضوع عربي أصيل موزّعة على أربعة بنوك بلا تكرار.',
+				'قابل للتثبيت ويعمل بالكامل دون اتصال.',
+				'بلا خادم، وبلا قاعدة بيانات، وبلا اعتماديات عدا Astro.',
+			],
+		},
+		sourced: true,
+	},
+	{
 		slug: 'malabji',
 		title: { en: 'Malabji', ar: 'ملعبجي' },
 		tagline: {
@@ -976,6 +1264,108 @@ export const projects: Project[] = [
 				'Published on Google Play, serving Ajloun and inter-governorate trips.',
 			],
 			ar: ['منشور على Google Play، ويخدم عجلون والرحلات بين المحافظات.'],
+		},
+		sourced: true,
+	},
+	{
+		slug: 'khatwa',
+		title: { en: 'Khatwa', ar: 'خطوة' },
+		tagline: {
+			en: 'Walk a few steps, ride the rest.',
+			ar: 'امشِ خطوات قليلة، واركب الباقي.',
+		},
+		summary: {
+			en: 'An Android app that checks the pickup and dropoff points within walking distance of a ride-hailing trip and tells you which pair beats the door-to-door ride on time or distance. Arabic, right-to-left, and tuned for Amman.',
+			ar: 'تطبيق أندرويد يفحص نقاط الركوب والنزول القريبة مشيًا من رحلة التوصيل، ويخبرك أي زوج منها يتفوّق على الرحلة من الباب إلى الباب في الوقت أو المسافة. عربي، من اليمين إلى اليسار، ومضبوط على عمّان.',
+		},
+		category: 'mobile',
+		status: 'wip',
+		featured: false,
+		year: '2026',
+		role: { en: 'Solo', ar: 'منفردًا' },
+		stack: [
+			'Kotlin',
+			'Jetpack Compose',
+			'Material 3',
+			'Google Maps SDK',
+			'Routes API',
+			'Roads API',
+			'Places API',
+		],
+		cover: '/apps/khatwa-1.png',
+		gallery: [
+			'/apps/khatwa-1.png',
+			'/apps/khatwa-2.png',
+			'/apps/khatwa-3.png',
+		],
+		links: { github: 'https://github.com/haithamassoli/Khatwa' },
+		overview: {
+			en: [
+				'The door-to-door ride is not always the fastest one. In Amman, walking two minutes to the other side of a divided road, or getting dropped one block early, can save the driver a U-turn, a one-way loop or a jam.',
+				'Khatwa samples the points around your start and destination, compares every pickup and dropoff pair against the direct trip, and shows only the ones that actually win. You set how far you will walk and what you care about: total time, drive time, or drive distance.',
+				'There is no backend and no account. Saved points, fare notes and the search quota live as JSON in the app\'s private storage, and coordinates go only to Google Maps Platform.',
+			],
+			ar: [
+				'الرحلة من الباب إلى الباب ليست دائمًا الأسرع. في عمّان، قد يوفّر مشي دقيقتين إلى الجهة الأخرى من شارع مقسوم، أو النزول قبل الوجهة بشارع، على السائق دورانًا للخلف أو لفّة في شارع باتجاه واحد أو أزمة سير.',
+				'يأخذ «خطوة» عيّنة من النقاط حول البداية والوجهة، ويقارن كل زوج ركوب ونزول بالرحلة المباشرة، ولا يعرض إلا ما يفوز فعلًا. أنت تحدد كم تمشي وما يهمّك: الوقت الكلي، أو وقت السيارة، أو مسافتها.',
+				'لا خادم ولا حساب. النقاط المحفوظة وسجل الأجرة وعدّاد البحث ملفات JSON في التخزين الخاص بالتطبيق، والإحداثيات لا تذهب إلا إلى Google Maps Platform.',
+			],
+		},
+		challenges: [
+			{
+				title: {
+					en: 'Keeping the Maps bill predictable',
+					ar: 'فاتورة خرائط يمكن توقّعها',
+				},
+				problem: {
+					en: 'Every pickup × dropoff pair is a paid drive-matrix element. Five candidates a side is 25 elements per search, and an unbounded search would turn a free side project into a monthly bill.',
+					ar: 'كل زوج ركوب × نزول عنصر مدفوع في مصفوفة القيادة. خمس نقاط لكل جهة تعني 25 عنصرًا في البحث الواحد، والبحث بلا حدود يحوّل مشروعًا جانبيًا مجانيًا إلى فاتورة شهرية.',
+				},
+				solution: {
+					en: 'Walking times are fetched first, and any candidate over your walking limit is dropped before a single drive element is requested. Each search is capped at 25 elements and each month at 100 searches, so the worst case is known in advance.',
+					ar: 'تُجلب أوقات المشي أولًا، وتُحذف كل نقطة تتجاوز حدّ المشي قبل طلب أي عنصر قيادة. ولكل بحث سقف 25 عنصرًا ولكل شهر سقف 100 بحث، فتكون أسوأ حالة معروفة مسبقًا.',
+				},
+			},
+			{
+				title: {
+					en: 'An honest comparison, not a list of options',
+					ar: 'مقارنة صادقة، لا قائمة خيارات',
+				},
+				problem: {
+					en: 'An alternative that saves three minutes of driving but adds eight minutes of walking is not a better trip. A plain sort by one number would keep recommending trades nobody wants.',
+					ar: 'البديل الذي يوفّر ثلاث دقائق قيادة ويضيف ثماني دقائق مشي ليس رحلة أفضل. والترتيب البسيط برقم واحد سيبقى يقترح مقايضات لا يريدها أحد.',
+				},
+				solution: {
+					en: 'The ranking engine keeps only Pareto-optimal pairs that beat the direct trip on your chosen goal, then returns the top three, each shown beside the direct ride with the difference in time, distance and walking. It is plain Kotlin with no Android dependencies, so it is covered by unit tests.',
+					ar: 'لا يُبقي محرك الترتيب إلا الأزواج المثلى وفق باريتو التي تتفوّق على الرحلة المباشرة في هدفك المختار، ثم يعيد أفضل ثلاثة، يُعرض كلٌّ منها بجانب الرحلة المباشرة مع الفرق في الوقت والمسافة والمشي. وهو Kotlin خالص بلا اعتماد على أندرويد، فتغطيه اختبارات الوحدة.',
+				},
+			},
+			{
+				title: {
+					en: 'Points that are actually safe to stop at',
+					ar: 'نقاط يصحّ التوقف عندها فعلًا',
+				},
+				problem: {
+					en: 'A point snapped to the nearest road can sit on the wrong side of a divided highway or somewhere a driver cannot legally stop. Automatic suggestions alone would send people to bad corners.',
+					ar: 'النقطة الملتصقة بأقرب شارع قد تقع على الجهة الخاطئة من طريق مقسوم أو في مكان لا يجوز للسائق التوقف فيه. والاقتراحات الآلية وحدها سترسل الناس إلى زوايا سيئة.',
+				},
+				solution: {
+					en: 'Your own reviewed points, with road side and a nearby landmark, are tried before any automatic suggestion. Any point can be reported as wrong side or unsafe, and it is excluded from every future search.',
+					ar: 'تُجرَّب نقاطك المراجَعة، مع جهة الشارع ومعلم قريب، قبل أي اقتراح آلي. ويمكن الإبلاغ عن أي نقطة بأنها في الجهة الخاطئة أو غير آمنة، فتُستبعد من كل بحث لاحق.',
+				},
+			},
+		],
+		outcomes: {
+			en: [
+				'Traffic-aware comparison against the direct trip, departing when you would actually reach the pickup.',
+				'A fare log to check over time whether the alternative really costs less.',
+				'Hard caps on searches and matrix elements keep Google Maps costs predictable.',
+			],
+			ar: [
+				'مقارنة مع الرحلة المباشرة تراعي الزحمة الحية، بانطلاق في اللحظة التي تصل فيها فعلًا إلى نقطة الركوب.',
+				'سجل أجرة للتحقق مع الوقت من أن البديل أرخص فعلًا.',
+				'سقوف ثابتة لعدد البحث وعناصر المصفوفة تُبقي كلفة خرائط Google متوقعة.',
+			],
 		},
 		sourced: true,
 	},
@@ -3315,12 +3705,12 @@ export const projects: Project[] = [
 		],
 		outcomes: {
 			en: [
-				'41 projects, each with a full case study in both languages.',
+				'45 projects, each with a full case study in both languages.',
 				'Complete Arabic and English routes, mirrored down to the fonts and charts.',
 				'Live GitHub and WakaTime activity, with a frozen fallback so a third-party outage cannot fail the build.',
 			],
 			ar: [
-				'41 مشروعًا، لكل منها دراسة حالة كاملة باللغتين.',
+				'45 مشروعًا، لكل منها دراسة حالة كاملة باللغتين.',
 				'مسارات عربية وإنجليزية كاملة، منعكسة حتى الخطوط والرسوم البيانية.',
 				'نشاط GitHub وWakaTime حيّ، مع نسخة مجمّدة احتياطية حتى لا يُسقط انقطاعُ طرفٍ ثالث عمليةَ البناء.',
 			],
