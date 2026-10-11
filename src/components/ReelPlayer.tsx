@@ -493,7 +493,7 @@ export default function ReelPlayer({
                       <p className="rl-meta">
                         <span className="ltr">{String(n + 1).padStart(2, "0")}</span>
                         <span>{shot.category}</span>
-                        <span className="ltr">{shot.year}</span>
+                        <span>{shot.year}</span>
                       </p>
                       <div className="rl-title font-acorn">
                         <Split text={shot.title} latin={latin} />

@@ -12,7 +12,7 @@ import Showreel from "@/components/Showreel";
 import { projects } from "@/content";
 import { themeScript } from "@/libs/theme";
 import { SITE, dirOf, isLocale, locales, type Locale } from "@/libs/i18n";
-import { useT } from "@/libs/ui";
+import { usePeriod, useT } from "@/libs/ui";
 
 /** The projects the showreel cuts between, in order. */
 const REEL = [
@@ -143,7 +143,7 @@ export default async function RootLayout({
                   title: p.title[locale],
                   tagline: p.tagline[locale],
                   category: p.category,
-                  year: p.year,
+                  year: usePeriod(locale)(p.year),
                   cover: p.cover,
                 }))}
               covers={projects.map((p) => p.cover)}

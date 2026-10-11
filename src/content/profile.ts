@@ -13,13 +13,13 @@ export const profile = {
 	} satisfies I18n,
 
 	title: {
-		en: 'Web & Mobile Full-Stack Developer',
-		ar: 'مطوّر ويب وتطبيقات موبايل full-stack',
+		en: 'Full-stack web & mobile engineer',
+		ar: 'مطوّر ويب وجوال متكامل (Full-Stack)',
 	} satisfies I18n,
 
 	tagline: {
-		en: 'I turn product requirements into reliable software, from architecture to release.',
-		ar: 'أحوّل متطلبات المنتج إلى برمجيات موثوقة، من المعمارية حتى الإطلاق.',
+		en: 'I turn ideas into reliable web and mobile apps, from the first plan to launch.',
+		ar: 'أحوّل الأفكار إلى تطبيقات ويب وجوال موثوقة، من أول خطة حتى الإطلاق.',
 	} satisfies I18n,
 
 	location: { en: 'Amman, Jordan', ar: 'عمّان، الأردن' } satisfies I18n,
@@ -37,14 +37,14 @@ export const profile = {
 
 	about: {
 		en: [
-			'I build web and mobile products across the full delivery path: data model, API, interface, deployment, app-store review, and support.',
-			'I work on constraints that shape the product: models that run on the device, search that answers in milliseconds without a backend, and booking flows that prevent double-selling a time slot.',
-			'My recent work includes private on-device AI, multi-vendor commerce, bioinformatics tools used by researchers, and products for education and community services.',
+			'I build web and mobile apps from start to finish: planning the data, building the server and the interface, publishing to the app stores, and supporting users after launch.',
+			'I enjoy the problems that make or break a product: AI that runs privately on the phone, search that answers instantly without a server, and booking systems that never sell the same time slot twice.',
+			'My recent work includes multi-vendor online stores, research tools used by thousands of scientists, and products for education and community services.',
 		],
 		ar: [
-			'أبني منتجات ويب وجوال عبر مسار التسليم كاملًا: نموذج البيانات وواجهة API والواجهة والنشر ومراجعة المتاجر والدعم.',
-			'أعمل على قيود تؤثر في المنتج: نماذج تعمل على الجهاز، وبحث يجيب خلال أجزاء من الثانية بلا خادم، ومسارات حجز تمنع بيع الموعد نفسه مرتين.',
-			'تشمل أعمالي الحديثة ذكاءً اصطناعيًا خاصًا يعمل على الجهاز، وتجارة متعددة البائعين، وأدوات معلوماتية حيوية يستخدمها باحثون، ومنتجات للتعليم والخدمات المجتمعية.',
+			'أبني تطبيقات الويب والجوال من البداية إلى النهاية: تصميم البيانات، وبناء الخادم والواجهة، والنشر على المتاجر، ودعم المستخدمين بعد الإطلاق.',
+			'أستمتع بالمشكلات التي تصنع الفرق في المنتج: ذكاء اصطناعي يعمل بخصوصية على الهاتف، وبحث يعطي النتائج فورًا دون خادم، وأنظمة حجز لا تبيع الموعد نفسه مرتين.',
+			'من أعمالي الحديثة متاجر إلكترونية متعددة البائعين، وأدوات بحثية يستخدمها آلاف العلماء، ومنتجات للتعليم والخدمات المجتمعية.',
 		],
 	} satisfies I18nBlocks,
 
@@ -55,14 +55,14 @@ export const profile = {
 			period: 'Since 2026',
 			highlights: {
 				en: [
-					'Building multi-vendor e-commerce systems with NestJS, Next.js and React Native.',
-					'Built backend services for reliable, high-throughput vendor concurrency.',
-					'Built responsive storefronts and a shared mobile client on the same API.',
+					'Building multi-vendor online stores with NestJS, Next.js, and React Native.',
+					'Built fast, reliable backend services that handle many vendors working at the same time.',
+					'Built responsive storefronts and a mobile app that share one API.',
 				],
 				ar: [
-					'بناء أنظمة تجارة إلكترونية متعددة البائعين باستخدام NestJS وNext.js وReact Native.',
-					'بناء خدمات خلفية موثوقة وعالية الإنتاجية لتزامن البائعين.',
-					'بناء واجهات متجر متجاوبة وعميل موبايل مشترك على واجهة API نفسها.',
+					'بناء متاجر إلكترونية متعددة البائعين باستخدام NestJS وNext.js وReact Native.',
+					'بناء خدمات خادم سريعة وموثوقة تخدم عددًا كبيرًا من البائعين في الوقت نفسه.',
+					'بناء واجهات متجر متجاوبة وتطبيق جوال يعتمدان على واجهة API واحدة.',
 				],
 			},
 		},
@@ -73,19 +73,19 @@ export const profile = {
 			location: { en: 'Remote', ar: 'عن بُعد' },
 			highlights: {
 				en: [
-					'Built bioinformatics applications in a monorepo with React and React Native sharing one codebase.',
-					'Used TypeScript, Zod, and Prisma for type-safe validation and data access.',
-					'Server state and forms on TanStack Query and TanStack Form; API endpoints on Hono.',
+					'Built bioinformatics apps for web and mobile from one shared codebase (React and React Native in a monorepo).',
+					'Used TypeScript, Zod, and Prisma to keep data validated and type-safe from end to end.',
+					'Managed server data and forms with TanStack Query and TanStack Form, with APIs built on Hono.',
 					'Contributed to a no-code platform used by 8,000+ researchers worldwide.',
-					'Shipped GenAI-powered data analysis, literature search, and customisable bioinformatics pipelines.',
-					'Built to HIPAA, GDPR, and SOC 2 Type 2 requirements.',
+					'Shipped AI-powered data analysis, scientific literature search, and customisable analysis pipelines.',
+					'Built to meet HIPAA, GDPR, and SOC 2 Type 2 requirements.',
 				],
 				ar: [
-					'بناء تطبيقات معلوماتية حيوية داخل monorepo يتشارك فيه React وReact Native قاعدة شيفرة واحدة.',
-					'استخدام TypeScript وZod وPrisma للتحقق من البيانات والوصول إليها بأمان الأنواع.',
-					'إدارة حالة الخادم والنماذج عبر TanStack Query وTanStack Form، ونقاط الـ API على Hono.',
-					'المساهمة في منصة بلا شيفرة يستخدمها أكثر من 8,000 باحث حول العالم.',
-					'إطلاق تحليل بيانات مدعوم بالذكاء التوليدي، وبحث في الأدبيات العلمية، وخطوط معالجة قابلة للتخصيص.',
+					'بناء تطبيقات معلوماتية حيوية للويب والجوال من قاعدة شيفرة واحدة مشتركة (React وReact Native في monorepo).',
+					'استخدام TypeScript وZod وPrisma لضمان صحة البيانات وسلامة الأنواع من البداية إلى النهاية.',
+					'إدارة بيانات الخادم والنماذج عبر TanStack Query وTanStack Form، وبناء واجهات API على Hono.',
+					'المساهمة في منصة لا تتطلب برمجة يستخدمها أكثر من 8,000 باحث حول العالم.',
+					'إطلاق تحليل بيانات بالذكاء الاصطناعي التوليدي، وبحث في الأوراق العلمية المنشورة، ومسارات تحليل قابلة للتخصيص.',
 					'بناء الميزات وفق متطلبات HIPAA وGDPR وSOC 2 Type 2.',
 				],
 			},
@@ -96,30 +96,30 @@ export const profile = {
 			period: 'Since 2025',
 			highlights: {
 				en: [
-					'Founded and shipped a playground booking and matchmaking app on iOS and Android.',
-					'Led product, design, mobile development, backend work, store releases, and support.',
+					'Founded and launched a football pitch booking and player-matching app on iOS and Android.',
+					'Led product, design, mobile development, the backend, store releases, and customer support.',
 				],
 				ar: [
-					'تأسيس وإطلاق تطبيق لحجز الملاعب وإيجاد اللاعبين على iOS وAndroid.',
-					'إدارة المنتج والتصميم وتطبيق الموبايل والخادم وإصدارات المتاجر والدعم.',
+					'تأسيس وإطلاق تطبيق لحجز ملاعب كرة القدم والعثور على لاعبين، على iOS وأندرويد.',
+					'قيادة المنتج والتصميم وتطوير التطبيق والخادم والنشر على المتاجر ودعم العملاء.',
 				],
 			},
 		},
 		{
 			company: { en: 'Freelance', ar: 'عمل حر' },
 			role: {
-				en: 'Web & Mobile Full-Stack Developer',
-				ar: 'مطوّر ويب وموبايل full-stack',
+				en: 'Full-stack web & mobile developer',
+				ar: 'مطوّر ويب وجوال متكامل',
 			},
 			period: 'Since 2022',
 			highlights: {
 				en: [
-					'Gathered requirements directly with clients, proposed the technical approach, and delivered to deadline.',
-					'Shipped municipal, tourism, education, charity and e-commerce products across Jordan and Saudi Arabia.',
+					'Worked directly with clients to define requirements, chose the technical approach, and delivered on time.',
+					'Shipped products for municipalities, tourism, education, charities, and e-commerce in Jordan and Saudi Arabia.',
 				],
 				ar: [
-					'جمع المتطلبات مباشرة مع العملاء، واقتراح المقاربة التقنية، والتسليم ضمن المواعيد.',
-					'إطلاق منتجات بلدية وسياحية وتعليمية وخيرية وتجارية في الأردن والسعودية.',
+					'العمل مباشرة مع العملاء لتحديد المتطلبات، واختيار الحل التقني المناسب، والتسليم في الموعد.',
+					'إطلاق منتجات للبلديات والسياحة والتعليم والجمعيات الخيرية والتجارة الإلكترونية في الأردن والسعودية.',
 				],
 			},
 		},
@@ -130,40 +130,40 @@ export const profile = {
 			highlights: {
 				en: [
 					'Built and maintained a large operational dashboard in TypeScript and React.',
-					'Updated dependencies and code to improve security and runtime speed.',
-					'Backend work on Node.js with Express.',
+					'Updated dependencies and code to improve security and speed.',
+					'Backend development with Node.js and Express.',
 				],
 				ar: [
 					'بناء وصيانة لوحة تحكم تشغيلية كبيرة باستخدام TypeScript وReact.',
-					'تحديث الاعتماديات والشيفرة لتحسين الأمان وسرعة التشغيل.',
-					'عمل على الخادم باستخدام Node.js وExpress.',
+					'تحديث المكتبات والشيفرة لتحسين الأمان والسرعة.',
+					'تطوير الخادم باستخدام Node.js وExpress.',
 				],
 			},
 		},
 		{
 			company: { en: 'Orange Jordan', ar: 'أورنج الأردن' },
 			role: {
-				en: 'Full-Stack Developer Trainee',
-				ar: 'متدرب تطوير full-stack',
+				en: 'Full-stack developer trainee',
+				ar: 'متدرّب تطوير ويب متكامل',
 			},
 			period: '2021 to 2022',
 			location: { en: 'Internship', ar: 'تدريب' },
 			highlights: {
 				en: [
-					'Seven-month internship covering the practical web development stack.',
-					'Built 10 dynamic web projects, working alongside peers and mentors.',
+					'Seven-month hands-on internship in modern web development.',
+					'Built 10 dynamic web projects alongside peers and mentors.',
 				],
 				ar: [
-					'تدريب لسبعة أشهر غطّى منظومة تطوير الويب عمليًا.',
-					'بناء 10 مشاريع ويب ديناميكية بالعمل مع الزملاء والمشرفين.',
+					'تدريب عملي لمدة سبعة أشهر في تطوير الويب الحديث.',
+					'بناء 10 مشاريع ويب ديناميكية مع الزملاء والمشرفين.',
 				],
 			},
 		},
 		{
 			company: { en: 'EECommittee', ar: 'لجنة الهندسة الكهربائية' },
 			role: {
-				en: 'Full-Stack Developer (Volunteer)',
-				ar: 'مطوّر full-stack (تطوّع)',
+				en: 'Full-stack developer (volunteer)',
+				ar: 'مطوّر متكامل (تطوّعًا)',
 			},
 			period: 'Since 2018',
 			highlights: {
@@ -197,8 +197,8 @@ export const profile = {
 			},
 			period: '2018 to 2022',
 			note: {
-				en: 'Incomplete, grade Very Good',
-				ar: 'غير مكتملة، التقدير جيد جدًا',
+				en: 'Not completed · Grade: Very Good',
+				ar: 'لم تكتمل · التقدير: جيد جدًا',
 			},
 		},
 	] satisfies EducationItem[],
@@ -230,8 +230,8 @@ export const profile = {
 			issuer: { en: 'Cloud Native Base Camp', ar: 'Cloud Native Base Camp' },
 			date: 'Oct 2024',
 			description: {
-				en: 'Reasoning through code before writing it, and the common approaches worth reaching for.',
-				ar: 'التفكير في الشيفرة قبل كتابتها، والمقاربات الشائعة التي تستحق الاستخدام.',
+				en: 'Analysing a problem before writing code, and the common techniques for solving it.',
+				ar: 'تحليل المشكلة قبل كتابة الشيفرة، والأساليب الشائعة لحلّها.',
 			},
 		},
 		{
@@ -251,8 +251,8 @@ export const profile = {
 			issuer: { en: 'Udemy', ar: 'Udemy' },
 			date: 'Feb 2023',
 			description: {
-				en: '24 hours on indexing, partitioning, sharding, replication, B-trees, concurrency control, database engines and security, engineering, not SQL syntax.',
-				ar: '24 ساعة في الفهرسة والتقسيم والتجزئة والنسخ وأشجار B والتحكم بالتزامن ومحركات قواعد البيانات والأمان، هندسة لا صياغة SQL.',
+				en: '24 hours on how databases work inside: indexing, partitioning, sharding, replication, concurrency, and security.',
+				ar: '24 ساعة عن آلية عمل قواعد البيانات من الداخل: الفهرسة والتقسيم والتوزيع والنسخ المتماثل والتزامن والأمان.',
 			},
 		},
 		{
@@ -263,8 +263,8 @@ export const profile = {
 			issuer: { en: 'Udemy', ar: 'Udemy' },
 			date: 'Feb 2022',
 			description: {
-				en: '22 hours covering Big O, algorithms and data structures from foundations upward.',
-				ar: '22 ساعة تغطي Big O والخوارزميات وهياكل البيانات من الأساسيات صعودًا.',
+				en: '22 hours on Big O, algorithms, and data structures, from the basics up.',
+				ar: '22 ساعة في Big O والخوارزميات وهياكل البيانات، من الأساسيات إلى المستوى المتقدم.',
 			},
 		},
 		{

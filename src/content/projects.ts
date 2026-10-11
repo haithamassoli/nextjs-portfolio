@@ -140,7 +140,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: "A fully Arabic, right-to-left search engine over a scholar's video lessons and written articles. You type a phrase and get back the passages where it was actually said; one click opens the video at that exact second. No login, no database.",
-			ar: 'محرك بحث عربي بالكامل ومن اليمين إلى اليسار في دروس الشيخ المرئية ومقالاته المكتوبة. تكتب عبارة فتصلك المقاطع التي قيلت فيها فعلًا؛ ونقرة واحدة تفتح الفيديو عند الثانية نفسها. بلا تسجيل دخول وبلا قاعدة بيانات.',
+			ar: 'محرك بحث عربي بالكامل في دروس الشيخ المرئية ومقالاته المكتوبة. تكتب عبارة فتصلك المقاطع التي قيلت فيها فعلًا؛ ونقرة واحدة تفتح الفيديو عند الثانية نفسها. بلا تسجيل دخول وبلا قاعدة بيانات.',
 		},
 		category: 'web',
 		status: 'live',
@@ -224,7 +224,7 @@ export const projects: Project[] = [
 					ar: 'بحث بلا خادم يبحث عليه',
 				},
 				problem: {
-					en: 'A always-on search backend for a free, non-commercial site is a recurring cost and a thing that can go down at 3am with nobody on call.',
+					en: 'An always-on search backend for a free, non-commercial site is a recurring cost and a thing that can go down at 3am with nobody on call.',
 					ar: 'خادم بحث دائم التشغيل لموقع مجاني غير تجاري يعني كلفة متكررة وشيئًا قد يتعطّل في الثالثة فجرًا دون أحد للمناوبة.',
 				},
 				solution: {
@@ -251,12 +251,12 @@ export const projects: Project[] = [
 		slug: 'pastehtml',
 		title: { en: 'pastehtml', ar: 'pastehtml' },
 		tagline: {
-			en: 'Drop an HTML file, get a public URL on its own origin.',
-			ar: 'أفلِت ملف HTML، واحصل على رابط عام على نطاق مستقل.',
+			en: 'Drop an HTML file and get a shareable link in seconds.',
+			ar: 'أفلِت ملف HTML واحصل على رابط جاهز للمشاركة خلال ثوانٍ.',
 		},
 		summary: {
-			en: 'Publish a page in one step: drop a file, paste markup, curl it, or hand it to an agent over MCP. Markdown is rendered to a self-contained page on upload. No account, no build step.',
-			ar: 'انشر صفحة بخطوة واحدة: أفلِت ملفًا، أو الصق شيفرة، أو أرسلها بـ curl، أو مرّرها لوكيل عبر MCP. ويُحوَّل الـ Markdown إلى صفحة مكتفية بذاتها عند الرفع. بلا حساب وبلا خطوة بناء.',
+			en: 'Publish a web page in one step: drop a file, paste the code, send it from the terminal with curl, or let an AI agent publish it over MCP. Markdown files become styled pages automatically. No account and no setup.',
+			ar: 'انشر صفحة ويب بخطوة واحدة: أفلِت ملفًا، أو الصق الشيفرة، أو أرسلها من الطرفية بـ curl، أو دع وكيل ذكاء اصطناعي ينشرها عبر MCP. وتتحوّل ملفات Markdown إلى صفحات منسّقة تلقائيًا. بلا حساب وبلا إعداد.',
 		},
 		category: 'web',
 		status: 'live',
@@ -272,7 +272,7 @@ export const projects: Project[] = [
 		},
 		overview: {
 			en: [
-				'I kept generating single-file HTML pages like reports, mockups and one-off tools, and having nowhere nowhere to put them. Every option was heavier than the artefact: a repo and a deploy for a page that exists to be looked at once.',
+				'I kept generating single-file HTML pages like reports, mockups and one-off tools, and having nowhere to put them. Every option was heavier than the artefact: a repo and a deploy for a page that exists to be looked at once.',
 				'pastehtml is the missing step. The drop zone, a paste, a curl and an MCP call from an agent all end at the same function and come back with a URL. Markdown is converted to real HTML at upload time, so the stored paste is a page and every view of it behaves identically: the live origin, the raw view, the sandboxed preview, the ETag.',
 			],
 			ar: [
@@ -347,7 +347,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: 'Pick a gift, record a voice note, send a link. The recipient opens a 3D scene that unwraps in the browser. Free, no accounts, and the sender gets an email when it is opened.',
-			ar: 'اختر هدية، وسجّل رسالة صوتية، وأرسل رابطًا. يفتح المستلم مشهدًا ثلاثي الأبعاد يُفكّ غلافه في المتصفح. مجاني وبلا حسابات، ويصل المرسِل بريد حين تُفتح.',
+			ar: 'اختر هدية، وسجّل رسالة صوتية، وأرسل رابطًا. يفتح المستلم مشهدًا ثلاثي الأبعاد يُفكّ غلافه في المتصفح. مجاني وبلا حسابات، ويصل المرسِلَ بريدٌ عند فتحها.',
 		},
 		category: 'web',
 		status: 'live',
@@ -430,7 +430,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: 'A browser reader that signs in with your own Telegram account and folds the channels you already follow into a single chronological timeline, separate from your conversations.',
-			ar: 'قارئ في المتصفح يسجّل الدخول بحسابك على تيليجرام ويطوي القنوات التي تتابعها أصلًا في خط زمني واحد مرتّب زمنيًا، منفصل عن محادثاتك.',
+			ar: 'قارئ في المتصفح يسجّل الدخول بحسابك على تيليجرام ويجمع القنوات التي تتابعها في خط زمني واحد مرتّب حسب الوقت، بعيدًا عن محادثاتك.',
 		},
 		category: 'web',
 		status: 'live',
@@ -484,7 +484,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: 'The second pass at the same idea as TeleStream, with the account taken out: add public channels by handle and read them as one feed, with the follow list held in the browser.',
-			ar: 'المحاولة الثانية للفكرة نفسها التي بدأت بتيليستريم، بعد نزع الحساب منها: أضف القنوات العامة بمعرّفها واقرأها خطًا واحدًا، وقائمة المتابعة محفوظة في المتصفح.',
+			ar: 'نسخة ثانية من فكرة تيليستريم، لكن بلا حاجة إلى حساب: أضف القنوات العامة بمعرّفها واقرأها في خط زمني واحد، وتُحفظ قائمة المتابعة في متصفحك.',
 		},
 		category: 'web',
 		status: 'archived',
@@ -819,12 +819,12 @@ export const projects: Project[] = [
 		slug: 'malabji',
 		title: { en: 'Malabji', ar: 'ملعبجي' },
 		tagline: {
-			en: 'Find a pitch, find players, book it, play.',
-			ar: 'ابحث عن ملعب، وابحث عن لاعبين، احجز، والعب.',
+			en: 'Book a pitch, find players, and play.',
+			ar: 'احجز ملعبك، واعثر على لاعبين، والعب.',
 		},
 		summary: {
 			en: 'Malabji lets you search nearby football pitches, see available slots, and reserve one. Team search, challenges, and tournaments help players fill the match.',
-			ar: 'يتيح «ملعبجي» البحث عن ملاعب كرة القدم القريبة ورؤية الأوقات المتاحة وحجزها. ويساعد البحث عن الفرق والتحديات والبطولات اللاعبين على إكمال المباراة.',
+			ar: 'يتيح «ملعبجي» البحث عن ملاعب كرة القدم القريبة ورؤية الأوقات المتاحة وحجزها. وتساعد ميزات البحث عن فرق والتحديات والبطولات على إكمال عدد اللاعبين للمباراة.',
 		},
 		category: 'mobile',
 		status: 'shipped',
@@ -959,8 +959,8 @@ export const projects: Project[] = [
 			ar: 'يزيل الموسيقى ويحجب الصور في الفيديو، على جهازك بالكامل.',
 		},
 		summary: {
-			en: 'Naqi filters video on your device. Stem separation removes music while retaining dialogue, and a detector blurs faces or frames at the selected level. It uses no cloud, account, or telemetry, and leaves the original file unchanged. Android is shipped; a Swift rewrite targets iPhone, iPad, and Mac.',
-			ar: 'يُرشِّح «نقيّ» الفيديو على جهازك. يزيل فصل المسارات الموسيقى مع إبقاء الحوار، ويشوّش الكاشف الوجوه أو الإطارات حسب المستوى المختار. لا يستخدم سحابة أو حسابًا أو تتبعًا، ويترك الملف الأصلي دون تعديل. صدر لأندرويد، وتجري إعادة كتابته بـ Swift لأجهزة iPhone وiPad وMac.',
+			en: 'Naqi filters video on your device. AI audio separation removes the music but keeps the dialogue, and a detector blurs faces or whole frames at the level you choose. It uses no cloud, account, or telemetry, and leaves the original file unchanged. Android is shipped; a Swift rewrite targets iPhone, iPad, and Mac.',
+			ar: 'يُرشِّح «نقيّ» الفيديو على جهازك. تزيل تقنية فصل الأصوات الموسيقى وتُبقي الحوار، ويشوّش كاشف ذكي الوجوه أو المشاهد كاملة حسب المستوى الذي تختاره. لا يستخدم سحابة أو حسابًا أو تتبعًا، ويترك الملف الأصلي دون تعديل. صدر لأندرويد، وتجري إعادة كتابته بـ Swift لأجهزة iPhone وiPad وMac.',
 		},
 		category: 'ai',
 		status: 'shipped',
@@ -1090,8 +1090,8 @@ export const projects: Project[] = [
 			ar: 'كل ما يحتاجه طالب الهندسة الكهربائية، في مكان واحد.',
 		},
 		summary: {
-			en: 'Pick any subject from the study plan tree and get everything attached to it: material, recordings, staff contacts. Includes a GPA calculator, bilingual Arabic/English search, and a night mode. Volunteer work that has outlived several intakes of students.',
-			ar: 'اختر أي مادة من شجرة الخطة الدراسية واحصل على كل ما يتعلق بها: مواد وتسجيلات وبيانات الهيئة التدريسية. ويتضمن حاسبة معدّل، وبحثًا ثنائي اللغة بالعربية والإنجليزية، ووضعًا ليليًا. عمل تطوعي عاش أكثر من دفعة طلابية.',
+			en: 'Pick any subject from the study plan tree and get everything attached to it: material, recordings, staff contacts. Includes a GPA calculator, bilingual Arabic/English search, and a night mode. Volunteer work that is still serving students after several intakes.',
+			ar: 'اختر أي مادة من شجرة الخطة الدراسية واحصل على كل ما يتعلق بها: مواد وتسجيلات وبيانات الهيئة التدريسية. ويتضمن حاسبة معدّل، وبحثًا ثنائي اللغة بالعربية والإنجليزية، ووضعًا ليليًا. عمل تطوعي ما زال يخدم الطلاب دفعةً بعد دفعة.',
 		},
 		category: 'mobile',
 		status: 'shipped',
@@ -1200,8 +1200,8 @@ export const projects: Project[] = [
 		slug: 'tawsilah-abshir',
 		title: { en: 'Tawsilah Abshir', ar: 'توصيلة ابشر' },
 		tagline: {
-			en: 'Ride-hailing built for Ajloun, not adapted to it.',
-			ar: 'تطبيق توصيل مبني لعجلون، لا مُكيَّف عليها.',
+			en: 'A ride-hailing app built specifically for Ajloun.',
+			ar: 'تطبيق توصيل مصمَّم خصيصًا لعجلون وأهلها.',
 		},
 		summary: {
 			en: 'A ride service for Ajloun and the surrounding governorates, with vetted drivers who know the area. Built for daily local trips as much as long runs to other governorates.',
@@ -1275,8 +1275,8 @@ export const projects: Project[] = [
 			ar: 'امشِ خطوات قليلة، واركب الباقي.',
 		},
 		summary: {
-			en: 'An Android app that checks the pickup and dropoff points within walking distance of a ride-hailing trip and tells you which pair beats the door-to-door ride on time or distance. Arabic, right-to-left, and tuned for Amman.',
-			ar: 'تطبيق أندرويد يفحص نقاط الركوب والنزول القريبة مشيًا من رحلة التوصيل، ويخبرك أي زوج منها يتفوّق على الرحلة من الباب إلى الباب في الوقت أو المسافة. عربي، من اليمين إلى اليسار، ومضبوط على عمّان.',
+			en: 'An Android app that checks the pickup and dropoff points within walking distance of a ride-hailing trip and tells you which pair saves time or distance compared with a door-to-door ride. In Arabic, and tuned for Amman.',
+			ar: 'تطبيق أندرويد يفحص نقاط الركوب والنزول القريبة مشيًا من رحلة التوصيل، ويخبرك أي نقطتين توفّران عليك وقتًا أو مسافة مقارنةً بالرحلة من الباب إلى الباب. بالعربية، ومصمَّم لشوارع عمّان.',
 		},
 		category: 'mobile',
 		status: 'wip',
@@ -1378,7 +1378,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: 'A remembrance reminder that has followed me onto every platform I use: a VS Code extension, a macOS app, a Windows tray app, a standalone Apple Watch app, and a Wear OS watch face companion. Each one is native, offline, and deliberately tiny.',
-			ar: 'تذكير بالذِّكر تبعني إلى كل منصة أستخدمها: إضافة VS Code، وتطبيق macOS، وتطبيق شريط مهام لويندوز، وتطبيق مستقل لساعة Apple، ورفيق لساعات Wear OS. كل منها أصلي وبلا اتصال وصغير عمدًا.',
+			ar: 'تذكير بالذِّكر رافقني على كل منصة أستخدمها: إضافة VS Code، وتطبيق macOS، وتطبيق في شريط مهام ويندوز، وتطبيق مستقل لساعة Apple، وتطبيق مرافق لساعات Wear OS. كل نسخة مبنية أصليًا لمنصتها، وتعمل دون اتصال، وخفيفة عمدًا.',
 		},
 		category: 'desktop',
 		status: 'shipped',
@@ -1490,7 +1490,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: 'The portfolio that came before this one: a single animated page with a command menu, built to be looked at rather than read, and to make the first two seconds count.',
-			ar: 'معرض الأعمال الذي سبق هذا: صفحة واحدة متحركة بقائمة أوامر، بُنيت لتُشاهَد لا لتُقرأ، ولتجعل الثانيتين الأوليين ذواتَي أثر.',
+			ar: 'معرض الأعمال الذي سبق هذا: صفحة واحدة متحركة بقائمة أوامر، بُنيت لتُشاهَد لا لتُقرأ، ولتترك انطباعًا قويًا من الثانيتين الأوليين.',
 		},
 		category: 'web',
 		status: 'live',
@@ -1554,11 +1554,11 @@ export const projects: Project[] = [
 		title: { en: 'cv.assoli.site', ar: 'cv.assoli.site' },
 		tagline: {
 			en: 'My web résumé: dense, scannable, and printable as-is.',
-			ar: 'سيرتي الذاتية على الويب: كثيفة وسهلة المسح وقابلة للطباعة كما هي.',
+			ar: 'سيرتي الذاتية على الويب: مركّزة وسريعة التصفح وجاهزة للطباعة كما هي.',
 		},
 		summary: {
 			en: 'A standalone web résumé with a keyboard-driven interface, laid out so the browser print dialog produces a clean one-file PDF without a separate export.',
-			ar: 'سيرة ذاتية مستقلة على الويب بواجهة تُدار من لوحة المفاتيح، مُنسَّقة بحيث ينتج مربّع طباعة المتصفح ملف PDF نظيفًا دون تصدير منفصل.',
+			ar: 'سيرة ذاتية مستقلة على الويب بواجهة تُدار من لوحة المفاتيح، مُنسَّقة بحيث تُنتج نافذة الطباعة في المتصفح ملف PDF نظيفًا دون أي خطوة تصدير إضافية.',
 		},
 		category: 'web',
 		status: 'live',
@@ -1619,7 +1619,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: "An online school platform bringing courses, materials and student progress into one place for a school's teachers and students.",
-			ar: 'منصة مدرسية إلكترونية تجمع المساقات والمواد وتقدّم الطلاب في مكان واحد لمعلمي المدرسة وطلابها.',
+			ar: 'منصة مدرسية إلكترونية تجمع المساقات والمواد ومتابعة تقدّم الطلاب في مكان واحد لمعلمي المدرسة وطلابها.',
 		},
 		category: 'web',
 		status: 'live',
@@ -1773,12 +1773,12 @@ export const projects: Project[] = [
 		slug: 'majalis',
 		title: { en: 'Al-Tibyan Educational Center', ar: 'مركز التبيان التعليمي' },
 		tagline: {
-			en: 'Quran memorisation circles, run properly on a phone.',
-			ar: 'حلقات تحفيظ القرآن، تُدار كما ينبغي من الهاتف.',
+			en: 'Quran memorisation circles, managed easily from a phone.',
+			ar: 'حلقات تحفيظ القرآن، تُدار بسهولة من الهاتف.',
 		},
 		summary: {
-			en: "A companion app for a Quran teaching and memorisation centre, linking the centre, the student and the family. Students sit in circles that mirror the real ones, the teacher follows a student's recitation on a synchronised mushaf, and games and tests turn revision into something students return to.",
-			ar: 'تطبيق مرافق لمركز تعليم القرآن وتحفيظه، يربط المركز بالطالب وأسرته. يجلس الطلاب في حلقات تحاكي الواقع، ويتابع المعلّم تلاوة الطالب على مصحف متزامن، وتحوّل الألعاب والاختبارات المراجعة إلى شيء يعود إليه الطلاب.',
+			en: "A companion app for a Quran teaching and memorisation centre, linking the centre, the student and the family. Students sit in circles that mirror the real ones, the teacher follows a student's recitation on a synchronised mushaf, and games and quizzes make revision something students want to come back to.",
+			ar: 'تطبيق مرافق لمركز تعليم القرآن وتحفيظه، يربط المركز بالطالب وأسرته. يجلس الطلاب في حلقات تحاكي الواقع، ويتابع المعلّم تلاوة الطالب على مصحف متزامن، وتجعل الألعاب والاختبارات المراجعةَ ممتعة يعود إليها الطلاب برغبتهم.',
 		},
 		category: 'mobile',
 		status: 'shipped',
@@ -1885,11 +1885,11 @@ export const projects: Project[] = [
 		title: { en: 'DevCards', ar: 'بطاقات المقابلات' },
 		tagline: {
 			en: 'Spaced-repetition flashcards for engineering interviews.',
-			ar: 'بطاقات مراجعة متباعدة للتحضير لمقابلات الهندسة.',
+			ar: 'بطاقات مراجعة بالتكرار المتباعد للتحضير لمقابلات العمل البرمجية.',
 		},
 		summary: {
 			en: 'Hundreds of multiple-choice questions across thirteen topics, each with a full explanation, scheduled by a Leitner system so the cards you get wrong keep coming back until they stick. Entirely frontend: no backend, no account, no network calls.',
-			ar: 'مئات الأسئلة متعددة الخيارات في ثلاثة عشر موضوعًا، لكل سؤال شرح كامل، مجدولة بنظام لايتنر بحيث تعود البطاقات التي تخطئ فيها حتى ترسخ. واجهة أمامية بالكامل: بلا خادم وبلا حساب وبلا اتصالات شبكية.',
+			ar: 'مئات الأسئلة متعددة الخيارات في ثلاثة عشر موضوعًا، لكل سؤال شرح كامل، مجدولة بنظام لايتنر بحيث تعود البطاقات التي تخطئ فيها حتى تحفظها. يعمل كله داخل المتصفح: بلا خادم وبلا حساب وبلا إنترنت.',
 		},
 		category: 'web',
 		status: 'live',
@@ -2156,8 +2156,8 @@ export const projects: Project[] = [
 		slug: 'ghurza',
 		title: { en: 'Ghurza', ar: 'غُرزة' },
 		tagline: {
-			en: 'Learn crochet in Arabic, from the first stitch upward.',
-			ar: 'تعلّم الكروشيه بالعربية، من أول غرزة صعودًا.',
+			en: 'Learn crochet in Arabic, from the first stitch to advanced work.',
+			ar: 'تعلّم الكروشيه بالعربية، من أول غرزة حتى الاحتراف.',
 		},
 		summary: {
 			en: 'A complete Arabic learning path for crochet: ordered lessons from the very first stitch through to advanced work, plus references for yarns, hooks and tools, and a curated set of the best Arabic and international sources.',
@@ -2394,7 +2394,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: "A Chrome extension that renders Arabic subtitles over English YouTube videos by translating the video's own captions entirely in the browser, using a bundled NLLB-200 model. No account, no cloud translation service, and caption text never leaves the machine.",
-			ar: 'إضافة كروم تعرض ترجمة عربية فوق فيديوهات يوتيوب الإنجليزية بترجمة تسميات الفيديو نفسها داخل المتصفح بالكامل، باستخدام نموذج NLLB-200 مضمَّن. بلا حساب ولا خدمة ترجمة سحابية، ولا يغادر نص الترجمة الجهاز أبدًا.',
+			ar: 'إضافة كروم تعرض ترجمة عربية فوق فيديوهات يوتيوب الإنجليزية، عبر ترجمة النص الإنجليزي المرافق للفيديو داخل المتصفح بالكامل، باستخدام نموذج NLLB-200 مضمَّن. بلا حساب ولا خدمة ترجمة سحابية، ولا يغادر نص الترجمة الجهاز أبدًا.',
 		},
 		category: 'extension',
 		status: 'live',
@@ -2552,8 +2552,8 @@ export const projects: Project[] = [
 		slug: 'ghadd',
 		title: { en: 'Ghadd', ar: 'غَضّ' },
 		tagline: {
-			en: 'System-wide on-device image filtering for Android.',
-			ar: 'ترشيح صور على مستوى النظام كاملًا لأندرويد، على الجهاز.',
+			en: 'Blurs immodest images in any Android app, entirely on your device.',
+			ar: 'يحجب الصور غير المحتشمة في أي تطبيق على أندرويد، على جهازك بالكامل.',
 		},
 		summary: {
 			en: 'An Android accessibility service that covers and blurs immodest imagery anywhere on screen, in any app, using a detector that runs entirely on the device. Because it reads pixels rather than a DOM, it has none of the blind spots a browser extension has.',
@@ -2635,8 +2635,8 @@ export const projects: Project[] = [
 			ar: 'استراحات للعين تعرف متى تكون أمام الحاسوب فعلًا.',
 		},
 		summary: {
-			en: 'A macOS and Windows desktop app for 20-20-20 eye breaks. What makes it different is that it models presence, tracking idle time, lock state, sleep and wake, and fullscreen suppression, so it does not nag you about a break you were not there to miss.',
-			ar: 'تطبيق سطح مكتب لماك وويندوز لاستراحات العين وفق قاعدة 20-20-20. وما يميّزه أنه ينمذج الحضور من وقت خمول وحالة قفل ونوم واستيقاظ وكتم للشاشة الكاملة، فلا يزعجك باستراحة لم تكن موجودًا لتفوّتها.',
+			en: 'A macOS and Windows desktop app for 20-20-20 eye breaks. What makes it different is that it knows whether you are actually there: it tracks idle time, screen lock, sleep and wake, and pauses during fullscreen, so it never nags you about a break you were not there to miss.',
+			ar: 'تطبيق سطح مكتب لماك وويندوز لاستراحات العين وفق قاعدة 20-20-20. وما يميّزه أنه يعرف إن كنت أمام الجهاز فعلًا: يتتبّع وقت الخمول وقفل الشاشة والنوم والاستيقاظ، ويتوقف أثناء وضع ملء الشاشة، فلا يزعجك باستراحة لم تكن موجودًا لتفوّتها.',
 		},
 		category: 'desktop',
 		status: 'wip',
@@ -2921,7 +2921,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: 'An app that digitises the election process end to end: voter registration, identity-verified access, casting a vote and announcing results. Built for transparency at every stage.',
-			ar: 'تطبيق يُرقمن العملية الانتخابية من طرف إلى طرف: تسجيل الناخبين، والدخول بهوية مُتحقَّق منها، والإدلاء بالصوت، وإعلان النتائج. مبني للشفافية في كل مرحلة.',
+			ar: 'تطبيق يحوّل العملية الانتخابية كاملة إلى عملية رقمية: تسجيل الناخبين، والدخول بهوية مُتحقَّق منها، والإدلاء بالصوت، وإعلان النتائج. مبني للشفافية في كل مرحلة.',
 		},
 		category: 'mobile',
 		status: 'shipped',
@@ -3199,8 +3199,8 @@ export const projects: Project[] = [
 		slug: 'wedding-invitation',
 		title: { en: 'Wedding Invitation', ar: 'دعوة زفاف' },
 		tagline: {
-			en: 'A wedding invitation that lives at a link.',
-			ar: 'دعوة زفاف تسكن رابطًا.',
+			en: 'A digital wedding invitation you send as a link.',
+			ar: 'دعوة زفاف رقمية تُرسَل برابط.',
 		},
 		summary: {
 			en: 'A digital wedding invitation with details, location, countdown and RSVP, sent as a link instead of printed and delivered by hand.',
@@ -3322,7 +3322,7 @@ export const projects: Project[] = [
 		},
 		summary: {
 			en: 'A free tool that strips music from videos on YouTube, Facebook and other sites while dialogue, narration and other sound keep playing, running against a local audio-separation backend on your own machine.',
-			ar: 'أداة مجانية تزيل الموسيقى من فيديوهات يوتيوب وفيسبوك ومواقع أخرى مع استمرار الحوار والسرد وبقية الأصوات، وتعمل مقابل خادم فصل صوتي محلي على جهازك.',
+			ar: 'أداة مجانية تزيل الموسيقى من فيديوهات يوتيوب وفيسبوك ومواقع أخرى مع استمرار الحوار والسرد وبقية الأصوات، وتعتمد على خادم محلي لفصل الصوت يعمل على جهازك.',
 		},
 		category: 'ai',
 		status: 'live',
@@ -3379,8 +3379,8 @@ export const projects: Project[] = [
 		slug: 'cohere-transcribe',
 		title: { en: 'cohere-transcribe', ar: 'cohere-transcribe' },
 		tagline: {
-			en: 'High-throughput Arabic/English transcription, batched properly.',
-			ar: 'تفريغ عربي/إنجليزي عالي الإنتاجية، بمعالجة دفعية سليمة.',
+			en: 'Fast offline Arabic and English transcription for large batches of files.',
+			ar: 'تفريغ صوتي سريع بالعربية والإنجليزية دون اتصال، لدفعات كبيرة من الملفات.',
 		},
 		summary: {
 			en: "A Python package for offline batch transcription with Cohere's 2B Arabic/English ASR model: optimised voice activity detection, multi-file GPU batching under bounded memory, subtitle output and optional word-level timestamps.",
@@ -3633,7 +3633,7 @@ export const projects: Project[] = [
 		title: { en: 'Portfolio', ar: 'معرض الأعمال' },
 		tagline: {
 			en: 'This site: a bilingual, content-first case-study portfolio.',
-			ar: 'هذا الموقع: معرض أعمال ثنائي اللغة يقدّم دراسات حالة قبل كل شيء.',
+			ar: 'هذا الموقع: معرض أعمال ثنائي اللغة يركّز على شرح المشاريع بالتفصيل.',
 		},
 		summary: {
 			en: 'A bilingual (English/Arabic) portfolio built as a content layer first and a design second: every project is written up once in both languages, then rendered as a card, a case study, and a search-engine record from the same source.',

@@ -61,7 +61,7 @@ export default function HireForm({ lang }: { lang: Locale }) {
       .map((key) => t(key))
       .join(", ");
 
-    const subject = t("hire.title");
+    const subject = t("hire.subject");
     const body = [
       `${t("hire.fullName")}: ${data.fullName}`,
       `${t("hire.email")}: ${data.email}`,

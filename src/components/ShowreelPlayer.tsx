@@ -229,7 +229,7 @@ export default function ShowreelPlayer({
                         {String(shots.length).padStart(2, "0")}
                       </span>
                       <span>{t(`cat.${shot.category}` as UIKey)}</span>
-                      <span className="ltr">{shot.year}</span>
+                      <span>{shot.year}</span>
                     </p>
                     <div className="reel-title font-acorn">
                       <Split text={shot.title} chars={false} />

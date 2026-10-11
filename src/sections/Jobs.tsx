@@ -7,7 +7,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { profile } from "@/content/profile";
 import { KEY_CODES } from "@/libs/key-codes";
 import type { Locale } from "@/libs/i18n";
-import { useT } from "@/libs/ui";
+import { usePeriod, useT } from "@/libs/ui";
 import { reveal } from "@/libs/motion";
 
 const mobileTabVariants = {
@@ -20,13 +20,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
   const rtl = lang === "ar";
   const jobs = profile.experience;
 
-  /** `Since 2025`, `2022 to 2023` → Arabic when the page is Arabic. */
-  const period = (value: string) =>
-    lang === "en"
-      ? value
-      : value
-          .replace(/^Since\s+/, `${t("date.since")} `)
-          .replace(/\s+to\s+/, ` ${t("date.to")} `);
+  const period = usePeriod(lang);
 
   const contentVariants = {
     hidden: { opacity: 0, x: rtl ? 60 : -60 },
@@ -124,8 +118,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
                     <h3 className="mb-1 text-xl font-medium md:text-2xl">
                       <span>{job.role[lang]}</span>
                       <span className="text-primary">
-                        {" @"}
-                        {job.company[lang]}
+                        {` ${t("exp.at")}${job.company[lang]}`}
                       </span>
                     </h3>
                     <p className="mb-6 text-sm text-muted">
@@ -197,7 +190,7 @@ const Jobs = ({ lang }: { lang: Locale }) => {
                 <p className="text-sm text-primary">
                   {item.issuer[lang]}
                   {" · "}
-                  <span className="ltr inline-block">{item.date}</span>
+                  <span className="inline-block">{period(item.date)}</span>
                 </p>
                 <p className="mt-1 text-xs text-muted">
                   {item.description[lang]}

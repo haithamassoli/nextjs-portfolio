@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import ReelPlayer, { type Fx } from "@/components/ReelPlayer";
 import { projectBySlug, projects } from "@/content";
 import { SITE, href, isLocale, locales, type Locale } from "@/libs/i18n";
-import { useT, type UIKey } from "@/libs/ui";
+import { usePeriod, useT, type UIKey } from "@/libs/ui";
 
 /**
  * The eight projects the reel cuts between, a bar each, with the move and the
@@ -72,7 +72,7 @@ export default async function ReelPage({
       ...look,
       title: p.title[locale],
       category: t(`cat.${p.category}` as UIKey),
-      year: p.year,
+      year: usePeriod(locale)(p.year),
       stack: p.stack.slice(0, 3),
       cover: p.cover,
       gallery: p.gallery,

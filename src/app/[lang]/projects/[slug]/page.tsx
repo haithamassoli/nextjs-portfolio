@@ -9,7 +9,7 @@ import ProjectFrame from "@/components/ProjectFrame";
 import { projectBySlug, projects } from "@/content";
 import type { Project } from "@/content/types";
 import { SITE, href, isLocale, locales, type Locale } from "@/libs/i18n";
-import { useT, type UIKey } from "@/libs/ui";
+import { usePeriod, useT, type UIKey } from "@/libs/ui";
 
 export function generateStaticParams() {
   return locales.flatMap((lang) =>
@@ -157,7 +157,7 @@ export default async function ProjectPage({
         <Meta label={t("project.role")} value={project.role[locale]} />
         <Meta
           label={t("project.year")}
-          value={<span className="ltr inline-block">{project.year}</span>}
+          value={usePeriod(locale)(project.year)}
         />
         <Meta
           label={t("project.status")}

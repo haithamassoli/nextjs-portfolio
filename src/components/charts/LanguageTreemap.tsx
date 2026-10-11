@@ -84,7 +84,7 @@ export default function LanguageTreemap({
 }: {
   languages: Slice[];
   lang: Locale;
-  labels: { title: string; hours: string };
+  labels: { title: string; hours: string; other: string };
   describedBy: string;
 }) {
   const slices = languages
@@ -117,7 +117,11 @@ export default function LanguageTreemap({
           ? RESIDUAL
           : RAMP[Math.min(rank++, RAMP.length - 1)],
     }))
-    .map((block) => ({ ...block, ink: INK[block.color] ?? "#e2e8f0" }));
+    .map((block) => ({
+      ...block,
+      name: block.name === "Other" ? labels.other : block.name,
+      ink: INK[block.color] ?? "#e2e8f0",
+    }));
 
   return (
     <Reveal className="m-0">
