@@ -223,6 +223,8 @@ export const ui = {
 		'edu.lede': 'My university studies.',
 		'cert.title': 'Certifications',
 		'cert.lede': 'Courses I have completed.',
+		'cert.more': 'Show {count} more',
+		'cert.less': 'Show fewer',
 		'date.since': 'Since',
 		'date.to': 'to',
 		'about.lede':
@@ -470,6 +472,8 @@ export const ui = {
 		'edu.lede': 'دراستي الجامعية.',
 		'cert.title': 'الشهادات',
 		'cert.lede': 'دورات أكملتها.',
+		'cert.more': 'عرض {count} شهادات أخرى',
+		'cert.less': 'عرض أقل',
 		'date.since': 'منذ',
 		'date.to': 'إلى',
 		'about.lede': 'من أنا، وكيف أعمل، والأدوات التي أستخدمها.',

@@ -7,7 +7,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { profile } from "@/content/profile";
 import { KEY_CODES } from "@/libs/key-codes";
 import type { Locale } from "@/libs/i18n";
-import { usePeriod, useT } from "@/libs/ui";
+import { usePeriod, useT, useTf } from "@/libs/ui";
 import { reveal } from "@/libs/motion";
 
 const mobileTabVariants = {
@@ -15,8 +15,12 @@ const mobileTabVariants = {
   active: { opacity: 1, transition: { duration: 0.6 } },
 };
 
+/** Certifications shown before "show all". */
+const CERTS_PREVIEW = 3;
+
 const Jobs = ({ lang }: { lang: Locale }) => {
   const t = useT(lang);
+  const tf = useTf(lang);
   const rtl = lang === "ar";
   const jobs = profile.experience;
 
@@ -26,6 +30,12 @@ const Jobs = ({ lang }: { lang: Locale }) => {
     hidden: { opacity: 0, x: rtl ? 60 : -60 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
   };
+
+  const [allCerts, setAllCerts] = useState(false);
+  const certs = allCerts
+    ? profile.certifications
+    : profile.certifications.slice(0, CERTS_PREVIEW);
+  const hiddenCerts = profile.certifications.length - CERTS_PREVIEW;
 
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState<number | null>(null);
@@ -180,24 +190,72 @@ const Jobs = ({ lang }: { lang: Locale }) => {
             {t("cert.title")}
           </h3>
           <p className="mt-1 text-sm text-muted">{t("cert.lede")}</p>
-          <ul className="mt-6 flex flex-col gap-4">
-            {profile.certifications.map((item) => (
-              <li
-                key={item.name.en}
-                className="rounded-lg bg-gray-800 p-5 shadow-lg"
-              >
-                <p className="font-medium">{item.name[lang]}</p>
-                <p className="text-sm text-primary">
-                  {item.issuer[lang]}
-                  {" · "}
-                  <span className="inline-block">{period(item.date)}</span>
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  {item.description[lang]}
-                </p>
-              </li>
-            ))}
+          <ul id="cert-list" className="mt-6 flex flex-col">
+            <AnimatePresence initial={false}>
+              {certs.map((item, i) => (
+                <motion.li
+                  key={item.name.en}
+                  className="overflow-hidden"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{
+                    height: "auto",
+                    opacity: 1,
+                    transition: {
+                      height: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+                      opacity: {
+                        duration: 0.3,
+                        delay: 0.05 * Math.max(0, i - CERTS_PREVIEW),
+                      },
+                    },
+                  }}
+                  exit={{
+                    height: 0,
+                    opacity: 0,
+                    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                  }}
+                >
+                  <div className="mb-4 rounded-lg bg-gray-800 p-5 shadow-lg">
+                    <p className="font-medium">{item.name[lang]}</p>
+                    <p className="text-sm text-primary">
+                      {item.issuer[lang]}
+                      {" · "}
+                      <span className="inline-block">{period(item.date)}</span>
+                    </p>
+                    <p className="mt-1 text-xs text-muted">
+                      {item.description[lang]}
+                    </p>
+                  </div>
+                </motion.li>
+              ))}
+            </AnimatePresence>
           </ul>
+          {hiddenCerts > 0 && (
+            <button
+              type="button"
+              onClick={() => setAllCerts(!allCerts)}
+              aria-expanded={allCerts}
+              aria-controls="cert-list"
+              className="group/cert inline-flex items-center gap-2 rounded py-1 font-mono text-sm text-primary transition-colors hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              {allCerts
+                ? t("cert.less")
+                : tf("cert.more", { count: hiddenCerts })}
+              <svg
+                aria-hidden
+                viewBox="0 0 16 16"
+                className={`size-3.5 transition-transform duration-300 group-hover/cert:translate-y-0.5 ${
+                  allCerts ? "rotate-180 group-hover/cert:-translate-y-0.5" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 6l4 4 4-4" />
+              </svg>
+            </button>
+          )}
         </motion.div>
       </div>
     </section>

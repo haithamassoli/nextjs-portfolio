@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import ProjectCard from "@/components/ProjectCard";
 import SectionHeader from "@/components/SectionHeader";
+import ShowMore from "@/components/ShowMore";
 import { projects } from "@/content";
 import type { Project } from "@/content/types";
 import { href, type Locale } from "@/libs/i18n";
@@ -41,8 +42,8 @@ const Grid = ({
 );
 
 /**
- * A preview of the archive. The extra rows live in a `<details>` so the whole
- * list stays on the server: the full catalogue is one link away.
+ * A preview of the archive. The extra rows are server-rendered and hidden
+ * until "show more": the full catalogue is one link away.
  */
 const Projects = ({ lang }: { lang: Locale }) => {
   const t = useT(lang);
@@ -63,13 +64,9 @@ const Projects = ({ lang }: { lang: Locale }) => {
       <Grid items={preview} lang={lang} className="mt-10 md:mt-20" />
 
       {extra.length > 0 && (
-        <details className="group/more mt-12">
-          <summary className="btn mx-auto block w-max cursor-pointer list-none rounded border border-primary bg-transparent px-4 py-2 text-center font-mono text-sm text-primary transition-colors duration-300 marker:content-none [&::-webkit-details-marker]:hidden hover:bg-primary/10">
-            <span className="group-open/more:hidden">{t("work.more")}</span>
-            <span className="hidden group-open/more:inline">{t("work.less")}</span>
-          </summary>
-          <Grid items={extra} lang={lang} offset={PREVIEW} className="mt-8" />
-        </details>
+        <ShowMore more={t("work.more")} less={t("work.less")}>
+          <Grid items={extra} lang={lang} offset={PREVIEW} className="mt-14" />
+        </ShowMore>
       )}
 
       <motion.div
