@@ -398,19 +398,19 @@ function play(
         : Array.isArray(targets)
           ? targets
           : [targets];
-    els.forEach((el, i) => {
-      anims.push(
-        el.animate(
-          typeof keyframes === "function" ? keyframes(i) : keyframes,
-          {
-            delay: offset + (t + i * stagger) * 1000,
-            duration: d * 1000,
-            easing,
-            fill: seen.has(el) ? "forwards" : "both",
-          },
-        ),
+    return els.map((el, i) => {
+      const anim = el.animate(
+        typeof keyframes === "function" ? keyframes(i) : keyframes,
+        {
+          delay: offset + (t + i * stagger) * 1000,
+          duration: d * 1000,
+          easing,
+          fill: seen.has(el) ? "forwards" : "both",
+        },
       );
+      anims.push(anim);
       seen.add(el);
+      return anim;
     });
   };
 
@@ -653,7 +653,12 @@ function play(
   q(".reel-tile").forEach((tile, i) => {
     const d = Math.hypot((i % COLS) - (COLS - 1) / 2, Math.floor(i / COLS) - (ROWS - 1) / 2);
     rings.add(Math.round(d * 2) / 2);
-    if (d) at(tile, W + d * 0.09, 0.5, { transform: ["scale(0.3)", "none"], opacity: [0, 1] }, BACK_OUT);
+    if (!d) return;
+    // Once landed, drop the filled animation: 45 tiles each held as a GPU
+    // layer inside the scaled 3D plane starve the count of raster memory,
+    // and "45" paints in broken patches.
+    const [pop] = at(tile, W + d * 0.09, 0.5, { transform: ["scale(0.3)", "none"], opacity: [0, 1] }, BACK_OUT);
+    pop.finished.then(() => pop.cancel(), () => {});
   });
   rings.forEach((d) => d && sfx.tick(T + W + d * 0.09, 1800 + d * 350, 0.14));
 
