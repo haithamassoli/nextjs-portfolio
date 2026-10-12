@@ -38,10 +38,10 @@ const Showreel = ({
         <svg
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="size-4 translate-x-px transition-transform duration-300 group-hover:scale-110"
+          className="size-4 translate-x-[0.5px] transition-transform duration-300 group-hover:scale-110"
           aria-hidden
         >
-          <path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z" />
+          <path d="M5 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 5 4.5z" />
         </svg>
       </button>
       {audio && (
