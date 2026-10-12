@@ -3,7 +3,7 @@ import Link from "next/link";
 import ProjectFrame from "@/components/ProjectFrame";
 import type { Project } from "@/content/types";
 import { href, type Locale } from "@/libs/i18n";
-import { useT, type UIKey } from "@/libs/ui";
+import { usePeriod, useT, type UIKey } from "@/libs/ui";
 
 type Props = {
   project: Project;
@@ -14,6 +14,7 @@ type Props = {
 
 const ProjectCard = ({ project: p, locale, sizes, priority }: Props) => {
   const t = useT(locale);
+  const period = usePeriod(locale);
 
   return (
     <Link
@@ -43,8 +44,8 @@ const ProjectCard = ({ project: p, locale, sizes, priority }: Props) => {
               {p.title[locale]}
             </h3>
           </ViewTransition>
-          <span className="ltr flex-none font-mono text-xs text-muted">
-            {p.year}
+          <span className="flex-none font-mono text-xs text-muted">
+            {period(p.year)}
           </span>
         </div>
 

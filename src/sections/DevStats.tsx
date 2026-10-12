@@ -143,7 +143,11 @@ export default async function DevStats({ lang }: { lang: Locale }) {
             languages={stats.languages}
             lang={lang}
             describedBy="stats-languages-desc"
-            labels={{ title: t("stats.languages"), hours: t("stats.hours") }}
+            labels={{
+              title: t("stats.languages"),
+              hours: t("stats.hours"),
+              other: t("stats.other"),
+            }}
           />
         </Panel>
       </div>

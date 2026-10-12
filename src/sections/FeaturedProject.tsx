@@ -12,7 +12,7 @@ import SectionHeader from "@/components/SectionHeader";
 import { featuredProjects } from "@/content";
 import type { Project } from "@/content/types";
 import { href, type Locale } from "@/libs/i18n";
-import { useT } from "@/libs/ui";
+import { usePeriod, useT } from "@/libs/ui";
 
 /** The first store or site link, used when the card image is clicked. */
 const primaryLink = (project: Project) =>
@@ -24,6 +24,7 @@ const primaryLink = (project: Project) =>
 
 export const FeaturedProject = ({ lang }: { lang: Locale }) => {
   const t = useT(lang);
+  const period = usePeriod(lang);
 
   return (
     <section className="py-16 lg:py-24" id="projects">
@@ -66,8 +67,8 @@ export const FeaturedProject = ({ lang }: { lang: Locale }) => {
                 <div>
                   <p className="mb-2 font-mono text-xs text-primary">
                     {t("featured.label")}
-                    <span className="ltr ms-2 inline-block text-muted">
-                      {project.year}
+                    <span className="ms-2 inline-block text-muted">
+                      {period(project.year)}
                     </span>
                   </p>
                   <ViewTransition
